@@ -30,13 +30,13 @@ public class ScaleSliders : MonoBehaviour
             return;
         }
         gameObject.SetActive(true);
-        widthSlider.value = fishTank.transform.localScale.x;
-        lengthSlider.value = fishTank.transform.localScale.z;
-        heightSlider.value = fishTank.transform.localScale.y;
-
         widthSlider.onValueChanged.RemoveAllListeners();
         lengthSlider.onValueChanged.RemoveAllListeners();
         heightSlider.onValueChanged.RemoveAllListeners();
+
+        widthSlider.value = fishTank.transform.localScale.x;
+        lengthSlider.value = fishTank.transform.localScale.z;
+        heightSlider.value = fishTank.transform.localScale.y;
 
         widthSlider.onValueChanged.AddListener(w => fishTank.SetTankWidth(w));
         lengthSlider.onValueChanged.AddListener(l => fishTank.SetTankLength(l));

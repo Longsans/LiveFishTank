@@ -94,15 +94,21 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
     public void PlaceNewGeospatialObject()
     {
-        var geoObject = Instantiate(
+        //var geoObject = Instantiate(
+        //    _geoObjectPrefab,
+        //    _camera.transform.position + 1.5f * _camera.transform.forward,
+        //    Quaternion.identity)
+        //    .GetComponent<GeospatialObject>();
+        //geoObject.Innit();
+        //_geoObjects.Add(geoObject);
+
+        //InteractionManager.Instance.SetModifyInvoke(true);
+        //InteractionManager.Instance.SelectPlaceableGameObject(geoObject.gameObject);
+
+        Instantiate(
             _geoObjectPrefab,
             _camera.transform.position + 1.5f * _camera.transform.forward,
             Quaternion.identity)
             .GetComponent<GeospatialObject>();
-        geoObject.Innit();
-        _geoObjects.Add(geoObject);
-
-        InteractionManager.Instance.SetModifyInvoke(true);
-        InteractionManager.Instance.SelectPlaceableGameObject(geoObject.gameObject);
     }
 }
