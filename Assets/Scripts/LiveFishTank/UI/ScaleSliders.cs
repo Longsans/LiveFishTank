@@ -34,9 +34,9 @@ public class ScaleSliders : MonoBehaviour
         lengthSlider.onValueChanged.RemoveAllListeners();
         heightSlider.onValueChanged.RemoveAllListeners();
 
-        widthSlider.value = fishTank.transform.localScale.x;
-        lengthSlider.value = fishTank.transform.localScale.z;
-        heightSlider.value = fishTank.transform.localScale.y;
+        widthSlider.value = fishTank.Collider.gameObject.transform.localScale.x;
+        lengthSlider.value = fishTank.Collider.gameObject.transform.localScale.z;
+        heightSlider.value = fishTank.Collider.gameObject.transform.localScale.y;
 
         widthSlider.onValueChanged.AddListener(w => fishTank.SetTankWidth(w));
         lengthSlider.onValueChanged.AddListener(l => fishTank.SetTankLength(l));

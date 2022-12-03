@@ -15,6 +15,7 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
     public GameObject OtherPrefab => _geoObjectPrefab;
 
     public int FishTanksCount => _geoObjects.Count(geoObj => geoObj is FishTank);
+    public int SelectedFishPrefabIndex { get; set; } = 0;
 
     private List<GeospatialObject> _geoObjects;
     private const string _storageKey = "FishTankStorage";
@@ -83,7 +84,8 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
         if (PlayerPrefs.HasKey(_storageKey))
         {
             LoadSavedPlaceables();
-            StatusLog.Instance.DebugLog($"PlayerPrefs restored: {_geoObjects.Count} GeoObjects");
+            var localObjectsCount = _geoObjects.Sum(geoObj => geoObj.LocalObjectsCount);
+            StatusLog.Instance.DebugLog($"PlayerPrefs restored: {FishTanksCount} GeoObjects - {localObjectsCount} LocalObjects total");
             _storageResolved = true;
         }
         else
@@ -94,21 +96,41 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
     public void PlaceNewGeospatialObject()
     {
-        //var geoObject = Instantiate(
-        //    _geoObjectPrefab,
-        //    _camera.transform.position + 1.5f * _camera.transform.forward,
-        //    Quaternion.identity)
-        //    .GetComponent<GeospatialObject>();
-        //geoObject.Innit();
-        //_geoObjects.Add(geoObject);
-
-        //InteractionManager.Instance.SetModifyInvoke(true);
-        //InteractionManager.Instance.SelectPlaceableGameObject(geoObject.gameObject);
-
-        Instantiate(
+        var geoObject = Instantiate(
             _geoObjectPrefab,
             _camera.transform.position + 1.5f * _camera.transform.forward,
             Quaternion.identity)
             .GetComponent<GeospatialObject>();
+        geoObject.Innit();
+        _geoObjects.Add(geoObject);
+
+        InteractionManager.Instance.SetModifyInvoke(true);
+        InteractionManager.Instance.SelectPlaceableGameObject(geoObject.gameObject);
+
+        // For testing without Location service
+        //
+        // Instantiate(
+        //     _geoObjectPrefab,
+        //     _camera.transform.position + 1.5f * _camera.transform.forward,
+        //     Quaternion.identity)
+        //     .GetComponent<GeospatialObject>();
+    }
+
+    public void PlaceNewLocalObject(GeospatialObject geoObject)
+    {
+        var angle = Random.Range(30f, 180f);
+        var placementPos = _camera.transform.position + 1.5f * _camera.transform.forward;
+        if (!geoObject.Collider.bounds.Contains(placementPos))
+        {
+            StatusLog.Instance.DebugLog("Please place position the device a small distance away from the tank");
+            return;
+        }
+        var localObject = Instantiate(
+            _fishPrefabs[SelectedFishPrefabIndex],
+            placementPos,
+            Quaternion.AngleAxis(angle, Vector3.up))
+            .GetComponent<LocalObject>();
+        localObject.Innit(SelectedFishPrefabIndex, geoObject);
+        SavePlaceables();
     }
 }

@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GeospatialObject : PlaceableObject
+public class GeospatialObject : MonoBehaviour
 {
     public GeospatialObjectData SaveData => _saveData;
+    public int LocalObjectsCount => _localObjects.Count;
+    [HideInInspector] public BoxCollider Collider;
 
     protected List<LocalObject> _localObjects;
     protected GeospatialObjectData _saveData;
 
-    public override void Innit(int prefabIndex = 0)
+    void Awake()
     {
         _localObjects = new();
+        Collider = GetComponentInChildren<BoxCollider>();
+    }
+
+    public virtual void Innit()
+    {
         AttachToGeoAnchor(GeospatialManager.Instance.RequestGeospatialAnchor());
         Save();
     }
@@ -58,7 +65,6 @@ public class GeospatialObject : PlaceableObject
         AttachToGeoAnchor(GeospatialManager.Instance.RequestGeospatialAnchor(geoPose));
         transform.localPosition = _saveData.PositionRelativeToGeoAnchor;
 
-        _localObjects = new List<LocalObject>();
         foreach (var localData in _saveData.LocalObjectDataList)
         {
             GameObject localObjPrefab = localData.Type switch
@@ -67,15 +73,11 @@ public class GeospatialObject : PlaceableObject
                 LocalObjectType.Ornament => PlaceablesManager.Instance.GetOrnamentPrefabAtIndex(localData.PrefabIndex),
                 _ => PlaceablesManager.Instance.OtherPrefab,
             };
-            LocalObject localObject =
-                Instantiate(localObjPrefab)
-                    .GetComponent<LocalObject>();
 
-            localObject.Restore(localData);
-            if (!_localObjects.Contains(localObject))
-            {
-                _localObjects.Add(localObject);
-            }
+            var localObj = Instantiate(localObjPrefab);
+            var localObject = localObj.GetComponent<LocalObject>();
+
+            localObject.Restore(localData, this);
         }
     }
 
