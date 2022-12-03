@@ -16,6 +16,7 @@ public class StatusLog : Singleton<StatusLog>
             if (type == LogType.Exception || type == LogType.Error)
             {
                 _statusLog.text = $"Exception status: {message}{(_logStackTrace ? $"\nStack:\n{stackTrace}" : "")}";
+                _debugLog.text = $"{stackTrace}";
             }
         };
     }

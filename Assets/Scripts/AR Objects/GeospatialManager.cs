@@ -31,7 +31,10 @@ public class GeospatialManager : Singleton<GeospatialManager>
         }
         else
         {
-            string error = $"{_earthManager.EarthState}";
+            if (_earthManager.EarthState == EarthState.Enabled)
+                return;
+
+            string error = $"{_earthManager.EarthState}\n";
             if (_earthManager.EarthState == EarthState.ErrorInternal)
                 error += "^ This error cannot be resolved. Please restart the application.";
 

@@ -1,14 +1,15 @@
 using UnityEngine;
 
-public class LocalObject : PlaceableObject
+public class LocalObject : MonoBehaviour
 {
     protected GeospatialObject _geoObject;
     protected LocalObjectData _saveData;
     public LocalObjectData SaveData => _saveData;
 
-    public override void Innit(int prefabIndex)
+    public virtual void Innit(int prefabIndex, GeospatialObject geoObject)
     {
         _saveData = new(prefabIndex, new Pose(transform.position, transform.rotation));
+        AnchorToGeospatialObject(geoObject);
     }
 
     /// <summary>
@@ -20,9 +21,10 @@ public class LocalObject : PlaceableObject
         _saveData.LocalPose.rotation = transform.localRotation;
     }
 
-    public virtual void Restore(LocalObjectData localData)
+    public virtual void Restore(LocalObjectData localData, GeospatialObject geoObject)
     {
         _saveData = localData;
+        AnchorToGeospatialObject(geoObject);
         transform.localPosition = _saveData.LocalPose.position;
         transform.localRotation = _saveData.LocalPose.rotation;
     }
@@ -31,5 +33,6 @@ public class LocalObject : PlaceableObject
     {
         _geoObject = geoObject;
         _geoObject.RegisterLocalObject(this);
+        transform.parent = _geoObject.transform;
     }
 }
