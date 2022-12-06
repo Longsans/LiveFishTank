@@ -1768,11 +1768,23 @@ MonoBehaviour:
   TrackingStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  AccuracyImproved:
+    m_PersistentCalls:
+      m_Calls: []
+  TargetAccuracyReached:
+    m_PersistentCalls:
+      m_Calls: []
   _earthManager: {fileID: 989053756}
   _anchorManager: {fileID: 388525034}
   _camera: {fileID: 22732920}
   _anchorPrefab: {fileID: 1232338833529259058, guid: f13ef5ac27328e246be3d8c5660818a7,
     type: 3}
+  _minimumHorizontalAccuracy: 10
+  _minimumHeadingAccuracy: 15
+  _minimumVerticalAccuracy: 1.5
+  _targetHorizontalAccuracy: 9
+  _targetHeadingAccuracy: 18
+  _targetVerticalAccuracy: 0.9
 --- !u!114 &820194206
 MonoBehaviour:
   m_ObjectHideFlags: 0

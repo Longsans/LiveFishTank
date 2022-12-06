@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Collider: {fileID: 0}
+  _detachAtAccuracyTarget: 1
   Name: 
 --- !u!1001 &1105783564627533238
 PrefabInstance:

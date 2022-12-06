@@ -28,9 +28,9 @@ public class FishTank : GeospatialObject
             Collider.gameObject.transform.localScale.z);
     }
 
-    public override void Innit()
+    public override void Init()
     {
-        base.Innit();
+        base.Init();
         Name = $"Fish tank {PlaceablesManager.Instance.FishTanksCount + 1}";
     }
 
@@ -45,9 +45,9 @@ public class FishTank : GeospatialObject
             });
     }
 
-    public override void Restore(GeospatialObjectData geoData)
+    public override void Restore(GeospatialObjectData geoData, Transform anchor)
     {
-        base.Restore(geoData);
+        base.Restore(geoData, anchor);
         var tankData = JsonUtility.FromJson<FishTankData>(geoData.OtherData);
         Name = tankData.Name;
         Collider.gameObject.transform.localScale = tankData.TankSize;
