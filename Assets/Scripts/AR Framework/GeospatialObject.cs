@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GeospatialObject : MonoBehaviour
+public abstract class GeospatialObject : MonoBehaviour
 {
     public GeospatialObjectData SaveData => _saveData;
     public int LocalObjectsCount => _localObjects.Count;
@@ -23,7 +23,9 @@ public class GeospatialObject : MonoBehaviour
     [Tooltip("Detach from Geospatial anchors if accuracy target reached. Prevents continous drift.")]
     [SerializeField] protected bool _detachAtAccuracyTarget = true;
 
-    void Awake()
+    public abstract void ToggleBounds(bool show);
+
+    protected virtual void Awake()
     {
         _localObjects = new();
         Collider = GetComponentInChildren<BoxCollider>();
@@ -93,10 +95,10 @@ public class GeospatialObject : MonoBehaviour
         AttachToGeoAnchor(anchor);
         transform.localPosition = _saveData.PositionRelativeToGeoAnchor;
 
-        if (GeospatialManager.Instance.IsAccuracyTargetReached)
+        if (GeospatialManager.Instance.IsRequiredAccuracyReached)
             DetachFromGeoAnchor();
         else
-            GeospatialManager.Instance.TargetAccuracyReached.AddListener(DetachFromGeoAnchor);
+            GeospatialManager.Instance.MinimumRequiredAccuracyReached.AddListener(DetachFromGeoAnchor);
 
         foreach (var localData in _saveData.LocalObjectDataList)
         {
@@ -154,23 +156,6 @@ public class GeospatialObject : MonoBehaviour
         _needsPoseCorrection = true;
     }
 
-    // protected virtual void AttachToGeoAnchor(ARGeospatialAnchor anchor)
-    // {
-    //     if (_geoAnchorTransform != null)
-    //         DetachFromGeoAnchor();
-
-    //     _geoAnchorTransform = anchor.transform;
-    //     transform.parent = _geoAnchorTransform;
-    // }
-
-    // protected void DetachFromGeoAnchor()
-    // {
-    //     transform.parent = null;
-
-    //     if (_geoAnchorTransform != null)
-    //         Destroy(_geoAnchorTransform.gameObject);
-    // }
-
     /// <summary>
     /// Clean up if needed
     /// </summary>
@@ -182,7 +167,7 @@ public class GeospatialObject : MonoBehaviour
         if (GeospatialManager.Instance != null)
         {
             GeospatialManager.Instance.AccuracyImproved.RemoveListener(OnAccuracyImproved);
-            GeospatialManager.Instance.TargetAccuracyReached.RemoveListener(DetachFromGeoAnchor);
+            GeospatialManager.Instance.MinimumRequiredAccuracyReached.RemoveListener(DetachFromGeoAnchor);
         }
     }
 }

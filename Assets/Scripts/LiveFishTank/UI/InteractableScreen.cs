@@ -6,8 +6,9 @@ public class InteractableScreen : MonoBehaviour, IPointerDownHandler
 {
     void Start()
     {
-        HandleGeospatialTrackingStateChanged(TrackingState.None);
-        GeospatialManager.Instance.TrackingStateChanged.AddListener(HandleGeospatialTrackingStateChanged);
+        gameObject.SetActive(false);
+        GeospatialManager.Instance.MinimumRequiredAccuracyReached
+            .AddListener(HandleGeospatialRequiredAccuracyReached);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -15,8 +16,8 @@ public class InteractableScreen : MonoBehaviour, IPointerDownHandler
         InteractionManager.Instance.HandleScreenTouch(eventData.position);
     }
 
-    private void HandleGeospatialTrackingStateChanged(TrackingState newState)
+    private void HandleGeospatialRequiredAccuracyReached()
     {
-        gameObject.SetActive(newState == TrackingState.Tracking);
+        gameObject.SetActive(true);
     }
 }

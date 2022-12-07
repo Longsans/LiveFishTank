@@ -3,6 +3,21 @@ using UnityEngine;
 public class FishTank : GeospatialObject
 {
     [HideInInspector] public string Name;
+    private DimBoxes.BoundBox _visualization;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _visualization = GetComponentInChildren<DimBoxes.BoundBox>();
+        PlaceablesManager.Instance.ShowGeospatialObjectsBoundsChanged
+            .AddListener(ToggleBounds);
+    }
+
+    public override void ToggleBounds(bool show)
+    {
+        if (InteractionManager.Instance.CurrentSelectedPlaceable != gameObject)
+            _visualization.enabled = show;
+    }
 
     public void SetTankWidth(float width)
     {

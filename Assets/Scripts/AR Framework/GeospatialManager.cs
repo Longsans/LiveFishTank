@@ -6,61 +6,57 @@ using UnityEngine.XR.ARSubsystems;
 
 public class GeospatialManager : Singleton<GeospatialManager>
 {
-    public GeospatialPose CameraGeospatialPose => _earthManager.CameraGeospatialPose;
     public bool GeospatialAvailable => _earthManager.EarthTrackingState == TrackingState.Tracking;
-    public bool IsAccuracyTargetReached => _targetAccuracyReached;
+    public bool IsRequiredAccuracyReached => _requiredAccuracyReached;
     [HideInInspector] public ARGeospatialAnchor SessionGeoAnchor => _sessionGeoAnchor ??= CreateSessionGeoAnchor();
     [HideInInspector] public GeospatialPose SessionGeoPose { get; private set; }
 
-    [HideInInspector] public UnityEvent<TrackingState> TrackingStateChanged;
     [HideInInspector] public UnityEvent AccuracyImproved;
-    [HideInInspector] public UnityEvent TargetAccuracyReached;
+    [HideInInspector] public UnityEvent MinimumRequiredAccuracyReached;
 
     [SerializeField] private AREarthManager _earthManager;
     [SerializeField] private ARAnchorManager _anchorManager;
-    [SerializeField] private Camera _camera;
-    [SerializeField] private GameObject _anchorPrefab;
-
-    [Header("[ Accuracy Minimums ] - Required to start experience")]
-    [SerializeField] private float _minimumHorizontalAccuracy = 10;
-    [SerializeField] private float _minimumHeadingAccuracy = 15;
-    [SerializeField] private float _minimumVerticalAccuracy = 1.5f;
 
     [Header("[ Accuracy Targets ] - Event raised when reached")]
-    [SerializeField] private float _targetHorizontalAccuracy = 1;
-    [SerializeField] private float _targetHeadingAccuracy = 2;
-    [SerializeField] private float _targetVerticalAccuracy = 0.5f;
+    [SerializeField] private float _requiredHorizontalAccuracy = 1;
+    [SerializeField] private float _requiredHeadingAccuracy = 2;
+    [SerializeField] private float _requiredVerticalAccuracy = 0.5f;
 
-    private TrackingState _lastTrackingState = TrackingState.None;
     private ARGeospatialAnchor _sessionGeoAnchor;
     private double _bestHorizontalAccuracy = Mathf.Infinity;
     private double _bestHeadingAccuracy = Mathf.Infinity;
     private double _bestVerticalAccuracy = Mathf.Infinity;
-    private bool _targetAccuracyReached = false;
+    private bool _requiredAccuracyReached = false;
+
+    void Start()
+    {
+        if (_earthManager.EarthTrackingState != TrackingState.Tracking)
+            StatusLog.Instance.DebugLog("Waiting for Geospatial to start up");
+    }
 
     void Update()
     {
-        if (_lastTrackingState != _earthManager.EarthTrackingState)
-        {
-            TrackingStateChanged?.Invoke(_earthManager.EarthTrackingState);
-            _lastTrackingState = _earthManager.EarthTrackingState;
-        }
-
         if (_earthManager.EarthTrackingState == TrackingState.Tracking)
         {
             StatusLog.Instance.UpdateGeospatialStatus(_earthManager.CameraGeospatialPose);
             if (CheckAccuracyImproved())
             {
-                StatusLog.Instance.DebugLog(
-                    $"Geospatial accuracy improved: {_bestHorizontalAccuracy} - {_bestVerticalAccuracy} - {_bestHeadingAccuracy}");
-
+                if (!_requiredAccuracyReached)
+                {
+                    StatusLog.Instance.DebugLog(
+                        "Move your device around to improve Geospatial accuracy.\n" +
+                        "Minimum required accuracy: " +
+                        $"{_requiredHorizontalAccuracy} - {_requiredVerticalAccuracy} - {_requiredHeadingAccuracy}\n" +
+                        "Current accuracy (lower is better): " +
+                        $"{_bestHorizontalAccuracy} - {_bestVerticalAccuracy} - {_bestHeadingAccuracy}");
+                }
                 AccuracyImproved.Invoke();
             }
-            if (!_targetAccuracyReached && CheckTargetAccuracyReached())
+            if (!_requiredAccuracyReached && CheckRequiredAccuracyReached())
             {
-                StatusLog.Instance.DebugLog("Accuracy target reached");
-                TargetAccuracyReached.Invoke();
-                _targetAccuracyReached = true;
+                StatusLog.Instance.DebugLog("Accuracy target reached.");
+                MinimumRequiredAccuracyReached.Invoke();
+                _requiredAccuracyReached = true;
             }
         }
         else
@@ -94,11 +90,6 @@ public class GeospatialManager : Singleton<GeospatialManager>
         return RequestGeospatialAnchor(SessionGeoPose);
     }
 
-    /// <summary>
-    /// Compare current tracking accuracy against best values.
-    /// Return whether or not accuracy has improved since the last check.
-    /// </summary>
-    /// <returns></returns>
     private bool CheckAccuracyImproved()
     {
         bool horizontal = _earthManager.CameraGeospatialPose.HorizontalAccuracy < _bestHorizontalAccuracy;
@@ -126,10 +117,10 @@ public class GeospatialManager : Singleton<GeospatialManager>
         return improved;
     }
 
-    private bool CheckTargetAccuracyReached()
+    private bool CheckRequiredAccuracyReached()
     {
-        return _earthManager.CameraGeospatialPose.HorizontalAccuracy <= _targetHorizontalAccuracy &&
-               _earthManager.CameraGeospatialPose.HeadingAccuracy <= _targetHeadingAccuracy &&
-               _earthManager.CameraGeospatialPose.VerticalAccuracy <= _targetVerticalAccuracy;
+        return _earthManager.CameraGeospatialPose.HorizontalAccuracy <= _requiredHorizontalAccuracy &&
+               _earthManager.CameraGeospatialPose.HeadingAccuracy <= _requiredHeadingAccuracy &&
+               _earthManager.CameraGeospatialPose.VerticalAccuracy <= _requiredVerticalAccuracy;
     }
 }

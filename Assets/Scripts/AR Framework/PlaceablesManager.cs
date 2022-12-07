@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.ARSubsystems;
 
 public class PlaceablesManager : Singleton<PlaceablesManager>
@@ -13,22 +14,33 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
     public GameObject GetFishPrefabAtIndex(int index) => _fishPrefabs[index];
     public GameObject GetOrnamentPrefabAtIndex(int index) => _ornamentPrefabs[index];
     public GameObject OtherPrefab => _geoObjectPrefab;
+    public bool ShowGeospatialObjectsBounds
+    {
+        get => _visualizeGeoObjects;
+        set
+        {
+            _visualizeGeoObjects = value;
+            ShowGeospatialObjectsBoundsChanged.Invoke(_visualizeGeoObjects);
+        }
+    }
+
+    public UnityEvent<bool> ShowGeospatialObjectsBoundsChanged;
 
     public int FishTanksCount => _geoObjects.Count(geoObj => geoObj is FishTank);
     public int SelectedFishPrefabIndex { get; set; } = 0;
 
     private List<GeospatialObject> _geoObjects;
+    private bool _visualizeGeoObjects = false;
     private const string _storageKey = "FishTankStorage";
     private bool _storageResolved = false;
 
     void Start()
     {
         _geoObjects = new();
-        HandleGeospatialTrackingStateChanged(TrackingState.None);
         InteractionManager.Instance.ModifyOnChanged
             .AddListener(HandleSaveModifiedChanges);
-        GeospatialManager.Instance.TrackingStateChanged
-            .AddListener(HandleGeospatialTrackingStateChanged);
+        GeospatialManager.Instance.MinimumRequiredAccuracyReached
+            .AddListener(HandleGeospatialRequiredAccuracyReached);
     }
 
     public void SavePlaceables()
@@ -88,16 +100,11 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
         }
     }
 
-    private void HandleGeospatialTrackingStateChanged(TrackingState newState)
+    private void HandleGeospatialRequiredAccuracyReached()
     {
         if (_storageResolved)
             return;
 
-        if (newState != TrackingState.Tracking)
-        {
-            StatusLog.Instance.DebugLog("Waiting for Geospatial before restoring objects");
-            return;
-        }
         if (PlayerPrefs.HasKey(_storageKey))
         {
             LoadSavedPlaceables();

@@ -8,9 +8,20 @@ public class InteractionManager : Singleton<InteractionManager>
 
     [HideInInspector] public UnityEvent ModifyOnChanged;
     [HideInInspector] public UnityEvent<GameObject> CurrentSelectedPlaceableChanged;
+    [HideInInspector] public UnityEvent<PlaceableType> ObjectModeChanged;
 
     public bool ModifyOn { get; private set; } = false;
-    public PlaceableType ObjectMode { get; set; } = PlaceableType.Fish;
+    public GameObject CurrentSelectedPlaceable => _currentSelectedPlaceable;
+    public PlaceableType ObjectMode
+    {
+        get => _objectMode;
+        set
+        {
+            _objectMode = value;
+            ObjectModeChanged.Invoke(_objectMode);
+        }
+    }
+    private PlaceableType _objectMode = PlaceableType.Fish;
     private GameObject _currentSelectedPlaceable;
     private const int _tankLayer = 7;
 
@@ -18,7 +29,7 @@ public class InteractionManager : Singleton<InteractionManager>
     {
         ModifyOn = modifyOn;
         if (!ModifyOn)
-            scaleSliders.gameObject.SetActive(false);
+            SelectPlaceableGameObject(null);
     }
 
     public void SetModifyInvoke(bool modifyOn)
@@ -29,7 +40,12 @@ public class InteractionManager : Singleton<InteractionManager>
 
     public void SelectPlaceableGameObject(GameObject placeable)
     {
+        var previousSelection = _currentSelectedPlaceable;
+        TryTogglePlaceableObjectBounds(placeable, true);
         _currentSelectedPlaceable = placeable;
+        TryTogglePlaceableObjectBounds(
+            previousSelection,
+            PlaceablesManager.Instance.ShowGeospatialObjectsBounds);
         CurrentSelectedPlaceableChanged?.Invoke(_currentSelectedPlaceable);
     }
 
@@ -43,31 +59,42 @@ public class InteractionManager : Singleton<InteractionManager>
             if (ObjectMode == PlaceableType.Fish)
                 return;
 
-            Ray ray = _camera.ScreenPointToRay(touchPosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000f, 1 << _tankLayer))
-            {
-                SelectPlaceableGameObject(hit.collider.transform.parent.gameObject);
-            }
+            var geoObject = RaycastForGeospatialObjectsFromScreenPos(touchPosition);
+            if (geoObject)
+                SelectPlaceableGameObject(geoObject.gameObject);
             else
-            {
                 SelectPlaceableGameObject(null);
-            }
         }
         else
         {
             if (ObjectMode == PlaceableType.Fish)
             {
-                Ray ray = _camera.ScreenPointToRay(touchPosition);
-                if (Physics.Raycast(ray, out RaycastHit hit, 1000f, 1 << _tankLayer))
-                {
-                    var geoObject = hit.collider.GetComponentInParent<GeospatialObject>();
+                var geoObject = RaycastForGeospatialObjectsFromScreenPos(touchPosition);
+                if (geoObject)
                     PlaceablesManager.Instance.PlaceNewLocalObject(geoObject);
-                }
                 else
                     StatusLog.Instance.DebugLog("Raycast did not find any tank");
             }
             else
                 PlaceablesManager.Instance.PlaceNewGeospatialObject();
         }
+    }
+
+    private GeospatialObject RaycastForGeospatialObjectsFromScreenPos(Vector2 screenPosition)
+    {
+        Ray ray = _camera.ScreenPointToRay(screenPosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, 1 << _tankLayer))
+        {
+            var geoObject = hit.collider.GetComponentInParent<GeospatialObject>();
+            return geoObject;
+        }
+        return null;
+    }
+
+    private void TryTogglePlaceableObjectBounds(GameObject placeable, bool show)
+    {
+        if (placeable &&
+            placeable.TryGetComponent(out GeospatialObject geoObject))
+            geoObject.ToggleBounds(show);
     }
 }
