@@ -9,9 +9,9 @@ public class Fish : LocalObject
     // a multiplier to apply to scale, increases with fish growth
     private float _size = 1f;
 
-    public override void Innit(int prefabIndex, GeospatialObject geoObject)
+    public override void Init(int prefabIndex, GeospatialObject geoObject)
     {
-        base.Innit(prefabIndex, geoObject);
+        base.Init(prefabIndex, geoObject);
         _saveData.Type = LocalObjectType.Fish;
     }
 

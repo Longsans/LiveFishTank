@@ -3,6 +3,21 @@ using UnityEngine;
 public class FishTank : GeospatialObject
 {
     [HideInInspector] public string Name;
+    private DimBoxes.BoundBox _visualization;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _visualization = GetComponentInChildren<DimBoxes.BoundBox>();
+        PlaceablesManager.Instance.ShowGeospatialObjectsBoundsChanged
+            .AddListener(ToggleBounds);
+    }
+
+    public override void ToggleBounds(bool show)
+    {
+        if (InteractionManager.Instance.CurrentSelectedPlaceable != gameObject)
+            _visualization.enabled = show;
+    }
 
     public void SetTankWidth(float width)
     {
@@ -28,9 +43,9 @@ public class FishTank : GeospatialObject
             Collider.gameObject.transform.localScale.z);
     }
 
-    public override void Innit()
+    public override void Init()
     {
-        base.Innit();
+        base.Init();
         Name = $"Fish tank {PlaceablesManager.Instance.FishTanksCount + 1}";
     }
 
@@ -45,9 +60,9 @@ public class FishTank : GeospatialObject
             });
     }
 
-    public override void Restore(GeospatialObjectData geoData)
+    public override void Restore(GeospatialObjectData geoData, Transform anchor)
     {
-        base.Restore(geoData);
+        base.Restore(geoData, anchor);
         var tankData = JsonUtility.FromJson<FishTankData>(geoData.OtherData);
         Name = tankData.Name;
         Collider.gameObject.transform.localScale = tankData.TankSize;
