@@ -105,6 +105,7 @@ public abstract class GeospatialObject : MonoBehaviour
             GameObject localObjPrefab = localData.Type switch
             {
                 LocalObjectType.Fish => PlaceablesManager.Instance.GetFishPrefabAtIndex(localData.PrefabIndex),
+                LocalObjectType.FishFood => PlaceablesManager.Instance.GetFishFoodGroupPrefabAtIndex(localData.PrefabIndex),
                 LocalObjectType.Ornament => PlaceablesManager.Instance.GetOrnamentPrefabAtIndex(localData.PrefabIndex),
                 _ => PlaceablesManager.Instance.OtherPrefab,
             };
@@ -122,10 +123,11 @@ public abstract class GeospatialObject : MonoBehaviour
             _localObjects.Add(localObject);
     }
 
-    public void RemoveLocalObject(LocalObject localObject)
+    public void DisposeLocalObject(LocalObject localObject)
     {
         if (_localObjects.Contains(localObject))
             _localObjects.Remove(localObject);
+        Destroy(localObject.gameObject);
     }
 
     protected void PinWorldPose()

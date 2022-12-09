@@ -3,5 +3,6 @@ public enum LocalObjectType
 {
     Fish,
     Ornament,
+    FishFood,
     Other
 }

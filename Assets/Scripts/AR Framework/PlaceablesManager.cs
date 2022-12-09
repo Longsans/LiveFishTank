@@ -9,10 +9,12 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private List<GameObject> _fishPrefabs;
+    [SerializeField] private List<GameObject> _fishFoodGroupPrefabs;
     [SerializeField] private List<GameObject> _ornamentPrefabs;
     [SerializeField] private GameObject _geoObjectPrefab;
     public GameObject GetFishPrefabAtIndex(int index) => _fishPrefabs[index];
     public GameObject GetOrnamentPrefabAtIndex(int index) => _ornamentPrefabs[index];
+    public GameObject GetFishFoodGroupPrefabAtIndex(int index) => _fishFoodGroupPrefabs[index];
     public GameObject OtherPrefab => _geoObjectPrefab;
     public bool ShowGeospatialObjectsBounds
     {
@@ -24,10 +26,11 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
         }
     }
 
-    public UnityEvent<bool> ShowGeospatialObjectsBoundsChanged;
-
     public int FishTanksCount => _geoObjects.Count(geoObj => geoObj is FishTank);
     public int SelectedFishPrefabIndex { get; set; } = 0;
+    public int SelectedFishFoodGroupPrefabIndex { get; set; } = 0;
+
+    [HideInInspector] public UnityEvent<bool> ShowGeospatialObjectsBoundsChanged;
 
     private List<GeospatialObject> _geoObjects;
     private bool _visualizeGeoObjects = false;
@@ -41,6 +44,16 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
             .AddListener(HandleSaveModifiedChanges);
         GeospatialManager.Instance.MinimumRequiredAccuracyReached
             .AddListener(HandleGeospatialRequiredAccuracyReached);
+    }
+
+    public GeospatialObject GetGeospatialObjectAtLocation(Vector3 pointInGeoObject)
+    {
+        foreach (var geoObject in _geoObjects)
+        {
+            if (geoObject.Collider.bounds.Contains(pointInGeoObject))
+                return geoObject;
+        }
+        return null;
     }
 
     public void SavePlaceables()
@@ -142,19 +155,33 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
     public void PlaceNewLocalObject(GeospatialObject geoObject)
     {
-        var angle = Random.Range(30f, 180f);
         var placementPos = _camera.transform.position + 1.5f * _camera.transform.forward;
         if (!geoObject.Collider.bounds.Contains(placementPos))
         {
             StatusLog.Instance.DebugLog("Please place position the device a small distance away from the tank");
             return;
         }
+
+        int prefabIndex;
+        GameObject localObjectPrefab;
+        if (InteractionManager.Instance.ObjectMode == PlaceableType.Fish)
+        {
+            prefabIndex = SelectedFishPrefabIndex;
+            localObjectPrefab = _fishPrefabs[prefabIndex];
+        }
+        else
+        {
+            prefabIndex = SelectedFishFoodGroupPrefabIndex;
+            localObjectPrefab = _fishFoodGroupPrefabs[prefabIndex];
+        }
+
+        var angle = Random.Range(30f, 180f);
         var localObject = Instantiate(
-            _fishPrefabs[SelectedFishPrefabIndex],
+            localObjectPrefab,
             placementPos,
             Quaternion.AngleAxis(angle, Vector3.up))
             .GetComponent<LocalObject>();
-        localObject.Init(SelectedFishPrefabIndex, geoObject);
+        localObject.Init(prefabIndex, geoObject);
         SavePlaceables();
     }
 

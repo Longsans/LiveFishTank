@@ -4,11 +4,11 @@ using UnityEngine.Events;
 public class InteractionManager : Singleton<InteractionManager>
 {
     [SerializeField] private Camera _camera;
-    [SerializeField] private ScaleSliders scaleSliders;
 
     [HideInInspector] public UnityEvent ModifyOnChanged;
     [HideInInspector] public UnityEvent<GameObject> CurrentSelectedPlaceableChanged;
     [HideInInspector] public UnityEvent<PlaceableType> ObjectModeChanged;
+    [HideInInspector] public UnityEvent SettingsMenuFinishedHide;
 
     public bool ModifyOn { get; private set; } = false;
     public GameObject CurrentSelectedPlaceable => _currentSelectedPlaceable;
@@ -23,7 +23,13 @@ public class InteractionManager : Singleton<InteractionManager>
     }
     private PlaceableType _objectMode = PlaceableType.Fish;
     private GameObject _currentSelectedPlaceable;
+    private bool _settingsOpen = false;
     private const int _tankLayer = 7;
+
+    public void NotifySettingsHidden()
+    {
+        SettingsMenuFinishedHide.Invoke();
+    }
 
     public void SetModify(bool modifyOn)
     {
@@ -56,18 +62,22 @@ public class InteractionManager : Singleton<InteractionManager>
 
         if (ModifyOn)
         {
-            if (ObjectMode == PlaceableType.Fish)
+            if (ObjectMode != PlaceableType.Tank)
                 return;
 
             var geoObject = RaycastForGeospatialObjectsFromScreenPos(touchPosition);
             if (geoObject)
                 SelectPlaceableGameObject(geoObject.gameObject);
             else
+            {
                 SelectPlaceableGameObject(null);
+            }
         }
         else
         {
-            if (ObjectMode == PlaceableType.Fish)
+            if (ObjectMode == PlaceableType.Tank)
+                PlaceablesManager.Instance.PlaceNewGeospatialObject();
+            else if (ObjectMode == PlaceableType.Fish || ObjectMode == PlaceableType.FishFood)
             {
                 var geoObject = RaycastForGeospatialObjectsFromScreenPos(touchPosition);
                 if (geoObject)
@@ -75,20 +85,22 @@ public class InteractionManager : Singleton<InteractionManager>
                 else
                     StatusLog.Instance.DebugLog("Raycast did not find any tank");
             }
-            else
-                PlaceablesManager.Instance.PlaceNewGeospatialObject();
         }
     }
 
     private GeospatialObject RaycastForGeospatialObjectsFromScreenPos(Vector2 screenPosition)
     {
+        GeospatialObject geoObject;
         Ray ray = _camera.ScreenPointToRay(screenPosition);
+
+        // if camera is looking at geo object
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f, 1 << _tankLayer))
         {
-            var geoObject = hit.collider.GetComponentInParent<GeospatialObject>();
+            geoObject = hit.collider.GetComponentInParent<GeospatialObject>();
             return geoObject;
         }
-        return null;
+        // if camera is inside a geo object, or not
+        return PlaceablesManager.Instance.GetGeospatialObjectAtLocation(_camera.transform.position);
     }
 
     private void TryTogglePlaceableObjectBounds(GameObject placeable, bool show)
