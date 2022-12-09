@@ -6,5 +6,6 @@ public enum PlaceableType
 {
     Tank,
     Fish,
+    FishFood,
     Ornament
 }

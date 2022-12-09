@@ -21424,6 +21424,27 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Component_GetComponentsInParent_TisRunti
 		return;
 	}
 }
+// System.Boolean UnityEngine.Component::TryGetComponent<System.Object>(T&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Component_TryGetComponent_TisRuntimeObject_m69D4ED21F14D49D805A2337F4332934CDA07DEDB_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, RuntimeObject** ___component0, const RuntimeMethod* method) 
+{
+	bool V_0 = false;
+	{
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0;
+		L_0 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(__this, NULL);
+		RuntimeObject** L_1 = ___component0;
+		NullCheck(L_0);
+		bool L_2;
+		L_2 = ((  bool (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, RuntimeObject**, const RuntimeMethod*))il2cpp_codegen_get_method_pointer(il2cpp_rgctx_method(method->rgctx_data, 0)))(L_0, L_1, il2cpp_rgctx_method(method->rgctx_data, 0));
+		V_0 = L_2;
+		goto IL_0010;
+	}
+
+IL_0010:
+	{
+		bool L_3 = V_0;
+		return L_3;
+	}
+}
 // T UnityEngine.UIElements.ComputedTransitionUtils::GetWrappingTransitionData<UnityEngine.UIElements.EasingFunction>(System.Collections.Generic.List`1<T>,System.Int32,T)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR EasingFunction_t5197D3B06056326A8B5C96032CDEBD5D3BDCA7A4 ComputedTransitionUtils_GetWrappingTransitionData_TisEasingFunction_t5197D3B06056326A8B5C96032CDEBD5D3BDCA7A4_m233E74800F72E0878F26BE044511E7B8FA490E84_gshared (List_1_tE7FB077B3CEA6371A27F72CC60962491AB71490B* ___list0, int32_t ___i1, EasingFunction_t5197D3B06056326A8B5C96032CDEBD5D3BDCA7A4 ___defaultValue2, const RuntimeMethod* method) 
 {
