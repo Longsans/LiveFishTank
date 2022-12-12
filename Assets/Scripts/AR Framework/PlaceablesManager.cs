@@ -136,7 +136,7 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
         var geoObject = Instantiate(
             _geoObjectPrefab,
             _camera.transform.position + 1.5f * _camera.transform.forward,
-            Quaternion.identity)
+            Quaternion.AngleAxis(_camera.transform.rotation.eulerAngles.y, Vector3.up))
             .GetComponent<GeospatialObject>();
         geoObject.Init();
         _geoObjects.Add(geoObject);

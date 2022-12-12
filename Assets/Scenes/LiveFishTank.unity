@@ -405,7 +405,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &126282165
 RectTransform:
@@ -2479,8 +2479,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 491.93, y: -517.7}
-  m_SizeDelta: {x: 893.47, y: 285.98}
+  m_AnchoredPosition: {x: 491.93, y: -572.22955}
+  m_SizeDelta: {x: 893.47, y: 176.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &820194202
 GameObject:
@@ -2552,11 +2552,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 22732920}
   _fishPrefabs:
-  - {fileID: 104517609856167801, guid: 942369e8a339fdb4da6f8a1bc3b77969, type: 3}
-  - {fileID: 7770584863604633872, guid: 23f21a07dbc3212499d79a2a7bc29715, type: 3}
-  - {fileID: 2206852426022253465, guid: 6861023b5a29f4049993dfcd1a496849, type: 3}
-  - {fileID: 1937588542411740048, guid: 33684b589d9dc6e4d9a4bd7c1d1d2a80, type: 3}
-  - {fileID: 5925960515861282153, guid: 0d2848d1d8b810d41a4693f3aba076b7, type: 3}
+  - {fileID: 6168156440950996750, guid: 4ff446d829ea77442b550da120da68cd, type: 3}
+  - {fileID: 4616894602177061527, guid: e8581afb9b4b3ae43940952a924d1798, type: 3}
+  - {fileID: 4039762040510253320, guid: 2cf3ccd92596e3044be71e5af07e8e48, type: 3}
+  - {fileID: 4409115883666773150, guid: ad7702e816ce61d48bc5bbd5b489de42, type: 3}
+  - {fileID: 4200276000899728089, guid: fc19c34b43025ee46ac13d41708746e4, type: 3}
   _fishFoodGroupPrefabs:
   - {fileID: 2701685801742693993, guid: 2c02d739f2b31db45a3594fd1d04919b, type: 3}
   _ornamentPrefabs: []
@@ -3864,8 +3864,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 717, y: -292.71997}
-  m_SizeDelta: {x: 1343.6, y: 163.97}
+  m_AnchoredPosition: {x: 717, y: -347.25}
+  m_SizeDelta: {x: 1343.6, y: 273.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1491776787
 MonoBehaviour:
@@ -4771,7 +4771,7 @@ GameObject:
   - component: {fileID: 2019400769}
   m_Layer: 0
   m_Name: UI Camera
-  m_TagString: Untagged
+  m_TagString: UICamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

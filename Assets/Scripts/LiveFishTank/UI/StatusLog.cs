@@ -1,6 +1,7 @@
 using Google.XR.ARCoreExtensions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.ARSubsystems;
 
 public class StatusLog : Singleton<StatusLog>
 {
@@ -26,13 +27,9 @@ public class StatusLog : Singleton<StatusLog>
         _debugLog.text = $"Debug log:\n{status}";
     }
 
-    public void UpdateGeospatialStatus(GeospatialPose geoPose)
+    public void UpdateGeospatialStatus(TrackingState state)
     {
-        _geospatialLog.text = "Geospatial status:\n" +
-            $"Latitude: {geoPose.Latitude}\n" +
-            $"Longitude: {geoPose.Longitude}\n" +
-            $"Altitude: {geoPose.Altitude}\n" +
-            $"Heading: {geoPose.Heading}";
+        _geospatialLog.text = $"Geospatial status: {state}";
     }
 
     public void LogGeospatialError(string error)

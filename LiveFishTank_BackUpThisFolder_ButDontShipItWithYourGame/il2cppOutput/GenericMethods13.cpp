@@ -824,8 +824,10 @@ IL2CPP_EXTERN_C const RuntimeMethod* LazyInitializer_EnsureInitializedCore_TisRu
 IL2CPP_EXTERN_C const RuntimeMethod* List_1_get_Count_m42FEE7A1672353F6835696F675DABC8BE5AC258B_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* List_1_get_Item_mDD8BE2B393D70FB5938EC815B0EA1B3E52B5C291_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Marshal_GetFunctionPointerForDelegate_TisRuntimeObject_m389A3417EF0CFE64A042AA7E53E8604F24458074_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Math_ThrowMinMaxException_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m27ABD6AC9591F22192AF383D61B7A4DB1CDC1C54_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Math_ThrowMinMaxException_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_mBC7732632C280D3AEE2B08C470A78B9C5C4CBD77_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Math_ThrowMinMaxException_TisRuntimeObject_mC635403FD8AAC8CE89C7C73432BB6B9BBCF8A341_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Math_ThrowMinMaxException_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m64C93CAAEA59B1FD5301C10D7D6E60123C436404_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* MemoryMarshal_AsBytes_TisChar_t521A6F19B456D956AF452D926C32709DC03D6B17_m2514AE8C52CF9D758D1E0E3F2CF2ECDE027D5396_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* MemoryMarshal_AsBytes_TisUInt16_tF4C148C876015C212FD72652D0B6ED8CC247A455_m7E0CA4F0B8AC2C1FEAA2B6D00C2A4B1B075DB08C_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* MemoryMarshal_AsBytes_TisUInt32_t1833D51FFA667B18A5AA4B8D34DE284F8495D29B_mE5D7D4C294D50AFEE7AF6B303DE7FA7BD156B83A_RuntimeMethod_var;
@@ -30892,6 +30894,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t Marshal_UnsafeAddrOfPinnedArrayEleme
 		return L_2;
 	}
 }
+// System.Void System.Math::ThrowMinMaxException<System.Double>(T,T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Math_ThrowMinMaxException_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m27ABD6AC9591F22192AF383D61B7A4DB1CDC1C54_gshared (double ___min0, double ___max1, const RuntimeMethod* method) 
+{
+	{
+		double L_0 = ___min0;
+		double L_1 = L_0;
+		RuntimeObject* L_2 = Box(il2cpp_rgctx_data(method->rgctx_data, 0), &L_1);
+		double L_3 = ___max1;
+		double L_4 = L_3;
+		RuntimeObject* L_5 = Box(il2cpp_rgctx_data(method->rgctx_data, 0), &L_4);
+		String_t* L_6;
+		L_6 = SR_Format_m27BC634145CE1B8E25594A82CDBBF04AD501CA02(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral110D1733D85BF5EFB139B95FF286BB627337195E)), L_2, L_5, NULL);
+		ArgumentException_tAD90411542A20A9C72D5CDA3A84181D8B947A263* L_7 = (ArgumentException_tAD90411542A20A9C72D5CDA3A84181D8B947A263*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&ArgumentException_tAD90411542A20A9C72D5CDA3A84181D8B947A263_il2cpp_TypeInfo_var)));
+		NullCheck(L_7);
+		ArgumentException__ctor_m026938A67AF9D36BB7ED27F80425D7194B514465(L_7, L_6, NULL);
+		IL2CPP_RAISE_MANAGED_EXCEPTION(L_7, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Math_ThrowMinMaxException_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m27ABD6AC9591F22192AF383D61B7A4DB1CDC1C54_RuntimeMethod_var)));
+	}
+}
 // System.Void System.Math::ThrowMinMaxException<System.Int32>(T,T)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Math_ThrowMinMaxException_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_mBC7732632C280D3AEE2B08C470A78B9C5C4CBD77_gshared (int32_t ___min0, int32_t ___max1, const RuntimeMethod* method) 
 {
@@ -30922,6 +30942,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Math_ThrowMinMaxException_TisRuntimeObje
 		NullCheck(L_3);
 		ArgumentException__ctor_m026938A67AF9D36BB7ED27F80425D7194B514465(L_3, L_2, NULL);
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_3, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Math_ThrowMinMaxException_TisRuntimeObject_mC635403FD8AAC8CE89C7C73432BB6B9BBCF8A341_RuntimeMethod_var)));
+	}
+}
+// System.Void System.Math::ThrowMinMaxException<System.Single>(T,T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Math_ThrowMinMaxException_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m64C93CAAEA59B1FD5301C10D7D6E60123C436404_gshared (float ___min0, float ___max1, const RuntimeMethod* method) 
+{
+	{
+		float L_0 = ___min0;
+		float L_1 = L_0;
+		RuntimeObject* L_2 = Box(il2cpp_rgctx_data(method->rgctx_data, 0), &L_1);
+		float L_3 = ___max1;
+		float L_4 = L_3;
+		RuntimeObject* L_5 = Box(il2cpp_rgctx_data(method->rgctx_data, 0), &L_4);
+		String_t* L_6;
+		L_6 = SR_Format_m27BC634145CE1B8E25594A82CDBBF04AD501CA02(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral110D1733D85BF5EFB139B95FF286BB627337195E)), L_2, L_5, NULL);
+		ArgumentException_tAD90411542A20A9C72D5CDA3A84181D8B947A263* L_7 = (ArgumentException_tAD90411542A20A9C72D5CDA3A84181D8B947A263*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&ArgumentException_tAD90411542A20A9C72D5CDA3A84181D8B947A263_il2cpp_TypeInfo_var)));
+		NullCheck(L_7);
+		ArgumentException__ctor_m026938A67AF9D36BB7ED27F80425D7194B514465(L_7, L_6, NULL);
+		IL2CPP_RAISE_MANAGED_EXCEPTION(L_7, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Math_ThrowMinMaxException_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m64C93CAAEA59B1FD5301C10D7D6E60123C436404_RuntimeMethod_var)));
 	}
 }
 // System.Span`1<T> System.MemoryExtensions::AsSpan<System.Byte>(T[],System.Int32)
