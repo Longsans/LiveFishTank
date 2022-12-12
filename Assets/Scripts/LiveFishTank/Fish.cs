@@ -1,13 +1,29 @@
 using UnityEngine;
+using UnityEngine.Events;
+using System;
 
 public class Fish : LocalObject
 {
+    [HideInInspector] public float MaxSatiety => _levelMaxSatiety;
+    [HideInInspector] public float CurrentSatiety => _currentSatiety;
+    [HideInInspector] public bool IsFull => _currentSatiety == _levelMaxSatiety;
+    [HideInInspector] public UnityEvent AllDataInitialized;
+
     // fish grows when max growth points at each level is reached
     // each level has more max growth points than the last
     [SerializeField] private int _baseGrowthPoints = 120;
 
-    // growth speed in growth point per minute
-    [SerializeField] private int _growthSpeed = 1;
+    // fish can consume maximum 5 food pieces before it's "full"
+    [SerializeField] private float _baseMaxSatiety = 5f;
+
+    [SerializeField] private float _baseSatietyDropPerHour = 1f;
+    [SerializeField] private float _satietyIncreasePerFood = 1f;
+    [SerializeField] private float _satietyIncreasePerLevel = 2.5f;
+    [SerializeField] private float _satietyDropIncreasePerLevel = 0.25f;
+
+    // growth speed in growth points per minute, when satiety > 0
+    [SerializeField] private float _growthPerHourWhenFed = 30f;
+    [SerializeField] private float _sizeIncreasePerLevel = 0.2f;
 
     // swim speed in m/s
     [SerializeField] private float _swimSpeed = 0.5f;
@@ -16,8 +32,14 @@ public class Fish : LocalObject
     private int _levelGrowthPoints;
     private int _currentGrowthPoints = 0;
 
+    // same as growth points, max Satiety increases with level
+    private float _levelMaxSatiety;
+    private float _levelSatietyDropPerHour;
+    private float _currentSatiety = 0f;
+
     // a multiplier to apply to scale, increases with growth level
     private float _size = 1f;
+    private DateTime _lastSatietyChange;
     private FishFood _foodHeadedFor;
     private bool _headingTowardsFood = false;
     private FishTank _tank;
@@ -46,7 +68,7 @@ public class Fish : LocalObject
         var destination = transform.position - Time.fixedDeltaTime * _swimSpeed * transform.right;
         if (!_geoObject.Collider.bounds.Contains(destination))
         {
-            var angle = Random.Range(30f, 180f);
+            var angle = UnityEngine.Random.Range(30f, 180f);
             transform.Rotate(Vector3.up, angle);
             return;
         }
@@ -55,31 +77,21 @@ public class Fish : LocalObject
 
     void Update()
     {
-        if (!_foodHeadedFor)
+        if (!_foodHeadedFor && !IsFull)
         {
             var foodGroup = _tank.FindFishFoodGroupInTank();
             if (foodGroup)
                 _foodHeadedFor = foodGroup.GetRandomFoodPiece();
         }
+        GrowAccordingToRemainingSatiety();
     }
 
     void OnTriggerEnter(Collider other)
     {
         // consume the first food this fish comes into contact with
-        if (other.TryGetComponent<FishFood>(out var fishFood))
+        if (!IsFull && other.TryGetComponent<FishFood>(out var fishFood))
         {
-            StatusLog.Instance.DebugLog("Fish collided with fish food");
-            _foodHeadedFor = fishFood;
-            _currentGrowthPoints += _foodHeadedFor.GrowthPoints;
-            while (_currentGrowthPoints >= _levelGrowthPoints)
-            {
-                _currentGrowthPoints -= _levelGrowthPoints;
-                _levelGrowthPoints = ++_growthLevel * _baseGrowthPoints;
-                _size += 0.5f;
-            }
-            var consumedFood = _foodHeadedFor;
-            ResetToNormalState();
-            consumedFood.OnConsumed();
+            ConsumeFood(fishFood);
         }
     }
 
@@ -87,9 +99,11 @@ public class Fish : LocalObject
     {
         base.Init(prefabIndex, geoObject);
         SetUpWithTank();
-        _levelGrowthPoints = _baseGrowthPoints;
+        CalculateCurrentLevelAttributes();
+        _lastSatietyChange = DateTime.Now;
         _saveData.Type = LocalObjectType.Fish;
         var fishTank = geoObject.GetComponent<FishTank>();
+        AllDataInitialized.Invoke();
     }
 
     public override void Save()
@@ -97,12 +111,10 @@ public class Fish : LocalObject
         base.Save();
         var fishData = new FishData
         {
-            BaseGrowthPoints = _baseGrowthPoints,
-            LevelGrowthPoints = _levelGrowthPoints,
-            CurrentGrowthPoints = _currentGrowthPoints,
             GrowthLevel = _growthLevel,
-            GrowthSpeed = _growthSpeed,
-            SwimSpeed = _swimSpeed,
+            CurrentGrowthPoints = _currentGrowthPoints,
+            CurrentSatiety = _currentSatiety,
+            LastSatietyChange = _lastSatietyChange,
             Size = _size
         };
         _saveData.OtherData = JsonUtility.ToJson(fishData);
@@ -113,14 +125,65 @@ public class Fish : LocalObject
         base.Restore(localData, geoObject);
         SetUpWithTank();
         var fishData = JsonUtility.FromJson<FishData>(localData.OtherData);
-        _baseGrowthPoints = fishData.BaseGrowthPoints;
-        _levelGrowthPoints = fishData.LevelGrowthPoints;
-        _currentGrowthPoints = fishData.CurrentGrowthPoints;
         _growthLevel = fishData.GrowthLevel;
-        _growthSpeed = fishData.GrowthSpeed;
-        _swimSpeed = fishData.SwimSpeed;
+        _currentGrowthPoints = fishData.CurrentGrowthPoints;
+        _currentSatiety = fishData.CurrentSatiety;
+        _lastSatietyChange = fishData.LastSatietyChange;
         _size = fishData.Size;
+
+        CalculateCurrentLevelAttributes();
+        GrowAccordingToRemainingSatiety();
         transform.localScale *= _size;
+        AllDataInitialized.Invoke();
+    }
+
+    private void ConsumeFood(FishFood food)
+    {
+        _foodHeadedFor = food;
+        _currentGrowthPoints += _foodHeadedFor.GrowthPoints;
+        _currentSatiety = Math.Clamp(_currentSatiety + _satietyIncreasePerFood, 0f, _levelMaxSatiety);
+        _lastSatietyChange = DateTime.Now;
+        GrowUsingGrowthPoints();
+
+        var consumedFood = _foodHeadedFor;
+        ResetToNormalState();
+        consumedFood.OnConsumed();
+        StatusLog.Instance.DebugLog($"Fish consumed food, current level and GP: {_growthLevel} - {_currentGrowthPoints}");
+    }
+
+    /// <summary>
+    /// Consume remaining satiety to grow over time, gaining growth points each couple minutes
+    /// </summary>
+    private void GrowAccordingToRemainingSatiety()
+    {
+        var timeSinceLastSatietyChange = DateTime.Now - _lastSatietyChange;
+        var droppedSatiety = (float)Math.Clamp(
+            _levelSatietyDropPerHour * timeSinceLastSatietyChange.TotalHours,
+            0f,
+            _currentSatiety);
+        var hoursDroppedSatietyTook = droppedSatiety / _levelSatietyDropPerHour;
+
+        // when enough time has passed for +1 growth point
+        if (hoursDroppedSatietyTook >= 1f / _growthPerHourWhenFed)
+        {
+            _currentGrowthPoints += (int)(hoursDroppedSatietyTook * _growthPerHourWhenFed);
+            _currentSatiety -= droppedSatiety;
+            _lastSatietyChange = DateTime.Now;
+            GrowUsingGrowthPoints();
+            StatusLog.Instance.DebugLog($"Fish current GP/GP max: {_currentGrowthPoints}/{_levelGrowthPoints}");
+        }
+    }
+
+    private void GrowUsingGrowthPoints()
+    {
+        while (_currentGrowthPoints >= _levelGrowthPoints)
+        {
+            _currentGrowthPoints -= _levelGrowthPoints;
+            _growthLevel++;
+            _size += _sizeIncreasePerLevel;
+            CalculateCurrentLevelAttributes();
+        }
+        transform.localScale = _size * Vector3.one;
     }
 
     private void ResetToNormalState()
@@ -141,15 +204,23 @@ public class Fish : LocalObject
         _tank = _geoObject.GetComponent<FishTank>();
         _tank.FoodPieceConsumed.AddListener(HandleFoodPieceConsumed);
     }
+
+    /// <summary>
+    /// Calculate and assign attributes that change according to growth level
+    /// </summary>
+    private void CalculateCurrentLevelAttributes()
+    {
+        _levelGrowthPoints = _growthLevel * _baseGrowthPoints;
+        _levelMaxSatiety = _baseMaxSatiety + (_growthLevel - 1) * _satietyIncreasePerLevel;
+        _levelSatietyDropPerHour = _baseSatietyDropPerHour + (_growthLevel - 1) * _satietyDropIncreasePerLevel;
+    }
 }
 
 public class FishData
 {
-    public int BaseGrowthPoints;
-    public int LevelGrowthPoints;
-    public int CurrentGrowthPoints;
     public int GrowthLevel;
-    public int GrowthSpeed;
-    public float SwimSpeed;
+    public int CurrentGrowthPoints;
+    public float CurrentSatiety;
+    public DateTime LastSatietyChange;
     public float Size;
 }

@@ -38,7 +38,7 @@ public class GeospatialManager : Singleton<GeospatialManager>
     {
         if (_earthManager.EarthTrackingState == TrackingState.Tracking)
         {
-            StatusLog.Instance.UpdateGeospatialStatus(_earthManager.CameraGeospatialPose);
+            StatusLog.Instance.UpdateGeospatialStatus(_earthManager.EarthTrackingState);
             if (CheckAccuracyImproved())
             {
                 if (!_requiredAccuracyReached)
