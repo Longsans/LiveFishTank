@@ -6287,8 +6287,8 @@ struct U3CU3Ec_t9C393DD73B969832132DF619A5BB75AF66211188_StaticFields
 {
 	// GeospatialObject/<>c GeospatialObject/<>c::<>9
 	U3CU3Ec_t9C393DD73B969832132DF619A5BB75AF66211188* ___U3CU3E9_0;
-	// System.Func`2<LocalObject,LocalObjectData> GeospatialObject/<>c::<>9__15_0
-	Func_2_tFE2A7566090FD0AE45BD2FACDEB46972D47D7837* ___U3CU3E9__15_0_1;
+	// System.Func`2<LocalObject,LocalObjectData> GeospatialObject/<>c::<>9__13_0
+	Func_2_tFE2A7566090FD0AE45BD2FACDEB46972D47D7837* ___U3CU3E9__13_0_1;
 };
 
 // UnityEngine.UI.GraphicRaycaster/<>c
@@ -30324,10 +30324,8 @@ struct GeospatialObject_t9E2E5CBBC2D16DA6871C2A30381F1986F8D8A75B  : public Mono
 	Pose_t06BA69EAA6E9FAF60056D519A87D25F54AFE7971 ____anchoredWorldPose_7;
 	// System.Boolean GeospatialObject::_isInit
 	bool ____isInit_8;
-	// System.Boolean GeospatialObject::_needsPoseCorrection
-	bool ____needsPoseCorrection_9;
 	// System.Boolean GeospatialObject::_detachAtAccuracyTarget
-	bool ____detachAtAccuracyTarget_10;
+	bool ____detachAtAccuracyTarget_9;
 };
 
 // UnityEngine.XR.OpenXR.Features.Interactions.HTCViveControllerProfile
@@ -31355,11 +31353,11 @@ struct FishFoodGroup_t8B3DC11432245272028592D483272DB3C5E11B46  : public LocalOb
 struct FishTank_t86E700F86C92FD3E1D92A4D993C848E6753C2F13  : public GeospatialObject_t9E2E5CBBC2D16DA6871C2A30381F1986F8D8A75B
 {
 	// System.String FishTank::Name
-	String_t* ___Name_11;
+	String_t* ___Name_10;
 	// UnityEngine.Events.UnityEvent`1<FishFood> FishTank::FoodPieceConsumed
-	UnityEvent_1_t8B02C0DDD6BD94E31CEB1CF89BAA137ABEF987CF* ___FoodPieceConsumed_12;
+	UnityEvent_1_t8B02C0DDD6BD94E31CEB1CF89BAA137ABEF987CF* ___FoodPieceConsumed_11;
 	// DimBoxes.BoundBox FishTank::_visualization
-	BoundBox_t0B778E30AEAF5C7830FD718A70DDB2CC9656420E* ____visualization_13;
+	BoundBox_t0B778E30AEAF5C7830FD718A70DDB2CC9656420E* ____visualization_12;
 };
 
 // GeospatialManager

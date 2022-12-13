@@ -53,11 +53,11 @@ MonoBehaviour:
       m_Calls: []
   _baseGrowthPoints: 120
   _baseMaxSatiety: 5
-  _baseSatietyDropPerHour: 1
+  _baseSatietyDropPerHour: 3600
   _satietyIncreasePerFood: 1
   _satietyIncreasePerLevel: 2.5
   _satietyDropIncreasePerLevel: 0.25
-  _growthPerHourWhenFed: 30
+  _growthPerHourWhenFed: 36000
   _sizeIncreasePerLevel: 0.2
   _swimSpeed: 0.5
 --- !u!65 &6191832677601604289

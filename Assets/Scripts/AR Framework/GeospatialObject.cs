@@ -12,8 +12,7 @@ public abstract class GeospatialObject : MonoBehaviour
     protected List<LocalObject> _localObjects;
     protected GeospatialObjectData _saveData;
     protected Pose _anchoredWorldPose = new();
-    protected bool _isInit,
-                    _needsPoseCorrection;
+    protected bool _isInit;
 
     /// <summary>
     /// Option to "unhook" the Group from its Geospatial Anchor once we're at a set accuracy target.
@@ -31,24 +30,10 @@ public abstract class GeospatialObject : MonoBehaviour
         Collider = GetComponentInChildren<BoxCollider>();
     }
 
-    void LateUpdate()
-    {
-        if (_needsPoseCorrection)
-        {
-            CorrectWorldPose();
-            _needsPoseCorrection = false;
-            Save();
-        }
-    }
-
     public virtual void Init()
     {
         _isInit = true;
-        AttachToGeoAnchor(GeospatialManager.Instance.SessionGeoAnchor.transform);
         Save();
-
-        if (_detachAtAccuracyTarget)
-            GeospatialManager.Instance.AccuracyImproved.AddListener(OnAccuracyImproved);
     }
 
     /// <summary>
@@ -67,23 +52,21 @@ public abstract class GeospatialObject : MonoBehaviour
             }).ToList();
         }
 
-        var localPosition = new Vector3(
-                transform.localPosition.x,
-                transform.localPosition.y,
-                transform.localPosition.z);
         if (_isInit)
         {
+            AttachToGeoAnchor(GeospatialManager.Instance.SessionGeoAnchor.transform);
             _saveData = new(
                 GeospatialManager.Instance.SessionGeoPose.Latitude,
                 GeospatialManager.Instance.SessionGeoPose.Longitude,
                 GeospatialManager.Instance.SessionGeoPose.Altitude,
                 GeospatialManager.Instance.SessionGeoPose.Heading,
-                localPosition,
+                transform.localPosition,
                 localObjectDataList);
+            DetachFromGeoAnchor();
         }
         else
         {
-            _saveData.PositionRelativeToGeoAnchor = localPosition;
+            _saveData.PositionRelativeToGeoAnchor = transform.localPosition;
             _saveData.LocalObjectDataList = localObjectDataList;
         }
     }
@@ -94,11 +77,7 @@ public abstract class GeospatialObject : MonoBehaviour
         _saveData = geoData;
         AttachToGeoAnchor(anchor);
         transform.localPosition = _saveData.PositionRelativeToGeoAnchor;
-
-        if (GeospatialManager.Instance.IsRequiredAccuracyReached)
-            DetachFromGeoAnchor();
-        else
-            GeospatialManager.Instance.MinimumRequiredAccuracyReached.AddListener(DetachFromGeoAnchor);
+        DetachFromGeoAnchor();
 
         foreach (var localData in _saveData.LocalObjectDataList)
         {
@@ -130,32 +109,14 @@ public abstract class GeospatialObject : MonoBehaviour
         Destroy(localObject.gameObject);
     }
 
-    protected void PinWorldPose()
-    {
-        _anchoredWorldPose.position = transform.position;
-        _anchoredWorldPose.rotation = transform.rotation;
-    }
-
-    protected void CorrectWorldPose()
-    {
-        transform.position = _anchoredWorldPose.position;
-        transform.rotation = _anchoredWorldPose.rotation;
-    }
-
     protected void AttachToGeoAnchor(Transform anchor)
     {
         transform.parent = anchor;
-        PinWorldPose();
     }
 
     protected void DetachFromGeoAnchor()
     {
         transform.parent = null;
-    }
-
-    protected void OnAccuracyImproved()
-    {
-        _needsPoseCorrection = true;
     }
 
     /// <summary>
@@ -168,7 +129,6 @@ public abstract class GeospatialObject : MonoBehaviour
 
         if (GeospatialManager.Instance != null)
         {
-            GeospatialManager.Instance.AccuracyImproved.RemoveListener(OnAccuracyImproved);
             GeospatialManager.Instance.MinimumRequiredAccuracyReached.RemoveListener(DetachFromGeoAnchor);
         }
     }

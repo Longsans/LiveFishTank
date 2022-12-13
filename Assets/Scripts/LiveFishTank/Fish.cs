@@ -64,6 +64,7 @@ public class Fish : LocalObject
             return;
         }
 
+
         // fish prefab model's actual forward-facing direction is its -X axis
         var destination = transform.position - Time.fixedDeltaTime * _swimSpeed * transform.right;
         if (!_geoObject.Collider.bounds.Contains(destination))
@@ -89,6 +90,15 @@ public class Fish : LocalObject
     void OnTriggerEnter(Collider other)
     {
         // consume the first food this fish comes into contact with
+        if (!IsFull && other.TryGetComponent<FishFood>(out var fishFood))
+        {
+            ConsumeFood(fishFood);
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        // if fish previously was full on first contact but becomes less full afterwards
         if (!IsFull && other.TryGetComponent<FishFood>(out var fishFood))
         {
             ConsumeFood(fishFood);
@@ -148,7 +158,6 @@ public class Fish : LocalObject
         var consumedFood = _foodHeadedFor;
         ResetToNormalState();
         consumedFood.OnConsumed();
-        StatusLog.Instance.DebugLog($"Fish consumed food, current level and GP: {_growthLevel} - {_currentGrowthPoints}");
     }
 
     /// <summary>
@@ -170,7 +179,6 @@ public class Fish : LocalObject
             _currentSatiety -= droppedSatiety;
             _lastSatietyChange = DateTime.Now;
             GrowUsingGrowthPoints();
-            StatusLog.Instance.DebugLog($"Fish current GP/GP max: {_currentGrowthPoints}/{_levelGrowthPoints}");
         }
     }
 
