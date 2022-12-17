@@ -6,6 +6,7 @@ public class FishFoodGroup : LocalObject
 {
     [SerializeField] private List<FishFood> _foodPieces;
     private FishTank _tank;
+    private int _nextPiece = 0;
 
     public override void Init(int prefabIndex, GeospatialObject geoObject)
     {
@@ -27,9 +28,19 @@ public class FishFoodGroup : LocalObject
         RandomizeFoodPiecesPose();
     }
 
-    public FishFood GetRandomFoodPiece()
+    public FishFood GetNextFoodPiece()
     {
-        return _foodPieces[Random.Range(0, _foodPieces.Count - 1)];
+        if (_nextPiece >= _foodPieces.Count)
+            return null;
+
+        var foodPiece = _foodPieces[_nextPiece];
+        _nextPiece++;
+        return foodPiece;
+    }
+
+    public void ResetFoodPiecesIterator()
+    {
+        _nextPiece = 0;
     }
 
     public void OnFoodPieceConsumed(FishFood consumedPiece)

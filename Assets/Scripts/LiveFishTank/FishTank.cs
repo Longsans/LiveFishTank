@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,6 +8,7 @@ public class FishTank : GeospatialObject
     [HideInInspector] public string Name;
     [HideInInspector] public UnityEvent<FishFood> FoodPieceConsumed;
     private DimBoxes.BoundBox _visualization;
+    private int _nextFoodGroup = 0;
 
     protected override void Awake()
     {
@@ -56,6 +59,31 @@ public class FishTank : GeospatialObject
             }
         }
         return null;
+    }
+
+    public FishFood GetNextFishFoodInTank()
+    {
+        var foodGroups =
+            _localObjects.Where(obj => obj.TryGetComponent<FishFoodGroup>(out var foodGroup))
+                        .Select(obj => obj.GetComponent<FishFoodGroup>())
+                        .ToList();
+        if (foodGroups.Count == 0)
+            return null;
+
+        FishFood food;
+        if (_nextFoodGroup >= foodGroups.Count)
+            _nextFoodGroup = 0;
+
+        while (!(food = foodGroups[_nextFoodGroup].GetNextFoodPiece()))
+        {
+            _nextFoodGroup = ++_nextFoodGroup % foodGroups.Count;
+            if (_nextFoodGroup == 0)
+            {
+                foreach (var foodGroup in foodGroups)
+                    foodGroup.ResetFoodPiecesIterator();
+            }
+        }
+        return food;
     }
 
     public void NotifyFoodPieceConsumed(FishFood consumedPiece)

@@ -26,7 +26,9 @@ public class Fish : LocalObject
     [SerializeField] private float _sizeIncreasePerLevel = 0.2f;
 
     // swim speed in m/s
-    [SerializeField] private float _swimSpeed = 0.5f;
+    [SerializeField] private float _swimSpeed = 0.1f;
+    [SerializeField] private Transform _fishHead;
+    [SerializeField] private Transform _fishMouth;
 
     private int _growthLevel = 1;
     private int _levelGrowthPoints;
@@ -48,7 +50,7 @@ public class Fish : LocalObject
     {
         if (_headingTowardsFood)
         {
-            Vector3 direction = _foodHeadedFor.transform.position - transform.position;
+            Vector3 direction = _foodHeadedFor.transform.position - _fishMouth.position;
             transform.Translate(direction * Time.fixedDeltaTime, Space.World);
             return;
         }
@@ -67,7 +69,8 @@ public class Fish : LocalObject
 
         // fish prefab model's actual forward-facing direction is its -X axis
         var destination = transform.position - Time.fixedDeltaTime * _swimSpeed * transform.right;
-        if (!_geoObject.Collider.bounds.Contains(destination))
+        var headPosAtDestination = destination + _fishHead.position - transform.position;
+        if (!_geoObject.Collider.bounds.Contains(headPosAtDestination))
         {
             var angle = UnityEngine.Random.Range(30f, 180f);
             transform.Rotate(Vector3.up, angle);
@@ -80,29 +83,9 @@ public class Fish : LocalObject
     {
         if (!_foodHeadedFor && !IsFull)
         {
-            var foodGroup = _tank.FindFishFoodGroupInTank();
-            if (foodGroup)
-                _foodHeadedFor = foodGroup.GetRandomFoodPiece();
+            _foodHeadedFor = _tank.GetNextFishFoodInTank();
         }
         GrowAccordingToRemainingSatiety();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        // consume the first food this fish comes into contact with
-        if (!IsFull && other.TryGetComponent<FishFood>(out var fishFood))
-        {
-            ConsumeFood(fishFood);
-        }
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        // if fish previously was full on first contact but becomes less full afterwards
-        if (!IsFull && other.TryGetComponent<FishFood>(out var fishFood))
-        {
-            ConsumeFood(fishFood);
-        }
     }
 
     public override void Init(int prefabIndex, GeospatialObject geoObject)
@@ -145,6 +128,14 @@ public class Fish : LocalObject
         GrowAccordingToRemainingSatiety();
         transform.localScale *= _size;
         AllDataInitialized.Invoke();
+    }
+
+    public void HandleFishTriggerStay(Collider other)
+    {
+        if (!IsFull && other.TryGetComponent<FishFood>(out var fishFood))
+        {
+            ConsumeFood(fishFood);
+        }
     }
 
     private void ConsumeFood(FishFood food)

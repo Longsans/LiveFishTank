@@ -27,7 +27,7 @@ public class Toggles : MonoBehaviour
 
     public void HandleVisualizeTankToggle(Toggle visualizeTankToggle)
     {
-        PlaceablesManager.Instance.ShowGeospatialObjectsBounds = visualizeTankToggle.isOn;
+        // PlaceablesManager.Instance.ShowGeospatialObjectsBounds = visualizeTankToggle.isOn;
     }
 
     public void HandleInteractionModeToggle(Toggle toggle)

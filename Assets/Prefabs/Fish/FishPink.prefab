@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &644919500413214576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4813061556491468138}
+  m_Layer: 6
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4813061556491468138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644919500413214576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3999, y: 0.0285, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6549754348194675773}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4616894602177061527
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,8 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4954775524873050915}
-  - component: {fileID: 5672032318741195439}
-  - component: {fileID: 4590829779764663891}
   - component: {fileID: 6486483941810650044}
   m_Layer: 0
   m_Name: FishPink
@@ -36,35 +65,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5672032318741195439
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4616894602177061527}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5200857, y: 0.24184948, z: 0.09685385}
-  m_Center: {x: -0.103814155, y: -0.03069219, z: 0.00011922233}
---- !u!54 &4590829779764663891
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4616894602177061527}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &6486483941810650044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,9 +86,42 @@ MonoBehaviour:
   _satietyIncreasePerFood: 1
   _satietyIncreasePerLevel: 2.5
   _satietyDropIncreasePerLevel: 0.25
-  _growthPerMinuteWhenFed: 0.5
+  _growthPerHourWhenFed: 30
   _sizeIncreasePerLevel: 0.2
-  _swimSpeed: 0.5
+  _swimSpeed: 0.1
+  _fishHead: {fileID: 4813061556491468138}
+  _fishMouth: {fileID: 1422409788362528204}
+--- !u!1 &5223313334256855894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1422409788362528204}
+  m_Layer: 6
+  m_Name: Mouth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1422409788362528204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5223313334256855894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3478, y: -0.031, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6549754348194675773}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4213152152268871575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,16 +201,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23f21a07dbc3212499d79a2a7bc29715, type: 3}
---- !u!114 &3726554341440787922 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -8516448859035270587, guid: 23f21a07dbc3212499d79a2a7bc29715,
+--- !u!1 &5885842201367733895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7770584863604633872, guid: 23f21a07dbc3212499d79a2a7bc29715,
     type: 3}
   m_PrefabInstance: {fileID: 4213152152268871575}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!54 &6693043290454314964
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5885842201367733895}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2591192198693996797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5885842201367733895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5339376, y: 0.24184948, z: 0.09685385}
+  m_Center: {x: -0.110740125, y: -0.03069219, z: 0.00011922419}
+--- !u!114 &880513013114349362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5885842201367733895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d21746b4a6b323469cbec864478354a, type: 3}
+  m_Script: {fileID: 11500000, guid: 13ff041ddcc3b5a41bfeec32a38bad1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &6549754348194675773 stripped
@@ -312,7 +380,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _fish
       value: 
-      objectReference: {fileID: 3726554341440787922}
+      objectReference: {fileID: 0}
     - target: {fileID: 4621695620139182245, guid: 242b24132380af1439ac5dfff0d2b9f3,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
