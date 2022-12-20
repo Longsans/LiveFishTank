@@ -2,30 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishFoodGroup : LocalObject
+public class FishFoodGroup : TankResident
 {
     [SerializeField] private List<FishFood> _foodPieces;
-    private FishTank _tank;
     private int _nextPiece = 0;
 
-    public override void Init(int prefabIndex, GeospatialObject geoObject)
+    public override void Init(int prefabIndex, FishTank tank)
     {
-        base.Init(prefabIndex, geoObject);
-        _tank = geoObject.GetComponent<FishTank>();
+        base.Init(prefabIndex, tank);
+        _tank = tank.GetComponent<FishTank>();
         RandomizeFoodPiecesPose();
     }
 
     public override void Save()
     {
         base.Save();
-        _saveData.Type = LocalObjectType.FishFood;
+        _saveData.Type = TankResidentType.FishFood;
     }
 
-    public override void Restore(LocalObjectData localData, GeospatialObject geoObject)
+    public override void Restore(TankResidentData localData, FishTank tank)
     {
-        base.Restore(localData, geoObject);
-        _tank = geoObject.GetComponent<FishTank>();
+        base.Restore(localData, tank);
+        _tank = tank.GetComponent<FishTank>();
         RandomizeFoodPiecesPose();
+    }
+
+    public override void ToggleVisibility(bool visible)
+    {
+        foreach (var foodPiece in _foodPieces)
+        {
+            foodPiece.GetComponent<Renderer>().enabled = visible;
+        }
     }
 
     public FishFood GetNextFoodPiece()
@@ -51,7 +58,7 @@ public class FishFoodGroup : LocalObject
         _tank.NotifyFoodPieceConsumed(consumedPiece);
         Destroy(consumedPiece.gameObject);
         if (_foodPieces.Count == 0)
-            _geoObject.DisposeLocalObject(this);
+            _tank.DestroyTankResident(this);
     }
 
     private void RandomizeFoodPiecesPose()

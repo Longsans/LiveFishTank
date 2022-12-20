@@ -91,6 +91,7 @@ MonoBehaviour:
   _swimSpeed: 0.15
   _fishHead: {fileID: 6676138751127616215}
   _fishMouth: {fileID: 4487980011865368321}
+  _fishUI: {fileID: 8379891577707180578}
 --- !u!1 &7228075100364104461
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +497,12 @@ PrefabInstance:
 --- !u!224 &6529254165980342018 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2120945414029222238, guid: 242b24132380af1439ac5dfff0d2b9f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5184644344829429340}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &8379891577707180578 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 3726962278374700158, guid: 242b24132380af1439ac5dfff0d2b9f3,
     type: 3}
   m_PrefabInstance: {fileID: 5184644344829429340}
   m_PrefabAsset: {fileID: 0}

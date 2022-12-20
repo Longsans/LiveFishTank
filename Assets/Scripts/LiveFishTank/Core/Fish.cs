@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class Fish : LocalObject
+public class Fish : TankResident
 {
     [HideInInspector] public float MaxSatiety => _levelMaxSatiety;
     [HideInInspector] public float CurrentSatiety => _currentSatiety;
@@ -29,6 +29,7 @@ public class Fish : LocalObject
     [SerializeField] private float _swimSpeed = 0.1f;
     [SerializeField] private Transform _fishHead;
     [SerializeField] private Transform _fishMouth;
+    [SerializeField] private Canvas _fishUI;
 
     private int _growthLevel = 1;
     private int _levelGrowthPoints;
@@ -44,7 +45,6 @@ public class Fish : LocalObject
     private DateTime _lastSatietyChange;
     private FishFood _foodHeadedFor;
     private bool _headingTowardsFood = false;
-    private FishTank _tank;
 
     void FixedUpdate()
     {
@@ -70,7 +70,7 @@ public class Fish : LocalObject
         // fish prefab model's actual forward-facing direction is its -X axis
         var destination = transform.position - Time.fixedDeltaTime * _swimSpeed * transform.right;
         var headPosAtDestination = destination + _fishHead.position - transform.position;
-        if (!_geoObject.Collider.bounds.Contains(headPosAtDestination))
+        if (!_tank.Collider.bounds.Contains(headPosAtDestination))
         {
             var angle = UnityEngine.Random.Range(30f, 180f);
             transform.Rotate(Vector3.up, angle);
@@ -88,13 +88,13 @@ public class Fish : LocalObject
         GrowAccordingToRemainingSatiety();
     }
 
-    public override void Init(int prefabIndex, GeospatialObject geoObject)
+    public override void Init(int prefabIndex, FishTank geoObject)
     {
         base.Init(prefabIndex, geoObject);
         SetUpWithTank();
         CalculateCurrentLevelAttributes();
         _lastSatietyChange = DateTime.Now;
-        _saveData.Type = LocalObjectType.Fish;
+        _saveData.Type = TankResidentType.Fish;
         var fishTank = geoObject.GetComponent<FishTank>();
         AllDataInitialized.Invoke();
     }
@@ -113,7 +113,7 @@ public class Fish : LocalObject
         _saveData.OtherData = JsonUtility.ToJson(fishData);
     }
 
-    public override void Restore(LocalObjectData localData, GeospatialObject geoObject)
+    public override void Restore(TankResidentData localData, FishTank geoObject)
     {
         base.Restore(localData, geoObject);
         SetUpWithTank();
@@ -128,6 +128,12 @@ public class Fish : LocalObject
         GrowAccordingToRemainingSatiety();
         transform.localScale *= _size;
         AllDataInitialized.Invoke();
+    }
+
+    public override void ToggleVisibility(bool visible)
+    {
+        var renderer = GetComponentInChildren<Renderer>();
+        renderer.enabled = _fishUI.enabled = visible;
     }
 
     public void HandleFishTriggerStay(Collider other)
@@ -200,7 +206,7 @@ public class Fish : LocalObject
 
     private void SetUpWithTank()
     {
-        _tank = _geoObject.GetComponent<FishTank>();
+        _tank = _tank.GetComponent<FishTank>();
         _tank.FoodPieceConsumed.AddListener(HandleFoodPieceConsumed);
     }
 

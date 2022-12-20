@@ -1,5 +1,5 @@
 [System.Serializable]
-public enum LocalObjectType
+public enum TankResidentType
 {
     Fish,
     Ornament,

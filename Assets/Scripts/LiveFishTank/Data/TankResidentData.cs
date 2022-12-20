@@ -1,17 +1,17 @@
 using UnityEngine;
 
 [System.Serializable]
-public class LocalObjectData
+public class TankResidentData
 {
     public int PrefabIndex;
     public Pose LocalPose;
-    public LocalObjectType Type;
+    public TankResidentType Type;
     public string OtherData;
 
-    public LocalObjectData(
+    public TankResidentData(
         int prefabIndex,
         Pose localPose,
-        LocalObjectType type = LocalObjectType.Other,
+        TankResidentType type = TankResidentType.Other,
         string otherData = null)
     {
         PrefabIndex = prefabIndex;
