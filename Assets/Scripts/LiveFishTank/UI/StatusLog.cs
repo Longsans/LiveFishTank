@@ -6,7 +6,6 @@ using UnityEngine.XR.ARSubsystems;
 public class StatusLog : Singleton<StatusLog>
 {
     [SerializeField] private TMP_Text _statusLog;
-    [SerializeField] private TMP_Text _geospatialLog;
     [SerializeField] private TMP_Text _debugLog;
     [SerializeField] private bool _logStackTrace;
 
@@ -16,8 +15,9 @@ public class StatusLog : Singleton<StatusLog>
         {
             if (type == LogType.Exception || type == LogType.Error)
             {
-                _statusLog.text = $"Exception status: {message}{(_logStackTrace ? $"\nStack:\n{stackTrace}" : "")}";
-                _debugLog.text = $"{stackTrace}";
+                _statusLog.text = $"Exception status: {message}";
+                if (_logStackTrace)
+                    _debugLog.text = $"{stackTrace}";
             }
         };
     }
@@ -29,11 +29,11 @@ public class StatusLog : Singleton<StatusLog>
 
     public void UpdateGeospatialStatus(TrackingState state)
     {
-        _geospatialLog.text = $"Geospatial status: {state}";
+
     }
 
     public void LogGeospatialError(string error)
     {
-        _geospatialLog.text = $"Geo pose unavailable.\nError: {error}";
+
     }
 }

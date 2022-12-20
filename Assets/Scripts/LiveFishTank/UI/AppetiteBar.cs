@@ -31,9 +31,10 @@ public class AppetiteBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_fish.CurrentSatiety != _slider.value)
+        if (_fish.CurrentSatiety != _slider.value || _fish.MaxSatiety != _slider.maxValue)
         {
             _slider.value = _fish.CurrentSatiety;
+            _slider.maxValue = _fish.MaxSatiety;
             if (_slider.value == _slider.maxValue)
             {
                 _fill.color = _fishFullColor;

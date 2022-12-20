@@ -7,52 +7,65 @@ using TMPro;
 public class Toggles : MonoBehaviour
 {
     [SerializeField] private Toggle _interactionModeToggle;
-    [SerializeField] private Toggle _objectModeToggle;
-    [SerializeField] private Toggle _visualizeTanksToggle;
-    [SerializeField] private Image _objectModeTankImage;
-    [SerializeField] private Image _objectModeFishImage;
-    [SerializeField] private Image _objectModeFeedingImage;
-    private Image[] _objectModeIcons;
+    [SerializeField] private Toggle _residentTypeToggle;
+    [SerializeField] private Image _residentTypeFishImage;
+    [SerializeField] private Image _residentTypeFeedingImage;
+    private Image[] _residentTypeIcons;
     private int _currentModeIcon = -1;
 
     // Start is called before the first frame update
     void Start()
     {
-        _objectModeIcons = new Image[] { _objectModeFishImage, _objectModeTankImage, _objectModeFeedingImage };
-        HandleObjectModeToggle();
-        HandleVisualizeTankToggle(_visualizeTanksToggle);
-        HandleModifyOnChanged();
-        InteractionManager.Instance.ModifyOnChanged.AddListener(HandleModifyOnChanged);
+        _residentTypeIcons = new Image[] { _residentTypeFishImage, _residentTypeFeedingImage };
+        HandleResidentTypeToggle();
+        OnModifyingTankChanged();
+        InteractionManager.Instance.ModifyingTankChanged
+            .AddListener(OnModifyingTankChanged);
+        PlaceablesManager.Instance.StartedPlacingTank
+            .AddListener(OnStartedPlacingTank);
+        PlaceablesManager.Instance.FinishedPlacingTank
+            .AddListener(OnFinishedPlacingTank);
     }
 
-    public void HandleVisualizeTankToggle(Toggle visualizeTankToggle)
+    public void HandleModifyingTankToggle(Toggle toggle)
     {
-        PlaceablesManager.Instance.ShowGeospatialObjectsBounds = visualizeTankToggle.isOn;
+        if (InteractionManager.Instance.ModifyingTank != toggle.isOn)
+            InteractionManager.Instance.SetModifyingTankInvoke(toggle.isOn);
     }
 
-    public void HandleInteractionModeToggle(Toggle toggle)
+    public void HandleResidentTypeToggle()
     {
-        if (InteractionManager.Instance.ModifyOn != toggle.isOn)
-            InteractionManager.Instance.SetModifyInvoke(toggle.isOn);
-    }
-
-    public void HandleObjectModeToggle()
-    {
-        _currentModeIcon = (_currentModeIcon + 1) % _objectModeIcons.Length;
-        for (int i = 0; i < _objectModeIcons.Length; i++)
+        _currentModeIcon = (_currentModeIcon + 1) % _residentTypeIcons.Length;
+        for (int i = 0; i < _residentTypeIcons.Length; i++)
         {
-            _objectModeIcons[i].enabled = i == _currentModeIcon;
+            _residentTypeIcons[i].enabled = i == _currentModeIcon;
         }
-        if (_objectModeFishImage.enabled)
-            InteractionManager.Instance.ObjectMode = PlaceableType.Fish;
-        else if (_objectModeTankImage.enabled)
-            InteractionManager.Instance.ObjectMode = PlaceableType.Tank;
-        else if (_objectModeFeedingImage.enabled)
-            InteractionManager.Instance.ObjectMode = PlaceableType.FishFood;
+        if (_residentTypeFishImage.enabled)
+            InteractionManager.Instance.ResidentType = TankResidentType.Fish;
+        else if (_residentTypeFeedingImage.enabled)
+            InteractionManager.Instance.ResidentType = TankResidentType.FishFood;
     }
 
-    private void HandleModifyOnChanged()
+    private void OnModifyingTankChanged()
     {
-        _interactionModeToggle.isOn = InteractionManager.Instance.ModifyOn;
+        _interactionModeToggle.isOn = InteractionManager.Instance.ModifyingTank;
+        InteractionManager.Instance.SelectPlaceableGameObject(
+            InteractionManager.Instance.ModifyingTank ?
+                PlaceablesManager.Instance.Tank.gameObject :
+                null);
+    }
+
+    private void OnStartedPlacingTank()
+    {
+        _interactionModeToggle.interactable = _residentTypeToggle.interactable = false;
+        var halfTransparent = Color.white;
+        halfTransparent.a = 170f / 255f;
+        _residentTypeIcons[_currentModeIcon].color = halfTransparent;
+    }
+
+    private void OnFinishedPlacingTank()
+    {
+        _interactionModeToggle.interactable = _residentTypeToggle.interactable = true;
+        _residentTypeIcons[_currentModeIcon].color = Color.white;
     }
 }
