@@ -27,6 +27,11 @@ public class StatusLog : Singleton<StatusLog>
         _debugLog.text = $"Debug log:\n{status}";
     }
 
+    public void DebugLogAppend(string status)
+    {
+        _debugLog.text += $"\n{status}";
+    }
+
     public void UpdateGeospatialStatus(TrackingState state)
     {
 

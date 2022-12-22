@@ -16,6 +16,12 @@ public class InteractionManager : Singleton<InteractionManager>
     private GameObject _currentSelectedPlaceable;
     private const int _fishTankLayer = 7;
 
+    void Start()
+    {
+        Accelerometer.Instance.OnShake
+            .AddListener(HandleScreenShake);
+    }
+
     public void NotifySettingsHidden()
     {
         SettingsMenuFinishedHiding.Invoke();
@@ -45,16 +51,15 @@ public class InteractionManager : Singleton<InteractionManager>
 
     public void HandleScreenTouch(Vector2 touchPosition)
     {
-        var tank = RaycastForFishTankFromScreenPos(touchPosition);
-        if (tank)
+        var tankAtTouchPosition = RaycastForFishTankFromScreenPos(touchPosition);
+        var tankBeneathDevice = RaycastForFishTank(new Ray(_camera.transform.position, Vector3.down));
+        // tank needs to be underneath device, also with touch position raycast hitting it
+        if (tankAtTouchPosition && tankBeneathDevice)
         {
             switch (ResidentType)
             {
                 case TankResidentType.Fish:
                     PlaceablesManager.Instance.DropNewFishIntoTank();
-                    break;
-                case TankResidentType.FishFood:
-                    PlaceablesManager.Instance.DropNewFishFoodGroupIntoTank();
                     break;
             }
         }
@@ -62,11 +67,26 @@ public class InteractionManager : Singleton<InteractionManager>
             StatusLog.Instance.DebugLog("Please point your device at the fish tank");
     }
 
+    private void HandleScreenShake()
+    {
+        if (ResidentType == TankResidentType.FishFood)
+        {
+            var tankBeneathDevice = RaycastForFishTank(new Ray(_camera.transform.position, Vector3.down));
+            if (tankBeneathDevice)
+                PlaceablesManager.Instance.DropNewFoodPieceIntoTank();
+            else StatusLog.Instance.DebugLog("Please move your device directly above the tank and shake to drop food");
+        }
+    }
+
     private FishTank RaycastForFishTankFromScreenPos(Vector2 screenPosition)
     {
-        FishTank tank;
         Ray ray = _camera.ScreenPointToRay(screenPosition);
+        return RaycastForFishTank(ray);
+    }
 
+    private FishTank RaycastForFishTank(Ray ray)
+    {
+        FishTank tank;
         // if camera is looking at fish tank
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f, 1 << _fishTankLayer))
         {

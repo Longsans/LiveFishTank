@@ -1,6 +1,6 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-using System;
 
 public class Fish : TankResident
 {
@@ -27,10 +27,10 @@ public class Fish : TankResident
 
     // swim speed in m/s
     [SerializeField] private float _swimSpeed = 0.1f;
-    [SerializeField] private Transform _fishHead;
     [SerializeField] private Transform _fishMouth;
     [SerializeField] private Canvas _fishUI;
 
+    private readonly Vector3 _baseScale = 0.3f * Vector3.one;
     private int _growthLevel = 1;
     private int _levelGrowthPoints;
     private int _currentGrowthPoints = 0;
@@ -44,58 +44,36 @@ public class Fish : TankResident
     private float _size = 1f;
     private DateTime _lastSatietyChange;
     private FishFood _foodHeadedFor;
-    private bool _headingTowardsFood = false;
+    private Rigidbody _rigidbody;
+
+    public FishState State { get; set; }
+
+    void Awake()
+    {
+        _rigidbody = GetComponentInChildren<Rigidbody>();
+    }
 
     void FixedUpdate()
     {
-        if (_headingTowardsFood)
-        {
-            Vector3 direction = _foodHeadedFor.transform.position - _fishMouth.position;
-            transform.Translate(direction * Time.fixedDeltaTime, Space.World);
-            return;
-        }
-        if (_foodHeadedFor && !_headingTowardsFood)
-        {
-            // because the forward-facing direction of the fish model is not its Z axis,
-            // we have to correct it after applying LookRotation
-            var angleToForwardDirection = 90f;
-            transform.rotation =
-                Quaternion.LookRotation(
-                    _foodHeadedFor.transform.position - transform.position) * Quaternion.AngleAxis(angleToForwardDirection, Vector3.up);
-            _headingTowardsFood = true;
-            return;
-        }
-
-
-        // fish prefab model's actual forward-facing direction is its -X axis
-        var destination = transform.position - Time.fixedDeltaTime * _swimSpeed * transform.right;
-        var headPosAtDestination = destination + _fishHead.position - transform.position;
-        if (!_tank.Collider.bounds.Contains(headPosAtDestination))
-        {
-            var angle = UnityEngine.Random.Range(30f, 180f);
-            transform.Rotate(Vector3.up, angle);
-            return;
-        }
-        transform.position = destination;
+        Debug.Log($"current state: {State}");
+        State.FixedUpdate();
     }
 
     void Update()
     {
-        if (!_foodHeadedFor && !IsFull)
-        {
-            _foodHeadedFor = _tank.GetNextFishFoodInTank();
-        }
+        State.Update();
         GrowAccordingToRemainingSatiety();
     }
 
-    public override void Init(int prefabIndex, FishTank geoObject)
+    public override void Init(int prefabIndex, FishTank tank)
     {
-        base.Init(prefabIndex, geoObject);
+        base.Init(prefabIndex, tank);
         SetUpWithTank();
         CalculateCurrentLevelAttributes();
+        TogglePhysics(true);
+        State = new DroppingIntoTankState(this);
         _lastSatietyChange = DateTime.Now;
         _saveData.Type = TankResidentType.Fish;
-        var fishTank = geoObject.GetComponent<FishTank>();
         AllDataInitialized.Invoke();
     }
 
@@ -117,17 +95,44 @@ public class Fish : TankResident
     {
         base.Restore(localData, geoObject);
         SetUpWithTank();
+        TogglePhysics(false);
         var fishData = JsonUtility.FromJson<FishData>(localData.OtherData);
         _growthLevel = fishData.GrowthLevel;
         _currentGrowthPoints = fishData.CurrentGrowthPoints;
         _currentSatiety = fishData.CurrentSatiety;
         _lastSatietyChange = fishData.LastSatietyChange;
         _size = fishData.Size;
+        State = IsFull ? new WanderingAndFullState(this) : new WanderingAndHungryState(this);
 
         CalculateCurrentLevelAttributes();
         GrowAccordingToRemainingSatiety();
         transform.localScale *= _size;
         AllDataInitialized.Invoke();
+    }
+
+    public void TogglePhysics(bool physicsOn)
+    {
+        var rb = GetComponentInChildren<Rigidbody>();
+        _fishUI.enabled = !physicsOn;
+        rb.useGravity = physicsOn;
+    }
+
+    public FishFood DetectFood()
+    {
+        _foodHeadedFor = _tank.GetNextFishFoodInTank();
+        return _foodHeadedFor;
+    }
+
+    public void SwimAroundInTank()
+    {
+        // fish prefab model's actual forward-facing direction is its -X axis
+        _rigidbody.velocity = -transform.right * _swimSpeed;
+    }
+
+    public void SwimToFood()
+    {
+        Vector3 distance = _foodHeadedFor.transform.position - _fishMouth.position;
+        _rigidbody.velocity = distance.normalized * _swimSpeed;
     }
 
     public override void ToggleVisibility(bool visible)
@@ -136,15 +141,24 @@ public class Fish : TankResident
         renderer.enabled = _fishUI.enabled = visible;
     }
 
-    public void HandleFishTriggerStay(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (!IsFull && other.TryGetComponent<FishFood>(out var fishFood))
+        if (collision.gameObject.TryGetComponent<FishFood>(out var food))
         {
-            ConsumeFood(fishFood);
+            State.HandleCollideWithFood(food);
         }
     }
 
-    private void ConsumeFood(FishFood food)
+    void OnTriggerStay(Collider other)
+    {
+
+        if (other.CompareTag(FishTank.WaterTag))
+        {
+            State.HandleCollidedWithWater();
+        }
+    }
+
+    public void ConsumeFood(FishFood food)
     {
         _foodHeadedFor = food;
         _currentGrowthPoints += _foodHeadedFor.GrowthPoints;
@@ -188,14 +202,14 @@ public class Fish : TankResident
             _size += _sizeIncreasePerLevel;
             CalculateCurrentLevelAttributes();
         }
-        transform.localScale = _size * Vector3.one;
+        transform.localScale = _size * _baseScale;
     }
 
     private void ResetToNormalState()
     {
-        _headingTowardsFood = false;
         _foodHeadedFor = null;
         transform.rotation *= Quaternion.AngleAxis(-transform.rotation.eulerAngles.z, Vector3.forward);
+        State.OnFoodConsumed();
     }
 
     private void HandleFoodPieceConsumed(FishFood consumedFood)
@@ -206,7 +220,6 @@ public class Fish : TankResident
 
     private void SetUpWithTank()
     {
-        _tank = _tank.GetComponent<FishTank>();
         _tank.FoodPieceConsumed.AddListener(HandleFoodPieceConsumed);
     }
 
