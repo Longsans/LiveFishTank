@@ -3,8 +3,10 @@ using UnityEngine;
 [ExecuteAlways]
 public class ClipBox : MonoBehaviour
 {
+    public string clipName = "_WorldToBox";
+
     void Update()
     {
-        Shader.SetGlobalMatrix("_WorldToBox", transform.worldToLocalMatrix);
+        Shader.SetGlobalMatrix(clipName, transform.worldToLocalMatrix);
     }
 }
