@@ -9,6 +9,8 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Button _placeTankButton;
     [SerializeField] private TMP_Text _placeTankText;
+    [SerializeField] private PrefabSelection _prefabSelectionSection;
+
     private string _showVarName = "Show";
 
     void Start()
@@ -23,7 +25,10 @@ public class SettingsMenu : MonoBehaviour
     public void ToggleSettingsMenuOpen(bool open)
     {
         if (open)
+        {
             gameObject.SetActive(open);
+            _prefabSelectionSection.gameObject.SetActive(false);
+        }
 
         _animator.SetBool(_showVarName, open);
     }
@@ -31,6 +36,8 @@ public class SettingsMenu : MonoBehaviour
     private void OnSettingsMenuFinishedHiding()
     {
         gameObject.SetActive(false);
+        _prefabSelectionSection.gameObject.SetActive(
+            PlaceablesManager.Instance.ResidentType == TankResidentType.Fish && !PlaceablesManager.Instance.PlacingTank);
     }
 
     public void HandleStartPlacingTank()

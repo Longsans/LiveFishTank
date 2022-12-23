@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 using UnityEngine.Events;
 
 public class FishTank : MonoBehaviour, IVisibilityToggleable
@@ -12,15 +13,15 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
 
     public FishTankData SaveData => _saveData;
     public bool Visible => _isVisible;
-    [SerializeField] public BoxCollider TankCollider;
-    [SerializeField] public BoxCollider WaterCollider;
+    [SerializeField] private GameObject _warningTint;
     [HideInInspector] public UnityEvent<FishFood> FoodPieceConsumed;
 
-    protected List<Fish> _fishes;
-    protected List<FishFood> _foodPieces;
-    protected List<Ornament> _ornaments;
-    protected FishTankData _saveData;
+    private List<Fish> _fishes;
+    private List<FishFood> _foodPieces;
+    private List<Ornament> _ornaments;
+    private FishTankData _saveData;
 
+    private List<TankWall> _tankWalls;
     private DimBoxes.BoundBox _edgeHighlight;
     private int _nextFoodPiece = 0;
     private bool _isVisible = false;
@@ -30,7 +31,8 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
         _fishes = new();
         _foodPieces = new();
         _ornaments = new();
-        _edgeHighlight = GetComponentInChildren<DimBoxes.BoundBox>();
+        _edgeHighlight = GetComponent<DimBoxes.BoundBox>();
+        _tankWalls = GetComponentsInChildren<TankWall>().ToList();
     }
 
     /// <summary>
@@ -41,9 +43,7 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
         var residentsDataList = _fishes.Select(f => f.SaveAndReturnData()).ToList();
         residentsDataList.AddRange(_ornaments.Select(o => o.SaveAndReturnData()).ToList());
         residentsDataList.AddRange(_foodPieces.Select(fg => fg.SaveAndReturnData()).ToList());
-        _saveData = new(
-            TankCollider.gameObject.transform.localScale,
-            residentsDataList);
+        _saveData = new(residentsDataList);
     }
 
     public FishTankData SaveAndReturnData()
@@ -55,8 +55,6 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
     public virtual void Restore(FishTankData tankData)
     {
         _saveData = tankData;
-        TankCollider.gameObject.transform.localScale = tankData.Size;
-
         foreach (var residentData in _saveData.TankResidentsDataList)
         {
             GameObject residentPrefab = residentData.Type switch
@@ -107,31 +105,6 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
         }
     }
 
-    public void SetTankWidth(float width)
-    {
-        TankCollider.gameObject.transform.localScale = new Vector3(
-            width,
-            TankCollider.gameObject.transform.localScale.y,
-            TankCollider.gameObject.transform.localScale.z);
-    }
-
-    public void SetTankLength(float length)
-    {
-        TankCollider.gameObject.transform.localScale = new Vector3(
-            TankCollider.gameObject.transform.localScale.x,
-            TankCollider.gameObject.transform.localScale.y,
-            length);
-    }
-
-    public void SetTankHeight(float height)
-    {
-        TankCollider.gameObject.transform.localScale = new Vector3(
-            TankCollider.gameObject.transform.localScale.x,
-            height,
-            TankCollider.gameObject.transform.localScale.z);
-    }
-
-
     public void AddTankResident(TankResident resident)
     {
         switch (resident)
@@ -175,7 +148,7 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
 
     public void ToggleVisibility(bool visible)
     {
-        // InteractionManager.Instance.SelectPlaceableGameObject(null);
+        InteractionManager.Instance.SelectPlaceableGameObject(null);
         _isVisible = visible;
         var renderers = GetComponentsInChildren<Renderer>();
         foreach (var r in renderers)
@@ -189,5 +162,18 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
 
         foreach (var o in _ornaments)
             o.ToggleVisibility(visible);
+    }
+
+    public void CheckToggleWarningColor()
+    {
+        foreach (var wall in _tankWalls)
+        {
+            if (wall.IsCollidingWithVerticalPlane)
+            {
+                _warningTint.SetActive(true);
+                return;
+            }
+        }
+        _warningTint.SetActive(false);
     }
 }

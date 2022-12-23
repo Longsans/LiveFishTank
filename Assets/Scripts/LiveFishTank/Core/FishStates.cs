@@ -66,10 +66,10 @@ public class DroppingIntoTankState : FishState
 public class RotatingState : FishState
 {
     protected Quaternion _endRotation;
-    private Quaternion _startRotation;
-    private float _duration;
-    private float _timeProgress = 0f;
-    private FishState _nextState;
+    protected Quaternion _startRotation;
+    protected float _duration;
+    protected float _timeProgress = 0f;
+    protected bool _rotating;
     private bool _damping = true;
 
     public RotatingState(Fish context, Quaternion rotation, float duration = -1f) : base(context)
@@ -77,6 +77,7 @@ public class RotatingState : FishState
         _endRotation = rotation;
         _startRotation = _rb.rotation;
         _duration = duration;
+        _rotating = true;
     }
 
     public override void FixedUpdate()
@@ -128,14 +129,57 @@ public class RotateTransitionalState : TransitionalState
     }
 }
 
-public abstract class WanderingState : FishState
+public abstract class WanderingState : RotatingState
 {
-    public WanderingState(Fish context) : base(context) { }
+    private float _movementPhase = 0f;
+    private float _movementProgress = 0f;
+    private float _movementModifier;
+
+    public WanderingState(Fish context) : base(context, context.transform.rotation)
+    {
+        _rotating = false;
+    }
 
     public override void FixedUpdate()
     {
-        base.FixedUpdate();
-        _context.SwimAroundInTank();
+        if (_rotating && _timeProgress < _duration)
+            base.FixedUpdate();
+        else if (_timeProgress == _duration)
+            _rotating = false;
+        else
+        {
+            var rotate = Random.Range(0f, 10f);
+            if (rotate > 7f)
+            {
+                var angle = Random.Range(30f, 120f);
+                _startRotation = _context.transform.rotation;
+                _endRotation = _startRotation * Quaternion.AngleAxis(angle, Vector3.up);
+                _duration = Random.Range(1f, 2.5f);
+                _timeProgress = 0f;
+                _rotating = true;
+            }
+        }
+
+        if (_movementProgress == _movementPhase)
+        {
+            if (_rb.velocity.sqrMagnitude < 1f)
+            {
+                _movementPhase = Random.Range(1f, 3f);
+                _movementModifier = Random.Range(0.8f, 1.2f);
+            }
+            else
+            {
+                _movementPhase = Random.Range(5f, 7.5f);
+                _movementModifier = 0f;
+            }
+            _movementProgress = 0f;
+        }
+        if (_movementModifier == 0f && _rb.velocity.sqrMagnitude > 0.04f)
+        {
+            _rb.drag += 20f;
+        }
+        else _rb.velocity = -_context.transform.right * _movementModifier * _context.SwimSpeed;
+        _movementProgress += Time.fixedDeltaTime;
     }
 
     public override void HandleCollideWithOtherObjects(Collision collision)
@@ -156,9 +200,9 @@ public class WanderingAndHungryState : WanderingState
     {
         var food = _context.DetectFood();
         if (food)
-        {
             _context.State = new HeadingForFoodState(_context, food);
-        }
+        else if (!_context.CheckIsAlive())
+            _context.State = new DeadState(_context);
     }
 }
 
@@ -168,9 +212,7 @@ public class WanderingAndFullState : WanderingState
     public override void Update()
     {
         if (!_context.IsFull)
-        {
             _context.State = new WanderingAndHungryState(_context);
-        }
     }
 }
 
@@ -203,5 +245,16 @@ public class HeadingForFoodState : RotatingState
     {
         _context.State = _context.IsFull ?
             new WanderingAndFullState(_context) : new WanderingAndHungryState(_context);
+    }
+}
+
+public class DeadState : FishState
+{
+    public DeadState(Fish context) : base(context)
+    {
+        var rb = _context.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+        rb.MoveRotation(Quaternion.AngleAxis(180f, Vector3.left));
+        rb.mass = 0.1f;
     }
 }

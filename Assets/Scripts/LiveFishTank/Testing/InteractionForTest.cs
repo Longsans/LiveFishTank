@@ -34,7 +34,6 @@ public class InteractionForTest : MonoBehaviour
             Quaternion.identity)
             .GetComponent<TankResident>();
         fishFoodGroup.Init(0, _tank);
-        _tank.TankCollider.enabled = false;
     }
 
     private void DropFish()
@@ -46,6 +45,5 @@ public class InteractionForTest : MonoBehaviour
             Quaternion.AngleAxis(angle, Vector3.up))
             .GetComponent<TankResident>();
         fish.Init(0, _tank);
-        _tank.TankCollider.enabled = false;
     }
 }

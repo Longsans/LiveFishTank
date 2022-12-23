@@ -26,12 +26,12 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
     public GameObject GetFishFoodPrefabAtIndex(int index) => _fishFoodPrefabs[index];
     public GameObject OtherPrefab => _tankPrefab;
 
-    public int SelectedFishPrefabIndex { get; set; } = 0;
-    public int SelectedFishFoodPrefabIndex { get; set; } = 0;
-    public bool IsPlacingTank => _isPlacingTank;
+    public TankResidentType ResidentType { get; set; } = TankResidentType.Fish;
+    public int SelectedFishPrefabIndex { get; set; } = 1;
+    public int SelectedFoodPrefabIndex { get; set; } = 0;
     public bool TankPlaceable { get; set; } = false;
-    public FishTank Tank => _tank;
     public bool TankPlaced => _tank.Visible;
+    public bool PlacingTank => _isPlacingTank;
 
     [HideInInspector] public UnityEvent StartedPlacingTank;
     [HideInInspector] public UnityEvent FinishedPlacingTank;
@@ -56,13 +56,6 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
             return;
         if (TryPlaceTankOnDetectedPlane() && !TankPlaced)
             _tank.ToggleVisibility(true);
-    }
-
-    public FishTank GetFishTankAtLocation(Vector3 pointInTank)
-    {
-        if (_tank.TankCollider.bounds.Contains(pointInTank))
-            return _tank;
-        return null;
     }
 
     public void SavePlaceables()
@@ -91,6 +84,7 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
             PlayerPrefs.GetString(_storageKey));
 
         _tank.Restore(appData);
+        StatusLog.Instance.DebugLog("Data restored");
     }
 
     private void SaveModifiedChanges()
@@ -104,6 +98,9 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
     public void DropNewFishIntoTank()
     {
+        if (_isPlacingTank)
+            return;
+
         var angle = Random.Range(30f, 180f);
         var fish = Instantiate(
             _fishPrefabs[SelectedFishPrefabIndex],
@@ -111,29 +108,50 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
             Quaternion.AngleAxis(angle, Vector3.up))
             .GetComponent<TankResident>();
         fish.Init(SelectedFishPrefabIndex, _tank);
-        _tank.TankCollider.enabled = false;
     }
 
     public void DropNewFoodPieceIntoTank()
     {
+        if (_isPlacingTank)
+            return;
+
         var positionDeviation = new Vector3(
             Random.Range(-0.05f, 0.05f),
             Random.Range(0.2f, 0.3f),
             Random.Range(-0.05f, 0.05f)
         );
         var fishFoodGroup = Instantiate(
-            _fishFoodPrefabs[SelectedFishFoodPrefabIndex],
+            _fishFoodPrefabs[SelectedFoodPrefabIndex],
             _camera.transform.position + positionDeviation,
             Quaternion.identity)
             .GetComponent<TankResident>();
-        fishFoodGroup.Init(SelectedFishFoodPrefabIndex, _tank);
-        _tank.TankCollider.enabled = false;
+        fishFoodGroup.Init(SelectedFoodPrefabIndex, _tank);
     }
 
     public void PlaceNewOrnamentInTank()
     {
         // TODO: FIGURE OUT ORNAMENT PLACEMENT INTERACTION
         //
+    }
+
+    public int NextSeveralFishIndex(int number)
+    {
+        return (SelectedFishPrefabIndex + number) % _fishPrefabs.Count;
+    }
+
+    public int PreviousSeveralFishIndex(int number)
+    {
+        return (SelectedFishPrefabIndex - number + _fishPrefabs.Count) % _fishPrefabs.Count;
+    }
+
+    public int NextSeveralFoodIndex(int number)
+    {
+        return (SelectedFoodPrefabIndex + number) % _fishFoodPrefabs.Count;
+    }
+
+    public int PreviousSeveralFoodIndex(int number)
+    {
+        return (SelectedFoodPrefabIndex - number + _fishFoodPrefabs.Count) % _fishFoodPrefabs.Count;
     }
 
     private bool TryPlaceTankOnDetectedPlane()
@@ -158,8 +176,8 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
             return false;
         }
 
-        _tank.transform.position = hits[0].pose.position;
         TankPlaceable = true;
+        _tank.transform.position = hits[0].pose.position;
         return true;
     }
 
@@ -169,7 +187,6 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
             return;
 
         _isPlacingTank = true;
-        _tank.TankCollider.enabled = true;
         if (!TankPlaced)
         {
             if (TryPlaceTankOnDetectedPlane())
@@ -197,14 +214,12 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
     public void CancelTankPlacement()
     {
-        Debug.Log($"is placing tank: {_isPlacingTank}");
         if (!_isPlacingTank)
             return;
         if (_tankTransformPriorToEnterPlacing)
             _tank.transform.position = _tankTransformPriorToEnterPlacing.position;
         else
         {
-            Debug.Log("tank transform null on cancel");
             _tank.ToggleVisibility(false);
         }
         FinishTankPlacement();
