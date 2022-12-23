@@ -871,7 +871,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441678899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.117, z: -0.274}
+  m_LocalPosition: {x: 0, y: 0.481, z: -0.274}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2154,21 +2154,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FishTank
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056188446435276785, guid: 5e1b6df82a109ac439b3726726f20bf3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.1058
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056188446435276785, guid: 5e1b6df82a109ac439b3726726f20bf3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0237
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056188446435276785, guid: 5e1b6df82a109ac439b3726726f20bf3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.3106
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e1b6df82a109ac439b3726726f20bf3, type: 3}
