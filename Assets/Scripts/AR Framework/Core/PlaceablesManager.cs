@@ -14,7 +14,7 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
     [SerializeField]
     private List<GameObject> _fishPrefabs,
-                            _fishFoodGroupPrefabs,
+                            _fishFoodPrefabs,
                             _ornamentPrefabs;
 
     [SerializeField]
@@ -23,11 +23,11 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
     public GameObject GetFishPrefabAtIndex(int index) => _fishPrefabs[index];
     public GameObject GetOrnamentPrefabAtIndex(int index) => _ornamentPrefabs[index];
-    public GameObject GetFishFoodGroupPrefabAtIndex(int index) => _fishFoodGroupPrefabs[index];
+    public GameObject GetFishFoodPrefabAtIndex(int index) => _fishFoodPrefabs[index];
     public GameObject OtherPrefab => _tankPrefab;
 
     public int SelectedFishPrefabIndex { get; set; } = 0;
-    public int SelectedFishFoodGroupPrefabIndex { get; set; } = 0;
+    public int SelectedFishFoodPrefabIndex { get; set; } = 0;
     public bool IsPlacingTank => _isPlacingTank;
     public bool TankPlaceable { get; set; } = false;
     public FishTank Tank => _tank;
@@ -60,7 +60,7 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
     public FishTank GetFishTankAtLocation(Vector3 pointInTank)
     {
-        if (_tank.Collider.bounds.Contains(pointInTank))
+        if (_tank.TankCollider.bounds.Contains(pointInTank))
             return _tank;
         return null;
     }
@@ -84,7 +84,7 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
         if (!PlayerPrefs.HasKey(_storageKey))
         {
-            // StatusLog.Instance.DebugLog("No previous session data");
+            StatusLog.Instance.DebugLog("No previous session data");
             return;
         }
         FishTankData appData = JsonConvert.DeserializeObject<FishTankData>(
@@ -104,7 +104,6 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
 
     public void DropNewFishIntoTank()
     {
-        // TODO: IMPLEMENT FISH DROP INTO TANK AND SAVE DATA ONCE FISH IS IN THE WATER
         var angle = Random.Range(30f, 180f);
         var fish = Instantiate(
             _fishPrefabs[SelectedFishPrefabIndex],
@@ -112,18 +111,23 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
             Quaternion.AngleAxis(angle, Vector3.up))
             .GetComponent<TankResident>();
         fish.Init(SelectedFishPrefabIndex, _tank);
-        SavePlaceables();
+        _tank.TankCollider.enabled = false;
     }
 
-    public void DropNewFishFoodGroupIntoTank()
+    public void DropNewFoodPieceIntoTank()
     {
+        var positionDeviation = new Vector3(
+            Random.Range(-0.05f, 0.05f),
+            Random.Range(0.2f, 0.3f),
+            Random.Range(-0.05f, 0.05f)
+        );
         var fishFoodGroup = Instantiate(
-            _fishFoodGroupPrefabs[SelectedFishFoodGroupPrefabIndex],
-            _camera.transform.position + 0.25f * _camera.transform.forward,
+            _fishFoodPrefabs[SelectedFishFoodPrefabIndex],
+            _camera.transform.position + positionDeviation,
             Quaternion.identity)
             .GetComponent<TankResident>();
-        fishFoodGroup.Init(SelectedFishFoodGroupPrefabIndex, _tank);
-        SavePlaceables();
+        fishFoodGroup.Init(SelectedFishFoodPrefabIndex, _tank);
+        _tank.TankCollider.enabled = false;
     }
 
     public void PlaceNewOrnamentInTank()
@@ -165,6 +169,7 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
             return;
 
         _isPlacingTank = true;
+        _tank.TankCollider.enabled = true;
         if (!TankPlaced)
         {
             if (TryPlaceTankOnDetectedPlane())
@@ -202,7 +207,6 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
             Debug.Log("tank transform null on cancel");
             _tank.ToggleVisibility(false);
         }
-
         FinishTankPlacement();
     }
 

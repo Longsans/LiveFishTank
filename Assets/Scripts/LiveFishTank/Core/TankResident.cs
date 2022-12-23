@@ -8,8 +8,8 @@ public abstract class TankResident : MonoBehaviour, IVisibilityToggleable
 
     public virtual void Init(int prefabIndex, FishTank tank)
     {
-        _saveData = new(prefabIndex, new Pose(transform.position, transform.rotation));
         RegisterWithTank(tank);
+        _saveData = new(prefabIndex, new Pose(transform.position, transform.rotation));
     }
 
     /// <summary>

@@ -15,6 +15,6 @@ public class WorldSpaceCanvas : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.LookAt(transform.position + _camera.transform.rotation * Vector3.forward, _camera.transform.rotation * Vector3.up);
+        transform.LookAt(transform.position + _camera.transform.forward, _camera.transform.up);
     }
 }

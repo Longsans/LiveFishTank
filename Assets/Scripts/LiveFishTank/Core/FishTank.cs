@@ -5,26 +5,31 @@ using UnityEngine.Events;
 
 public class FishTank : MonoBehaviour, IVisibilityToggleable
 {
+    #region Consts
+    public const string GlassTag = "TankGlass";
+    public const string WaterTag = "TankWater";
+    #endregion
+
     public FishTankData SaveData => _saveData;
     public bool Visible => _isVisible;
-    [HideInInspector] public BoxCollider Collider;
+    [SerializeField] public BoxCollider TankCollider;
+    [SerializeField] public BoxCollider WaterCollider;
     [HideInInspector] public UnityEvent<FishFood> FoodPieceConsumed;
 
     protected List<Fish> _fishes;
-    protected List<FishFoodGroup> _fishFoodGroups;
+    protected List<FishFood> _foodPieces;
     protected List<Ornament> _ornaments;
     protected FishTankData _saveData;
 
     private DimBoxes.BoundBox _edgeHighlight;
-    private int _nextFoodGroup = 0;
+    private int _nextFoodPiece = 0;
     private bool _isVisible = false;
 
     protected virtual void Awake()
     {
         _fishes = new();
-        _fishFoodGroups = new();
+        _foodPieces = new();
         _ornaments = new();
-        Collider = GetComponentInChildren<BoxCollider>();
         _edgeHighlight = GetComponentInChildren<DimBoxes.BoundBox>();
     }
 
@@ -35,9 +40,9 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
     {
         var residentsDataList = _fishes.Select(f => f.SaveAndReturnData()).ToList();
         residentsDataList.AddRange(_ornaments.Select(o => o.SaveAndReturnData()).ToList());
-        residentsDataList.AddRange(_fishFoodGroups.Select(fg => fg.SaveAndReturnData()).ToList());
+        residentsDataList.AddRange(_foodPieces.Select(fg => fg.SaveAndReturnData()).ToList());
         _saveData = new(
-            Collider.gameObject.transform.localScale,
+            TankCollider.gameObject.transform.localScale,
             residentsDataList);
     }
 
@@ -50,14 +55,14 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
     public virtual void Restore(FishTankData tankData)
     {
         _saveData = tankData;
-        Collider.gameObject.transform.localScale = tankData.Size;
+        TankCollider.gameObject.transform.localScale = tankData.Size;
 
         foreach (var residentData in _saveData.TankResidentsDataList)
         {
             GameObject residentPrefab = residentData.Type switch
             {
                 TankResidentType.Fish => PlaceablesManager.Instance.GetFishPrefabAtIndex(residentData.PrefabIndex),
-                TankResidentType.FishFood => PlaceablesManager.Instance.GetFishFoodGroupPrefabAtIndex(residentData.PrefabIndex),
+                TankResidentType.FishFood => PlaceablesManager.Instance.GetFishFoodPrefabAtIndex(residentData.PrefabIndex),
                 TankResidentType.Ornament => PlaceablesManager.Instance.GetOrnamentPrefabAtIndex(residentData.PrefabIndex),
                 _ => PlaceablesManager.Instance.OtherPrefab,
             };
@@ -79,52 +84,51 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
 
     public FishFood GetNextFishFoodInTank()
     {
-        if (_fishFoodGroups.Count == 0)
+        if (_foodPieces.Count == 0)
             return null;
 
-        FishFood food;
-        if (_nextFoodGroup >= _fishFoodGroups.Count)
-            _nextFoodGroup = 0;
-
-        while (!(food = _fishFoodGroups[_nextFoodGroup].GetNextFoodPiece()))
+        if (_nextFoodPiece >= _foodPieces.Count)
+            _nextFoodPiece = 0;
+        while (_nextFoodPiece < _foodPieces.Count)
         {
-            _nextFoodGroup = ++_nextFoodGroup % _fishFoodGroups.Count;
-            if (_nextFoodGroup == 0)
-            {
-                foreach (var foodGroup in _fishFoodGroups)
-                    foodGroup.ResetFoodPiecesIterator();
-            }
+            if (_foodPieces[_nextFoodPiece].InTank)
+                return _foodPieces[_nextFoodPiece];
+            _nextFoodPiece++;
         }
-        return food;
+        return null;
     }
 
-    public void NotifyFoodPieceConsumed(FishFood consumedPiece)
+    public void OnFoodPieceConsumed(FishFood consumedPiece)
     {
-        FoodPieceConsumed.Invoke(consumedPiece);
+        if (_foodPieces.Contains(consumedPiece))
+        {
+            _foodPieces.Remove(consumedPiece);
+            FoodPieceConsumed.Invoke(consumedPiece);
+        }
     }
 
     public void SetTankWidth(float width)
     {
-        Collider.gameObject.transform.localScale = new Vector3(
+        TankCollider.gameObject.transform.localScale = new Vector3(
             width,
-            Collider.gameObject.transform.localScale.y,
-            Collider.gameObject.transform.localScale.z);
+            TankCollider.gameObject.transform.localScale.y,
+            TankCollider.gameObject.transform.localScale.z);
     }
 
     public void SetTankLength(float length)
     {
-        Collider.gameObject.transform.localScale = new Vector3(
-            Collider.gameObject.transform.localScale.x,
-            Collider.gameObject.transform.localScale.y,
+        TankCollider.gameObject.transform.localScale = new Vector3(
+            TankCollider.gameObject.transform.localScale.x,
+            TankCollider.gameObject.transform.localScale.y,
             length);
     }
 
     public void SetTankHeight(float height)
     {
-        Collider.gameObject.transform.localScale = new Vector3(
-            Collider.gameObject.transform.localScale.x,
+        TankCollider.gameObject.transform.localScale = new Vector3(
+            TankCollider.gameObject.transform.localScale.x,
             height,
-            Collider.gameObject.transform.localScale.z);
+            TankCollider.gameObject.transform.localScale.z);
     }
 
 
@@ -136,9 +140,9 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
                 if (!_fishes.Contains(f))
                     _fishes.Add(f);
                 break;
-            case FishFoodGroup fg:
-                if (!_fishFoodGroups.Contains(fg))
-                    _fishFoodGroups.Add(fg);
+            case FishFood ff:
+                if (!_foodPieces.Contains(ff))
+                    _foodPieces.Add(ff);
                 break;
             case Ornament o:
                 if (!_ornaments.Contains(o))
@@ -149,29 +153,29 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
             resident.ToggleVisibility(_isVisible);
     }
 
-    public void DestroyTankResident(TankResident tankObject)
+    public void DestroyTankResident(TankResident resident)
     {
-        switch (tankObject)
+        switch (resident)
         {
             case Fish f:
                 if (_fishes.Contains(f))
                     _fishes.Remove(f);
                 break;
-            case FishFoodGroup fg:
-                if (_fishFoodGroups.Contains(fg))
-                    _fishFoodGroups.Remove(fg);
+            case FishFood ff:
+                if (_foodPieces.Contains(ff))
+                    _foodPieces.Remove(ff);
                 break;
             case Ornament o:
                 if (_ornaments.Contains(o))
                     _ornaments.Remove(o);
                 break;
         }
-        Destroy(tankObject.gameObject);
+        Destroy(resident.gameObject);
     }
 
     public void ToggleVisibility(bool visible)
     {
-        InteractionManager.Instance.SelectPlaceableGameObject(null);
+        // InteractionManager.Instance.SelectPlaceableGameObject(null);
         _isVisible = visible;
         var renderers = GetComponentsInChildren<Renderer>();
         foreach (var r in renderers)
@@ -180,8 +184,8 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
         foreach (var fish in _fishes)
             fish.ToggleVisibility(visible);
 
-        foreach (var foodGroup in _fishFoodGroups)
-            foodGroup.ToggleVisibility(visible);
+        foreach (var food in _foodPieces)
+            food.ToggleVisibility(visible);
 
         foreach (var o in _ornaments)
             o.ToggleVisibility(visible);
