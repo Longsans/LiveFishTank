@@ -806,8 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6b6c30e78526b4c8b96ca914b0737a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TankCollider: {fileID: 0}
-  WaterCollider: {fileID: 0}
+  _warningTint: {fileID: 0}
   FoodPieceConsumed:
     m_PersistentCalls:
       m_Calls: []

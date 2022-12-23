@@ -10,7 +10,7 @@ public class TankPlacementFinishButtons : MonoBehaviour
     void Start()
     {
         PlaceablesManager.Instance.StartedPlacingTank
-            .AddListener(OnStartPlacingTank);
+            .AddListener(OnStartedPlacingTank);
         gameObject.SetActive(false);
     }
 
@@ -31,7 +31,7 @@ public class TankPlacementFinishButtons : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnStartPlacingTank()
+    private void OnStartedPlacingTank()
     {
         gameObject.SetActive(true);
     }

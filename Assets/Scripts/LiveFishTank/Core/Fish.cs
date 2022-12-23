@@ -7,6 +7,7 @@ public class Fish : TankResident
     [HideInInspector] public float MaxSatiety => _levelMaxSatiety;
     [HideInInspector] public float CurrentSatiety => _currentSatiety;
     [HideInInspector] public bool IsFull => _currentSatiety == _levelMaxSatiety;
+    [HideInInspector] public float SwimSpeed => _swimSpeed;
     [HideInInspector] public UnityEvent AllDataInitialized;
 
     // fish grows when max growth points at each level is reached
@@ -27,10 +28,11 @@ public class Fish : TankResident
 
     // swim speed in m/s
     [SerializeField] private float _swimSpeed = 0.1f;
+    [SerializeField] private float _dieAfterDaysUnfed = 7f;
     [SerializeField] private Transform _fishMouth;
     [SerializeField] private Canvas _fishUI;
 
-    private readonly Vector3 _baseScale = 0.3f * Vector3.one;
+    private readonly Vector3 _baseScale = 0.2f * Vector3.one;
     private int _growthLevel = 1;
     private int _levelGrowthPoints;
     private int _currentGrowthPoints = 0;
@@ -55,7 +57,6 @@ public class Fish : TankResident
 
     void FixedUpdate()
     {
-        Debug.Log($"current state: {State}");
         State.FixedUpdate();
     }
 
@@ -86,7 +87,8 @@ public class Fish : TankResident
             CurrentGrowthPoints = _currentGrowthPoints,
             CurrentSatiety = _currentSatiety,
             LastSatietyChange = _lastSatietyChange,
-            Size = _size
+            Size = _size,
+            DieAfterDaysUnfed = _dieAfterDaysUnfed,
         };
         _saveData.OtherData = JsonUtility.ToJson(fishData);
     }
@@ -102,6 +104,7 @@ public class Fish : TankResident
         _currentSatiety = fishData.CurrentSatiety;
         _lastSatietyChange = fishData.LastSatietyChange;
         _size = fishData.Size;
+        _dieAfterDaysUnfed = fishData.DieAfterDaysUnfed;
         State = IsFull ? new WanderingAndFullState(this) : new WanderingAndHungryState(this);
 
         CalculateCurrentLevelAttributes();
@@ -123,16 +126,15 @@ public class Fish : TankResident
         return _foodHeadedFor;
     }
 
-    public void SwimAroundInTank()
-    {
-        // fish prefab model's actual forward-facing direction is its -X axis
-        _rigidbody.velocity = -transform.right * _swimSpeed;
-    }
-
     public void SwimToFood()
     {
         Vector3 distance = _foodHeadedFor.transform.position - _fishMouth.position;
         _rigidbody.velocity = distance.normalized * _swimSpeed;
+    }
+
+    public bool CheckIsAlive()
+    {
+        return (DateTime.Now - _lastSatietyChange).TotalHours < _dieAfterDaysUnfed;
     }
 
     public override void ToggleVisibility(bool visible)
@@ -241,4 +243,5 @@ public class FishData
     public float CurrentSatiety;
     public DateTime LastSatietyChange;
     public float Size;
+    public float DieAfterDaysUnfed;
 }
