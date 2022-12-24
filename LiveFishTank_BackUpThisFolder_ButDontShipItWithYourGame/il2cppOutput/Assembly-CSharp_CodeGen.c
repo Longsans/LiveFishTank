@@ -44,359 +44,587 @@ extern void ARFeatheredPlaneMeshVisualizer_GenerateBoundaryUVs_mF756D3C1F7925A69
 extern void ARFeatheredPlaneMeshVisualizer__ctor_m9A77651BCAE58AA0B994FFF6C6B63B1CFF2729F6 (void);
 // 0x00000010 System.Void ARFeatheredPlaneMeshVisualizer::.cctor()
 extern void ARFeatheredPlaneMeshVisualizer__cctor_m56285A000EE27A1631BE9C5BCDA5C376E5D133C3 (void);
-// 0x00000011 System.Void AppData::.ctor(System.Collections.Generic.List`1<GeospatialObjectData>)
-extern void AppData__ctor_mABBBEF2FBC8C3290F6CFC86CEF8117F24B88AC09 (void);
-// 0x00000012 System.Void GeospatialObjectData::.ctor(System.Double,System.Double,System.Double,System.Double,UnityEngine.Vector3,System.Collections.Generic.List`1<LocalObjectData>,System.String)
-extern void GeospatialObjectData__ctor_m126B5A00D33469B145A9DCFD3167E629A0763977 (void);
-// 0x00000013 System.Void LocalObjectData::.ctor(System.Int32,UnityEngine.Pose,LocalObjectType,System.String)
-extern void LocalObjectData__ctor_m12289E40DF180652B7E571CF8F36B252448AA3B2 (void);
-// 0x00000014 System.Void Vector3Data::.ctor()
-extern void Vector3Data__ctor_mBE0E873C06D44714247D2741F9F71CD057FEF89C (void);
-// 0x00000015 Google.XR.ARCoreExtensions.GeospatialPose GeospatialManager::get_CameraGeospatialPose()
-extern void GeospatialManager_get_CameraGeospatialPose_m3DC9FE70B8D0F85675ACDB87F7C4C6150FD66BED (void);
-// 0x00000016 System.Boolean GeospatialManager::get_GeospatialAvailable()
-extern void GeospatialManager_get_GeospatialAvailable_mBB031BE81E7690CB9812E677B037655F8C0B023A (void);
-// 0x00000017 System.Void GeospatialManager::Update()
-extern void GeospatialManager_Update_mE09C4AB4647885F230633DFE3F3EF601923678FE (void);
-// 0x00000018 Google.XR.ARCoreExtensions.ARGeospatialAnchor GeospatialManager::RequestGeospatialAnchor()
-extern void GeospatialManager_RequestGeospatialAnchor_mDD3E7A78A0CF1BD3F26DE0111E93EFB7F5B680DD (void);
-// 0x00000019 Google.XR.ARCoreExtensions.ARGeospatialAnchor GeospatialManager::RequestGeospatialAnchor(Google.XR.ARCoreExtensions.GeospatialPose)
-extern void GeospatialManager_RequestGeospatialAnchor_mDBB33D0A10365474457808BB431BBD273252FA96 (void);
-// 0x0000001A System.Void GeospatialManager::.ctor()
-extern void GeospatialManager__ctor_m5FB83520BB4D7FB366C8B1F130C3D4CE1626C41B (void);
-// 0x0000001B GeospatialObjectData GeospatialObject::get_SaveData()
-extern void GeospatialObject_get_SaveData_mB6899BCC0ADE08EE6509DD7388C84AC35FAF233F (void);
-// 0x0000001C System.Int32 GeospatialObject::get_LocalObjectsCount()
-extern void GeospatialObject_get_LocalObjectsCount_mDF89E8594792134026E4ADE6B830E104C1C244FF (void);
-// 0x0000001D System.Void GeospatialObject::Awake()
-extern void GeospatialObject_Awake_m0E7774ACDB135915A8A12043DD3FE8E8C44BF603 (void);
-// 0x0000001E System.Void GeospatialObject::Innit()
-extern void GeospatialObject_Innit_mFE595554280A21EC12DDEF35BCDE8B57A25A4265 (void);
-// 0x0000001F System.Void GeospatialObject::Save()
-extern void GeospatialObject_Save_mA7B6E9022DD0E35C20204D160311BB44FC375FFA (void);
-// 0x00000020 System.Void GeospatialObject::Restore(GeospatialObjectData)
-extern void GeospatialObject_Restore_m3B0E89631DC44D1066B30DAAF134A5608D3B47A5 (void);
-// 0x00000021 System.Void GeospatialObject::RegisterLocalObject(LocalObject)
-extern void GeospatialObject_RegisterLocalObject_mF2FAB3DA7F304ADF348E6332BC4CC6C171E95688 (void);
-// 0x00000022 System.Void GeospatialObject::RemoveLocalObject(LocalObject)
-extern void GeospatialObject_RemoveLocalObject_mEB6D7A5B6FF12092BFA3D5CFE3C47CB98D462997 (void);
-// 0x00000023 System.Void GeospatialObject::AttachToGeoAnchor(Google.XR.ARCoreExtensions.ARGeospatialAnchor)
-extern void GeospatialObject_AttachToGeoAnchor_m597F3904CF2E72AC13BA65467005811C7BC2B4D6 (void);
-// 0x00000024 System.Void GeospatialObject::.ctor()
-extern void GeospatialObject__ctor_m880E7B3D41A95BEA775C37F1A48279DA7DC0E063 (void);
-// 0x00000025 System.Void GeospatialObject/<>c::.cctor()
-extern void U3CU3Ec__cctor_m416B3C635C4FC5C72E866BCD4EBBE16915B37ADB (void);
-// 0x00000026 System.Void GeospatialObject/<>c::.ctor()
-extern void U3CU3Ec__ctor_m593300DB66C57C4FF7EDF3368616F86660996E15 (void);
-// 0x00000027 LocalObjectData GeospatialObject/<>c::<Save>b__9_0(LocalObject)
-extern void U3CU3Ec_U3CSaveU3Eb__9_0_m8DD8807BEB87C5F9B782C5F4EE22458DBD79B2F8 (void);
-// 0x00000028 System.Boolean InteractionManager::get_ModifyOn()
-extern void InteractionManager_get_ModifyOn_mC40737EE8074AB1939AE11554CA347572C1DE045 (void);
-// 0x00000029 System.Void InteractionManager::set_ModifyOn(System.Boolean)
-extern void InteractionManager_set_ModifyOn_m9F973D43D7A95159CE9126ED380E65640E438B56 (void);
-// 0x0000002A PlaceableType InteractionManager::get_ObjectMode()
-extern void InteractionManager_get_ObjectMode_mBEC2921441EE291DAE24717398DA0C9357F8851F (void);
-// 0x0000002B System.Void InteractionManager::set_ObjectMode(PlaceableType)
-extern void InteractionManager_set_ObjectMode_mE83182A5C0D46463912C66B446B780819AAA7BFE (void);
-// 0x0000002C System.Void InteractionManager::SetModify(System.Boolean)
-extern void InteractionManager_SetModify_m3BF96FD3AB3104B5CB442E4F2A34710DFB8A6577 (void);
-// 0x0000002D System.Void InteractionManager::SetModifyInvoke(System.Boolean)
-extern void InteractionManager_SetModifyInvoke_mD4400D4D9799B4C2D692C7672C6BED9DD4C248C8 (void);
-// 0x0000002E System.Void InteractionManager::SelectPlaceableGameObject(UnityEngine.GameObject)
+// 0x00000011 System.Void Accelerometer::Start()
+extern void Accelerometer_Start_mCBCE6B3810A0C5B1F5709329E557065E0C554572 (void);
+// 0x00000012 System.Void Accelerometer::Update()
+extern void Accelerometer_Update_mDEF53B10200B361B19DE9B46956C6036E8BAA7AB (void);
+// 0x00000013 System.Void Accelerometer::.ctor()
+extern void Accelerometer__ctor_mFE5148B833011563708A11F8E013C6E0B81BC71D (void);
+// 0x00000014 System.Void ARManager::Start()
+extern void ARManager_Start_m076359B9D8D438AB7042625E623EBE616B7FB6E3 (void);
+// 0x00000015 System.Void ARManager::OnStartedPlacingTank()
+extern void ARManager_OnStartedPlacingTank_mBF48524E72CE476F58D43811CCB7C6CADA8CB117 (void);
+// 0x00000016 System.Void ARManager::OnFinishedPlacingTank()
+extern void ARManager_OnFinishedPlacingTank_m7C8D2C83BF6067DCF71D4C7384EF04AE77AEF514 (void);
+// 0x00000017 System.Void ARManager::.ctor()
+extern void ARManager__ctor_m53D041B8379A885E4596A2980F29676BC9BC5931 (void);
+// 0x00000018 System.Boolean InteractionManager::get_ModifyingTank()
+extern void InteractionManager_get_ModifyingTank_mFFC383E1C2918DB684365444A3BA69E6F47E8216 (void);
+// 0x00000019 System.Void InteractionManager::set_ModifyingTank(System.Boolean)
+extern void InteractionManager_set_ModifyingTank_m9B7A7697921B1DFED370CF0B14606D5C22C6B749 (void);
+// 0x0000001A UnityEngine.GameObject InteractionManager::get_CurrentSelectedPlaceable()
+extern void InteractionManager_get_CurrentSelectedPlaceable_m34715B69FB0AF5DFFCB97741A1DFECCC18555B6F (void);
+// 0x0000001B System.Void InteractionManager::Start()
+extern void InteractionManager_Start_m5603F2AA1E5ACACA592559A27459071582375D33 (void);
+// 0x0000001C System.Void InteractionManager::NotifySettingsHidden()
+extern void InteractionManager_NotifySettingsHidden_m43E40ED4986AC836F0DC091A94E5EB91A8C21B0D (void);
+// 0x0000001D System.Void InteractionManager::SetModifyingTank(System.Boolean)
+extern void InteractionManager_SetModifyingTank_m48C3757C40B450E423DBFB5D8A980BFC49C81F37 (void);
+// 0x0000001E System.Void InteractionManager::SetModifyingTankInvoke(System.Boolean)
+extern void InteractionManager_SetModifyingTankInvoke_mAB8DF84B6767615A92ECD9D1814F75E328628E18 (void);
+// 0x0000001F System.Void InteractionManager::SelectPlaceableGameObject(UnityEngine.GameObject)
 extern void InteractionManager_SelectPlaceableGameObject_m39CBF1E296C49B61B0F190E01F985F3B21D08F2A (void);
-// 0x0000002F System.Void InteractionManager::HandleScreenTouch(UnityEngine.Vector2)
+// 0x00000020 System.Void InteractionManager::HandleScreenTouch(UnityEngine.Vector2)
 extern void InteractionManager_HandleScreenTouch_m75F2ECC7EB55A8E1A926F41A0D941CA6CB0DC8BE (void);
-// 0x00000030 System.Void InteractionManager::.ctor()
+// 0x00000021 System.Void InteractionManager::HandleScreenShake()
+extern void InteractionManager_HandleScreenShake_mFFFF9AAAC6F1143462183652633CD8BC1F80AA80 (void);
+// 0x00000022 FishTank InteractionManager::RaycastForFishTankFromScreenPos(UnityEngine.Vector2)
+extern void InteractionManager_RaycastForFishTankFromScreenPos_m7D3022E6571C2C6078086BBFD1594AB1C023C35A (void);
+// 0x00000023 FishTank InteractionManager::RaycastForFishTank(UnityEngine.Ray)
+extern void InteractionManager_RaycastForFishTank_m2DFBFE5EF723C5564C2A0FB5596ED75034BD604D (void);
+// 0x00000024 System.Void InteractionManager::TryTogglePlaceableObjectBounds(UnityEngine.GameObject,System.Boolean)
+extern void InteractionManager_TryTogglePlaceableObjectBounds_mFD7FFA1E8F499224FB256746BA2CC5EF6BA6AC2E (void);
+// 0x00000025 System.Void InteractionManager::.ctor()
 extern void InteractionManager__ctor_m82FEC99B565D720A3A64B245741DF3856A0CA19C (void);
-// 0x00000031 LocalObjectData LocalObject::get_SaveData()
-extern void LocalObject_get_SaveData_m0C0CF345144316D46163AE39C39A92998526D78C (void);
-// 0x00000032 System.Void LocalObject::Innit(System.Int32,GeospatialObject)
-extern void LocalObject_Innit_m764D9CA82B8E8BCB8572DC7EF0FACADB3C45E0A7 (void);
-// 0x00000033 System.Void LocalObject::Save()
-extern void LocalObject_Save_m622CBC0AA2E1FA5B63FE45E3C143F01342412F31 (void);
-// 0x00000034 System.Void LocalObject::Restore(LocalObjectData,GeospatialObject)
-extern void LocalObject_Restore_m4BD4843C429983DC2FF08C73C509F87540052109 (void);
-// 0x00000035 System.Void LocalObject::AnchorToGeospatialObject(GeospatialObject)
-extern void LocalObject_AnchorToGeospatialObject_mD75B0B9BEB298C0D473575472E2ACF64EC04657D (void);
-// 0x00000036 System.Void LocalObject::.ctor()
-extern void LocalObject__ctor_mCE8FA9C228447DCE9164258E5ED8472CE4802BDC (void);
-// 0x00000037 System.Void PlaceableObject::Innit(System.Int32)
-// 0x00000038 System.Void PlaceableObject::.ctor()
-extern void PlaceableObject__ctor_m948F372AFDF13DDA41099EE3158A62108AD44D52 (void);
-// 0x00000039 UnityEngine.GameObject PlaceablesManager::GetFishPrefabAtIndex(System.Int32)
+// 0x00000026 UnityEngine.GameObject PlaceablesManager::GetFishPrefabAtIndex(System.Int32)
 extern void PlaceablesManager_GetFishPrefabAtIndex_m098075BD4B81E69F08D1C32D07DEB71AAE6D98FF (void);
-// 0x0000003A UnityEngine.GameObject PlaceablesManager::GetOrnamentPrefabAtIndex(System.Int32)
+// 0x00000027 UnityEngine.GameObject PlaceablesManager::GetOrnamentPrefabAtIndex(System.Int32)
 extern void PlaceablesManager_GetOrnamentPrefabAtIndex_mD88CDDF40CDB508086C3858922EB8C4AC23A61CC (void);
-// 0x0000003B UnityEngine.GameObject PlaceablesManager::get_OtherPrefab()
+// 0x00000028 UnityEngine.GameObject PlaceablesManager::GetFishFoodPrefabAtIndex(System.Int32)
+extern void PlaceablesManager_GetFishFoodPrefabAtIndex_mB8DE21F496AD92567892D9AB022380BB93ADF385 (void);
+// 0x00000029 UnityEngine.GameObject PlaceablesManager::get_OtherPrefab()
 extern void PlaceablesManager_get_OtherPrefab_m2949ACF66E41718E3DD328DE7F8CA7BE777F9EAE (void);
-// 0x0000003C System.Int32 PlaceablesManager::get_FishTanksCount()
-extern void PlaceablesManager_get_FishTanksCount_m187DDE59F4C3BFD8EB3FC254DF3CD67EF4F3652C (void);
-// 0x0000003D System.Int32 PlaceablesManager::get_SelectedFishPrefabIndex()
+// 0x0000002A TankResidentType PlaceablesManager::get_ResidentType()
+extern void PlaceablesManager_get_ResidentType_m6884A17A1B958A851EE9DEE9C8C600E2DB7A9355 (void);
+// 0x0000002B System.Void PlaceablesManager::set_ResidentType(TankResidentType)
+extern void PlaceablesManager_set_ResidentType_mB3BC1C895A514F9375D5B47062EBFC0A132AC151 (void);
+// 0x0000002C System.Int32 PlaceablesManager::get_SelectedFishPrefabIndex()
 extern void PlaceablesManager_get_SelectedFishPrefabIndex_mB0A5B6B88C69A640837567B1FB23178D186A90D9 (void);
-// 0x0000003E System.Void PlaceablesManager::set_SelectedFishPrefabIndex(System.Int32)
+// 0x0000002D System.Void PlaceablesManager::set_SelectedFishPrefabIndex(System.Int32)
 extern void PlaceablesManager_set_SelectedFishPrefabIndex_mE53C3586B5C3242C1F2AFD67A99B5453321C6E80 (void);
-// 0x0000003F System.Void PlaceablesManager::Start()
+// 0x0000002E System.Int32 PlaceablesManager::get_SelectedFoodPrefabIndex()
+extern void PlaceablesManager_get_SelectedFoodPrefabIndex_mC06F6E5B67F7FB71558C27882F0C158AAF055FFA (void);
+// 0x0000002F System.Void PlaceablesManager::set_SelectedFoodPrefabIndex(System.Int32)
+extern void PlaceablesManager_set_SelectedFoodPrefabIndex_mC0778EE157C706924F39C0664305A18638AC4860 (void);
+// 0x00000030 System.Boolean PlaceablesManager::get_TankPlaceable()
+extern void PlaceablesManager_get_TankPlaceable_mFF39199822B0C315362D565BB77728E7F4E1AC9F (void);
+// 0x00000031 System.Void PlaceablesManager::set_TankPlaceable(System.Boolean)
+extern void PlaceablesManager_set_TankPlaceable_m988A16D904B0D7229B78762A20542EA30620B73D (void);
+// 0x00000032 System.Boolean PlaceablesManager::get_TankPlaced()
+extern void PlaceablesManager_get_TankPlaced_m41646BE2FF70E9488940640632E0BEFF7C382710 (void);
+// 0x00000033 System.Boolean PlaceablesManager::get_PlacingTank()
+extern void PlaceablesManager_get_PlacingTank_m60B0821F68C52ED98731DB90AA73C2048DE4F36C (void);
+// 0x00000034 System.Void PlaceablesManager::Start()
 extern void PlaceablesManager_Start_mFA7B78078AB598D0564BCE8250EE0BD7BCED4E40 (void);
-// 0x00000040 System.Void PlaceablesManager::SavePlaceables()
+// 0x00000035 System.Void PlaceablesManager::Update()
+extern void PlaceablesManager_Update_m1F6F5ECB2251CBAE74AE0A0D9A38FDB79487C19D (void);
+// 0x00000036 System.Void PlaceablesManager::SavePlaceables()
 extern void PlaceablesManager_SavePlaceables_m9A5372E21847578BF9BA70D09140C6137BFF0285 (void);
-// 0x00000041 System.Void PlaceablesManager::LoadSavedPlaceables()
+// 0x00000037 System.Void PlaceablesManager::LoadSavedPlaceables()
 extern void PlaceablesManager_LoadSavedPlaceables_mD1365B88A04DE17CCA726E397D5AB707E8E27A32 (void);
-// 0x00000042 System.Void PlaceablesManager::HandleSaveModifiedChanges()
-extern void PlaceablesManager_HandleSaveModifiedChanges_m7AE15DA690416E84C000B4A22E358A5437216777 (void);
-// 0x00000043 System.Void PlaceablesManager::HandleGeospatialTrackingStateChanged(UnityEngine.XR.ARSubsystems.TrackingState)
-extern void PlaceablesManager_HandleGeospatialTrackingStateChanged_m1ACA1FCB12970686C43897C2FB39DF7EC9BBBAAA (void);
-// 0x00000044 System.Void PlaceablesManager::PlaceNewGeospatialObject()
-extern void PlaceablesManager_PlaceNewGeospatialObject_m0DC5FC0792B936EDBF579D8E381BB75E08936679 (void);
-// 0x00000045 System.Void PlaceablesManager::PlaceNewLocalObject(GeospatialObject)
-extern void PlaceablesManager_PlaceNewLocalObject_m45D25628ACA710BC858016572CFF1918EB0C3378 (void);
-// 0x00000046 System.Void PlaceablesManager::.ctor()
+// 0x00000038 System.Void PlaceablesManager::SaveModifiedChanges()
+extern void PlaceablesManager_SaveModifiedChanges_mDD66145C9B7DB9F9CEEB043F0068F5B43EDF85F7 (void);
+// 0x00000039 System.Void PlaceablesManager::DropNewFishIntoTank()
+extern void PlaceablesManager_DropNewFishIntoTank_m1E7780A72E75F7A3659FF589FF9BB2D947600406 (void);
+// 0x0000003A System.Void PlaceablesManager::DropNewFoodPieceIntoTank()
+extern void PlaceablesManager_DropNewFoodPieceIntoTank_m845F42D0F9842A85D2881D09CD8E3A407C83857D (void);
+// 0x0000003B System.Int32 PlaceablesManager::NextSeveralFishIndex(System.Int32)
+extern void PlaceablesManager_NextSeveralFishIndex_mE5078FA017DA5C20C870319927DEC0B941829B9A (void);
+// 0x0000003C System.Int32 PlaceablesManager::PreviousSeveralFishIndex(System.Int32)
+extern void PlaceablesManager_PreviousSeveralFishIndex_mBB80969B2315858FA1ACFA20BB23E4370672014C (void);
+// 0x0000003D System.Int32 PlaceablesManager::NextSeveralFoodIndex(System.Int32)
+extern void PlaceablesManager_NextSeveralFoodIndex_m4BB0CB0BC07D5288C88A4EA40963281F63CE6A25 (void);
+// 0x0000003E System.Int32 PlaceablesManager::PreviousSeveralFoodIndex(System.Int32)
+extern void PlaceablesManager_PreviousSeveralFoodIndex_m5F5878ECA7A99C2C84BE3CBC8DEF4340E3DF5AD9 (void);
+// 0x0000003F System.Boolean PlaceablesManager::TryPlaceTankOnDetectedPlane()
+extern void PlaceablesManager_TryPlaceTankOnDetectedPlane_m03923B496E95FE085AAA27E819EB44CB888CF03F (void);
+// 0x00000040 System.Void PlaceablesManager::StartTankPlacement()
+extern void PlaceablesManager_StartTankPlacement_m40902B1B92C7A7137003B0898A3642DF7682CBC2 (void);
+// 0x00000041 System.Void PlaceablesManager::ConfirmTankPlacement()
+extern void PlaceablesManager_ConfirmTankPlacement_mAE8967BE2E4A029672B7B56AAA4AC48C0A274EF8 (void);
+// 0x00000042 System.Void PlaceablesManager::CancelTankPlacement()
+extern void PlaceablesManager_CancelTankPlacement_mB0C968F0F8A7137E748F6D7A04C226A157C4E096 (void);
+// 0x00000043 System.Void PlaceablesManager::FinishTankPlacement()
+extern void PlaceablesManager_FinishTankPlacement_mFB7F7201C2DB856582D7F0099B6BBE5DEF74D16E (void);
+// 0x00000044 System.Void PlaceablesManager::.ctor()
 extern void PlaceablesManager__ctor_mB28988506B8E2EEE232B6D0EB56CEEBB8C715140 (void);
-// 0x00000047 System.Void PlaceablesManager/<>c::.cctor()
-extern void U3CU3Ec__cctor_mADB5C6A435F9334CB64E9E81D14A2FEE7F69C241 (void);
-// 0x00000048 System.Void PlaceablesManager/<>c::.ctor()
-extern void U3CU3Ec__ctor_m96E47A06A2192FF8F96674AE2DA2E55C9C23BBCC (void);
-// 0x00000049 System.Boolean PlaceablesManager/<>c::<get_FishTanksCount>b__9_0(GeospatialObject)
-extern void U3CU3Ec_U3Cget_FishTanksCountU3Eb__9_0_m1FAEDF512248382DCAB31FC16F83B5F383BA730A (void);
-// 0x0000004A GeospatialObjectData PlaceablesManager/<>c::<SavePlaceables>b__18_0(GeospatialObject)
-extern void U3CU3Ec_U3CSavePlaceablesU3Eb__18_0_m08AC2ECE0070590663DDBE75143547584B7DF511 (void);
-// 0x0000004B System.Int32 PlaceablesManager/<>c::<HandleGeospatialTrackingStateChanged>b__21_0(GeospatialObject)
-extern void U3CU3Ec_U3CHandleGeospatialTrackingStateChangedU3Eb__21_0_m2CCB572BCBAAC398873150980D6F867F6E5EE050 (void);
-// 0x0000004C T Singleton`1::get_Instance()
-// 0x0000004D System.Void Singleton`1::OnApplicationQuit()
-// 0x0000004E System.Void Singleton`1::OnDestroy()
-// 0x0000004F System.Void Singleton`1::.ctor()
-// 0x00000050 System.Void Singleton`1::.cctor()
-// 0x00000051 System.Void Fish::Innit(System.Int32,GeospatialObject)
-extern void Fish_Innit_m27CEDF0F65E9153BBA1FB66190EF977F1048C5BD (void);
-// 0x00000052 System.Void Fish::Save()
-extern void Fish_Save_m39EBC69C05C5FF972E6B911B681FAC60D29F1403 (void);
-// 0x00000053 System.Void Fish::Restore(LocalObjectData,GeospatialObject)
-extern void Fish_Restore_mD8D4FAB668F6E8918BB56716BB31E91CADA8D985 (void);
-// 0x00000054 System.Void Fish::FixedUpdate()
+// 0x00000045 T Singleton`1::get_Instance()
+// 0x00000046 System.Void Singleton`1::OnApplicationQuit()
+// 0x00000047 System.Void Singleton`1::OnDestroy()
+// 0x00000048 System.Void Singleton`1::.ctor()
+// 0x00000049 System.Void Singleton`1::.cctor()
+// 0x0000004A System.Void ClipBox::Update()
+extern void ClipBox_Update_m76FD36BC40591DF2F8AB41AE78E52CCEFECD396C (void);
+// 0x0000004B System.Void ClipBox::.ctor()
+extern void ClipBox__ctor_m30DAA0703907C9D58AF175F95BA946183E3FC84D (void);
+// 0x0000004C System.Single Fish::get_MaxSatiety()
+extern void Fish_get_MaxSatiety_mB493020E2F67441ECAC1293E30EDAF64A547A871 (void);
+// 0x0000004D System.Single Fish::get_CurrentSatiety()
+extern void Fish_get_CurrentSatiety_m1A228A0AE1156FA9EF9B81CCF7160F4B7E4929FE (void);
+// 0x0000004E System.Boolean Fish::get_IsFull()
+extern void Fish_get_IsFull_m61D4D4866AD5BDB3DDD6A35E52714E2297C47B79 (void);
+// 0x0000004F System.Single Fish::get_SwimSpeed()
+extern void Fish_get_SwimSpeed_m9471F7807C64DFDCDB3923BFCFF83A7D1B42D278 (void);
+// 0x00000050 FishState Fish::get_State()
+extern void Fish_get_State_m17A00FD8264FFD8DCB1BF1C36D7651AC4B60F85F (void);
+// 0x00000051 System.Void Fish::set_State(FishState)
+extern void Fish_set_State_m6B05127C5682A7CE5966E59DF41B32BF0BF3EA8E (void);
+// 0x00000052 System.Void Fish::Awake()
+extern void Fish_Awake_mDA338421CD41A40A02283CBD6BCC04DBC9281497 (void);
+// 0x00000053 System.Void Fish::FixedUpdate()
 extern void Fish_FixedUpdate_mAC77F6C435FBEF0FCB4C4D632617B34E070A14DF (void);
-// 0x00000055 System.Void Fish::.ctor()
+// 0x00000054 System.Void Fish::Update()
+extern void Fish_Update_m5B8C4D99CBD9C06C1BB6D9AAB3AE30A0997DD3B4 (void);
+// 0x00000055 System.Void Fish::Init(System.Int32,FishTank)
+extern void Fish_Init_m7A6D4AFDCB7A5462F4D463770B49398053D95221 (void);
+// 0x00000056 System.Void Fish::Save()
+extern void Fish_Save_m39EBC69C05C5FF972E6B911B681FAC60D29F1403 (void);
+// 0x00000057 System.Void Fish::Restore(TankResidentData,FishTank)
+extern void Fish_Restore_m12D1A5847A2FE37FFB2FF64CC06767163B0A8D9A (void);
+// 0x00000058 System.Void Fish::TogglePhysics(System.Boolean)
+extern void Fish_TogglePhysics_mC7521E507CA7AFE2B70C9474574C66D9E1C0489A (void);
+// 0x00000059 FishFood Fish::DetectNextFood()
+extern void Fish_DetectNextFood_mA14BCCBB0643946FC556548B48FBCA519456F967 (void);
+// 0x0000005A System.Void Fish::SwimToFood()
+extern void Fish_SwimToFood_mB6BB7A61F1784EA1409BF5E5CAF97B2601CD2294 (void);
+// 0x0000005B System.Boolean Fish::CheckIsAlive()
+extern void Fish_CheckIsAlive_mFB13F0F8619F1204540C871B94C2D7C31FC5AE1C (void);
+// 0x0000005C UnityEngine.Quaternion Fish::GetLookAt(UnityEngine.Vector3,UnityEngine.Vector3)
+extern void Fish_GetLookAt_mD66C5C90FDE417C55A13687F4AFB9FB8A818A3C0 (void);
+// 0x0000005D System.Void Fish::ToggleVisibility(System.Boolean)
+extern void Fish_ToggleVisibility_m7D2391B04C4ECB9404473B41EB79070F01243B48 (void);
+// 0x0000005E System.Void Fish::OnCollisionEnter(UnityEngine.Collision)
+extern void Fish_OnCollisionEnter_m8C61DA512AA7145CBC53FB0A145C4A9CD005FE97 (void);
+// 0x0000005F System.Void Fish::OnTriggerStay(UnityEngine.Collider)
+extern void Fish_OnTriggerStay_m468407982C8BCBE73DE1E629BFB1B16D1C0B80FA (void);
+// 0x00000060 System.Void Fish::ConsumeFood(FishFood)
+extern void Fish_ConsumeFood_m7739E78FD96F1EE1198A5AF426D3ACC879FBA2EC (void);
+// 0x00000061 System.Void Fish::GrowAccordingToRemainingSatiety()
+extern void Fish_GrowAccordingToRemainingSatiety_m71E0C71F9F3BB61B9E481F0B04DBDE9CF95914B5 (void);
+// 0x00000062 System.Void Fish::GrowUsingGrowthPoints()
+extern void Fish_GrowUsingGrowthPoints_m422947EF1E592702CD12E7D4D9CF7A3E125064E4 (void);
+// 0x00000063 System.Void Fish::ResetToNormalState()
+extern void Fish_ResetToNormalState_mF0D1EFEB2709F3C9354E9C50386D71808C77432C (void);
+// 0x00000064 System.Void Fish::HandleFoodPieceConsumed(FishFood)
+extern void Fish_HandleFoodPieceConsumed_m8B8C849111C2CCF5F7BF28A39030BC0C524B7585 (void);
+// 0x00000065 System.Void Fish::SetUpWithTank()
+extern void Fish_SetUpWithTank_m17291FE06ECA7316A75678AFAD0A59F2D0AB3201 (void);
+// 0x00000066 System.Void Fish::CalculateCurrentLevelAttributes()
+extern void Fish_CalculateCurrentLevelAttributes_m88A72086168DBBA52DAAE6ED4AB9CBC8FF61F83E (void);
+// 0x00000067 System.Void Fish::.ctor()
 extern void Fish__ctor_m1A91A8F05751724CF7D8F1481E40A129FF5F8C76 (void);
-// 0x00000056 System.Void FishData::.ctor()
+// 0x00000068 System.Void FishData::.ctor()
 extern void FishData__ctor_mB74F047DFEA039BAE5C8FF9017A31022E76A438E (void);
-// 0x00000057 System.Void FishTank::SetTankWidth(System.Single)
-extern void FishTank_SetTankWidth_m98B1B14345F355F8451D928D46A0BEBDBF4208C4 (void);
-// 0x00000058 System.Void FishTank::SetTankLength(System.Single)
-extern void FishTank_SetTankLength_m043D6ED56CD1B925A142CD029263BFDDDE17B95D (void);
-// 0x00000059 System.Void FishTank::SetTankHeight(System.Single)
-extern void FishTank_SetTankHeight_m6EEA318F14E1881C02D2A345970D7FA94186A4B0 (void);
-// 0x0000005A System.Void FishTank::Innit()
-extern void FishTank_Innit_m38F919A304CF478158354F19223B58466FEFD9E1 (void);
-// 0x0000005B System.Void FishTank::Save()
+// 0x00000069 System.Int32 FishFood::get_GrowthPoints()
+extern void FishFood_get_GrowthPoints_m954629FAD6026D88BF9E2CD5747F784D11B079DA (void);
+// 0x0000006A System.Boolean FishFood::get_InTank()
+extern void FishFood_get_InTank_mA105E665A9CEFEA81B8BAD233E5D83A5DC774A7C (void);
+// 0x0000006B System.Void FishFood::set_InTank(System.Boolean)
+extern void FishFood_set_InTank_m77542E79D9E35890E5F38DC56D101C89C3F63819 (void);
+// 0x0000006C System.Void FishFood::Awake()
+extern void FishFood_Awake_m1B2198E8EF09F23BC238BD508DFBE8CC201165CC (void);
+// 0x0000006D System.Void FishFood::Save()
+extern void FishFood_Save_m9C4EF6B7DA2E836DF9B7B2709C6EAD43E181B597 (void);
+// 0x0000006E System.Void FishFood::ToggleVisibility(System.Boolean)
+extern void FishFood_ToggleVisibility_m17F04904A9FC0141E4DD893D1C8B178496A8A110 (void);
+// 0x0000006F System.Void FishFood::OnConsumed()
+extern void FishFood_OnConsumed_m5428063E3F148E2F47657741EA76F665CC8E4B6B (void);
+// 0x00000070 System.Void FishFood::OnCollisionEnter(UnityEngine.Collision)
+extern void FishFood_OnCollisionEnter_mAB180A933C67727E0AEC1C683BF78F07E0605F34 (void);
+// 0x00000071 System.Void FishFood::OnTriggerStay(UnityEngine.Collider)
+extern void FishFood_OnTriggerStay_mB5B0A774136060FD022C348837424521B3C38F95 (void);
+// 0x00000072 System.Void FishFood::.ctor()
+extern void FishFood__ctor_m4FD0D6E2C01F517B02C20AE66FA2388ED524C041 (void);
+// 0x00000073 System.Void FishState::.ctor(Fish)
+extern void FishState__ctor_mD877C15465ACAFFE2C746CBA31DC54DF40D1433D (void);
+// 0x00000074 System.Void FishState::Update()
+extern void FishState_Update_mCA1F583557B755E2D53673A2121F5F582521A2CD (void);
+// 0x00000075 System.Void FishState::FixedUpdate()
+extern void FishState_FixedUpdate_m51EE0AC33BCC37C90A05EBB3D9A88BC8B55CD225 (void);
+// 0x00000076 System.Void FishState::HandleCollideWithFood(FishFood)
+extern void FishState_HandleCollideWithFood_mC6D1E9C6D835BBA9D2B7A0CC395C8B04223D2515 (void);
+// 0x00000077 System.Void FishState::OnCollidedWithWater()
+extern void FishState_OnCollidedWithWater_m09F422CFB05A446D1456C84ECB1A4308DE826C5D (void);
+// 0x00000078 System.Void FishState::OnCollidedWithTank()
+extern void FishState_OnCollidedWithTank_m377F4BD69030D92BD87585F345ECF80AB22AC475 (void);
+// 0x00000079 System.Void FishState::OnCollidedWithTankDecor()
+extern void FishState_OnCollidedWithTankDecor_mA64900DC237B8FC88315F42126D8A900A403956B (void);
+// 0x0000007A System.Void FishState::OnFoodConsumed()
+extern void FishState_OnFoodConsumed_m6FE05B63E550817413A4FC3F0AD538BFF466D3A5 (void);
+// 0x0000007B System.Void TransitionalState::.ctor(Fish,FishState)
+extern void TransitionalState__ctor_m1464DB4047FE84356ADF701A5BBC1CDECBFE4D56 (void);
+// 0x0000007C System.Void DroppingIntoTankState::.ctor(Fish)
+extern void DroppingIntoTankState__ctor_m4F50DBE80A91ED3E4A123F109FD514C94BC8AAC5 (void);
+// 0x0000007D System.Void DroppingIntoTankState::OnCollidedWithWater()
+extern void DroppingIntoTankState_OnCollidedWithWater_m7236D4890A6C1C8903ACFCB58643A86AF34279A1 (void);
+// 0x0000007E System.Void RotatingState::.ctor(Fish,UnityEngine.Quaternion,System.Single)
+extern void RotatingState__ctor_mF9197C2762808002E419F7B9240420517E165002 (void);
+// 0x0000007F System.Void RotatingState::FixedUpdate()
+extern void RotatingState_FixedUpdate_mB076CD065A96BB2DBC1096F181C1331B8235675E (void);
+// 0x00000080 System.Void RotateTransitionalState::.ctor(Fish,UnityEngine.Quaternion,System.Single,FishState)
+extern void RotateTransitionalState__ctor_m6F33B03B37F0F3185127AFE16B6D450054B2497A (void);
+// 0x00000081 System.Void RotateTransitionalState::FixedUpdate()
+extern void RotateTransitionalState_FixedUpdate_mAD93DE1232CFE22B40F3F75FCD83C56AFCEA49B0 (void);
+// 0x00000082 System.Void WanderingState::.ctor(Fish)
+extern void WanderingState__ctor_mC435A08E356E3DF12144054DAA9E9E3825E9A1FB (void);
+// 0x00000083 System.Void WanderingState::FixedUpdate()
+extern void WanderingState_FixedUpdate_mC792F54F9804749216A47A6DA2875925C0946614 (void);
+// 0x00000084 System.Void WanderingState::OnCollidedWithTank()
+extern void WanderingState_OnCollidedWithTank_m2B7A6886EAB83D28907A840FE9C195B03BD8F010 (void);
+// 0x00000085 System.Void WanderingState::OnCollidedWithTankDecor()
+extern void WanderingState_OnCollidedWithTankDecor_m5AF9AC0A400237A91E9326E7ECE5D2D2FEDD0A30 (void);
+// 0x00000086 System.Void WanderingState::BackUpAndTurnAway(System.Single)
+extern void WanderingState_BackUpAndTurnAway_m9C64CE75C76092804F19D1A1422A7B3F7493D4A8 (void);
+// 0x00000087 System.Void WanderingState::SetUpAndRotate()
+extern void WanderingState_SetUpAndRotate_m2B756078685AAA5B7FAFBCC12758E8CB41DB2766 (void);
+// 0x00000088 System.Void WanderingState::SwimForward()
+extern void WanderingState_SwimForward_m986B3F45313183386625C11FE435EC2A477776D9 (void);
+// 0x00000089 System.Boolean WanderingState::CheckLeavingWater()
+extern void WanderingState_CheckLeavingWater_mE2592281B7AB1810BA4E519A5EDA4F3445C3A436 (void);
+// 0x0000008A WanderingState WanderingState::GetCurrentStateWithSatiety()
+// 0x0000008B System.Void WanderingAndHungryState::.ctor(Fish)
+extern void WanderingAndHungryState__ctor_mF7429433DB2BB498B0334778143938D433FBCB22 (void);
+// 0x0000008C System.Void WanderingAndHungryState::Update()
+extern void WanderingAndHungryState_Update_m8EBCD6E2D45E072692F48B5C47C20189B43AB8E1 (void);
+// 0x0000008D WanderingState WanderingAndHungryState::GetCurrentStateWithSatiety()
+extern void WanderingAndHungryState_GetCurrentStateWithSatiety_m770CF44A4F909C3CD4C1BBC5F00C72E948556628 (void);
+// 0x0000008E System.Void WanderingAndFullState::.ctor(Fish)
+extern void WanderingAndFullState__ctor_m68E66E2FF4E2F8CD52C6FF53C05D09F2346EF6E9 (void);
+// 0x0000008F System.Void WanderingAndFullState::Update()
+extern void WanderingAndFullState_Update_m870DFFA90D503920A85F28C6BDA2AB7FD676800D (void);
+// 0x00000090 WanderingState WanderingAndFullState::GetCurrentStateWithSatiety()
+extern void WanderingAndFullState_GetCurrentStateWithSatiety_mBBD98BC26A0D44A67281910692C0C42F74E1B3EA (void);
+// 0x00000091 System.Void HeadingForFoodState::.ctor(Fish,FishFood)
+extern void HeadingForFoodState__ctor_m8CB22930D1764C97594E367841C73EB5AA4D0152 (void);
+// 0x00000092 System.Void HeadingForFoodState::FixedUpdate()
+extern void HeadingForFoodState_FixedUpdate_m86AE5F3877574FBD181EE84265B12C596BF1BE37 (void);
+// 0x00000093 System.Void HeadingForFoodState::HandleCollideWithFood(FishFood)
+extern void HeadingForFoodState_HandleCollideWithFood_mFE737AAF90FC242C8FCD8C222186A11EDBC2FE68 (void);
+// 0x00000094 System.Void HeadingForFoodState::OnFoodConsumed()
+extern void HeadingForFoodState_OnFoodConsumed_m8B190E1C58599A44C69BEE59EFBEDEE3C970E7BE (void);
+// 0x00000095 System.Void DeadState::.ctor(Fish)
+extern void DeadState__ctor_m372ABEEEC7F20A3B9E3D5B78BD2FF20AF3E943F3 (void);
+// 0x00000096 FishTankData FishTank::get_SaveData()
+extern void FishTank_get_SaveData_mE47634E1B2AC8CBC5547DFF33CEEFF894E64A948 (void);
+// 0x00000097 System.Boolean FishTank::get_Visible()
+extern void FishTank_get_Visible_m6A1C7870ADF58B949190B176E6BD2ADA2816C526 (void);
+// 0x00000098 System.Void FishTank::Awake()
+extern void FishTank_Awake_m9AA6AF61FEF3F7167098479F9F6A1DB94DDD6973 (void);
+// 0x00000099 System.Void FishTank::Save()
 extern void FishTank_Save_mCD0CD5DE68320A71C7A0E1E5ECF5CBF7CCD6EE02 (void);
-// 0x0000005C System.Void FishTank::Restore(GeospatialObjectData)
-extern void FishTank_Restore_mD8002ED8BB47B981120FEC6A7178C91B9DCDD7B8 (void);
-// 0x0000005D System.Void FishTank::.ctor()
+// 0x0000009A FishTankData FishTank::SaveAndReturnData()
+extern void FishTank_SaveAndReturnData_mA73F3E05BD1AA62415FB837B9A3776D43250C111 (void);
+// 0x0000009B System.Void FishTank::Restore(FishTankData)
+extern void FishTank_Restore_m84ECE37D0268C92D1A655AE8C8DD41790FE252A9 (void);
+// 0x0000009C System.Void FishTank::ToggleBounds(System.Boolean)
+extern void FishTank_ToggleBounds_m3A020D8EFBC0BDC90EF3CD1AD2D7DFD5BF8EC92F (void);
+// 0x0000009D FishFood FishTank::GetNextFishFoodInTank()
+extern void FishTank_GetNextFishFoodInTank_m52F0BAD3B04CB3126CA71DB4F746C9271FC8FCE4 (void);
+// 0x0000009E System.Void FishTank::OnFoodPieceConsumed(FishFood)
+extern void FishTank_OnFoodPieceConsumed_m67702F7FFE73AB6D0323646FFE1408BC82901013 (void);
+// 0x0000009F System.Void FishTank::AddTankResident(TankResident)
+extern void FishTank_AddTankResident_m4C6DCA2B4D53569388B8F5CBF648DF1DF6B65B5E (void);
+// 0x000000A0 System.Void FishTank::DestroyTankResident(TankResident)
+extern void FishTank_DestroyTankResident_mB8C6429FF882F9077783EE21D29FCEDF72814625 (void);
+// 0x000000A1 System.Void FishTank::ToggleVisibility(System.Boolean)
+extern void FishTank_ToggleVisibility_m4FC61A5C65D9F330F07E93E93FF1D7241FA9DEDC (void);
+// 0x000000A2 System.Void FishTank::.ctor()
 extern void FishTank__ctor_m4943C29CC33F4FD82FB0AF97C87CD796197121D4 (void);
-// 0x0000005E System.Void FishTankData::.ctor()
-extern void FishTankData__ctor_mF21ED7856EB181BB41D461D94FC36662745DBF35 (void);
-// 0x0000005F System.Void InteractableScreen::Start()
-extern void InteractableScreen_Start_m979C20FE1DF74E920F6E4A9C9B9318E4CDD6C700 (void);
-// 0x00000060 System.Void InteractableScreen::OnPointerDown(UnityEngine.EventSystems.PointerEventData)
+// 0x000000A3 System.Void FishTank/<>c::.cctor()
+extern void U3CU3Ec__cctor_m6C3A3AB94C1F9C7C77715ACC0D4333C90B020232 (void);
+// 0x000000A4 System.Void FishTank/<>c::.ctor()
+extern void U3CU3Ec__ctor_mBECCED4032CBF578864F1EB85EB453EE7E59F217 (void);
+// 0x000000A5 TankResidentData FishTank/<>c::<Save>b__19_0(Fish)
+extern void U3CU3Ec_U3CSaveU3Eb__19_0_mD30CC3105D21DE86010000A5DB07DE8D2C79F616 (void);
+// 0x000000A6 TankResidentData FishTank/<>c::<Save>b__19_1(Ornament)
+extern void U3CU3Ec_U3CSaveU3Eb__19_1_m6B30C96A0918A86B1A816D5118262896F2F2E5EB (void);
+// 0x000000A7 TankResidentData FishTank/<>c::<Save>b__19_2(FishFood)
+extern void U3CU3Ec_U3CSaveU3Eb__19_2_m88C704D8A55E55764C2334E0424345E966C70C7D (void);
+// 0x000000A8 System.Void IVisibilityToggleable::ToggleVisibility(System.Boolean)
+// 0x000000A9 System.Void Ornament::ToggleVisibility(System.Boolean)
+extern void Ornament_ToggleVisibility_mBB132B0D246399D15B848684353A286F748FA1F2 (void);
+// 0x000000AA System.Void Ornament::.ctor()
+extern void Ornament__ctor_mED1B6400BC8ABB6960CBD528A98A4059B4D83BA8 (void);
+// 0x000000AB FishTank TankResident::get_Tank()
+extern void TankResident_get_Tank_m7873BCFDCF2C0AA77B5874AA0C7BCDDC7E1D269D (void);
+// 0x000000AC TankResidentData TankResident::get_SaveData()
+extern void TankResident_get_SaveData_m9F9322E02A207408CE8BE7168CC60B05FB3BFCB5 (void);
+// 0x000000AD System.Void TankResident::Init(System.Int32,FishTank)
+extern void TankResident_Init_m8E700E63C02B6D93FDF4DECA8E2E0D33E78D9DED (void);
+// 0x000000AE System.Void TankResident::Save()
+extern void TankResident_Save_mEA463BA373A332F606DBADEDF81F7B1DFC8B9F46 (void);
+// 0x000000AF TankResidentData TankResident::SaveAndReturnData()
+extern void TankResident_SaveAndReturnData_m8639DB01B887E350A3F129C0C21607E6BF44A814 (void);
+// 0x000000B0 System.Void TankResident::Restore(TankResidentData,FishTank)
+extern void TankResident_Restore_m13015EB96B2A1813A93C2DBAED4B6842DE2194E8 (void);
+// 0x000000B1 System.Void TankResident::RegisterWithTank(FishTank)
+extern void TankResident_RegisterWithTank_m9DE7CBEF7A35D656F472FAF5BB88E35F411D6BDC (void);
+// 0x000000B2 System.Void TankResident::ToggleVisibility(System.Boolean)
+// 0x000000B3 System.Void TankResident::.ctor()
+extern void TankResident__ctor_m916DA0D50D41C85E100925B8BF42623C2A3EACF4 (void);
+// 0x000000B4 System.Void AppData::.ctor(System.Collections.Generic.List`1<FishTankData>)
+extern void AppData__ctor_mE12FE60D7CEFD32CFFE1AB6F19ECC7ABBD701E37 (void);
+// 0x000000B5 System.Void FishTankData::.ctor(System.Collections.Generic.List`1<TankResidentData>,System.String)
+extern void FishTankData__ctor_mBFB72A5517813DD46D600C491A17370970AF6C42 (void);
+// 0x000000B6 System.Void TankResidentData::.ctor(System.Int32,UnityEngine.Pose,TankResidentType,System.String)
+extern void TankResidentData__ctor_m748E581760A562D718D8578AC591836329E073DC (void);
+// 0x000000B7 System.Void InteractionForTest::Start()
+extern void InteractionForTest_Start_mABD1BDFAE5733F198DA7F88CB7F1D34B0E8A1EDB (void);
+// 0x000000B8 System.Void InteractionForTest::Update()
+extern void InteractionForTest_Update_m413283D5DD07BE7A4790CD7E60A03FDFC939228E (void);
+// 0x000000B9 System.Void InteractionForTest::DropFood()
+extern void InteractionForTest_DropFood_m2A8A08745A05FF30285232E3ED387C05AF4039B4 (void);
+// 0x000000BA System.Void InteractionForTest::DropFish()
+extern void InteractionForTest_DropFish_m57362B35BAF14CAB5EBA7B3914AED4C185949F87 (void);
+// 0x000000BB System.Void InteractionForTest::.ctor()
+extern void InteractionForTest__ctor_mD6A23453D9245FDCEC5309F2943EB9607CB0DA7D (void);
+// 0x000000BC System.Void TestFishTankCollision::FixedUpdate()
+extern void TestFishTankCollision_FixedUpdate_m0132CE973DB4177D9FC3DFAFB4206903F43BED64 (void);
+// 0x000000BD System.Void TestFishTankCollision::.ctor()
+extern void TestFishTankCollision__ctor_m93EC03692B5B9CDCB3B59AF4702735E682530F44 (void);
+// 0x000000BE System.Void SettingsMenuBackdrop::OnPointerDown(UnityEngine.EventSystems.PointerEventData)
+extern void SettingsMenuBackdrop_OnPointerDown_m909F2A35A3DA23431722312D8C172B03095B9A15 (void);
+// 0x000000BF System.Void SettingsMenuBackdrop::.ctor()
+extern void SettingsMenuBackdrop__ctor_mBC102349B4C67515A583C1667459D0C2371B3675 (void);
+// 0x000000C0 System.Void SettingsPanelHide::OnStateExit(UnityEngine.Animator,UnityEngine.AnimatorStateInfo,System.Int32)
+extern void SettingsPanelHide_OnStateExit_m54A027641C2287A4994D9B6EC28BBC1D63A2B1B3 (void);
+// 0x000000C1 System.Void SettingsPanelHide::.ctor()
+extern void SettingsPanelHide__ctor_mDF094B79FD8B6E714E418AA4D23C73898976E9AD (void);
+// 0x000000C2 System.Void AppetiteBar::Start()
+extern void AppetiteBar_Start_mB57B542B9E1588D4BDA98521F0EB7A493D5E088E (void);
+// 0x000000C3 System.Void AppetiteBar::Update()
+extern void AppetiteBar_Update_mAEA88C4CD98635A57379CDD4C1A5A4C10AAF0A55 (void);
+// 0x000000C4 System.Void AppetiteBar::HandleFishDataReady()
+extern void AppetiteBar_HandleFishDataReady_mC161DA42A3CEC72458914E6C6D5EC6F5A7FF0CA1 (void);
+// 0x000000C5 System.Void AppetiteBar::.ctor()
+extern void AppetiteBar__ctor_m2C2619E56A6D1ADD58CC030D763046A8DA46B171 (void);
+// 0x000000C6 System.Void InteractableScreen::OnPointerDown(UnityEngine.EventSystems.PointerEventData)
 extern void InteractableScreen_OnPointerDown_mA688B1C27122FB6C2A493E7C7F26EFD81F036F84 (void);
-// 0x00000061 System.Void InteractableScreen::HandleGeospatialTrackingStateChanged(UnityEngine.XR.ARSubsystems.TrackingState)
-extern void InteractableScreen_HandleGeospatialTrackingStateChanged_mBC7C742D76FEC0AF05E5E484BB7FBEEB93DF9F86 (void);
-// 0x00000062 System.Void InteractableScreen::.ctor()
+// 0x000000C7 System.Void InteractableScreen::.ctor()
 extern void InteractableScreen__ctor_m74F68E2375DD2B75575B408A1555CC1BC33269D8 (void);
-// 0x00000063 System.Void InteractionModeToggle::HandleToggleValueChanged(UnityEngine.UI.Toggle)
-extern void InteractionModeToggle_HandleToggleValueChanged_mC7F35DA6E4EBA462A61D92A9A6B295912816779B (void);
-// 0x00000064 System.Void InteractionModeToggle::Start()
-extern void InteractionModeToggle_Start_mFCD33E8976D8913190D9DF381ACA1FA720E1773E (void);
-// 0x00000065 System.Void InteractionModeToggle::HandleModifyOnChanged()
-extern void InteractionModeToggle_HandleModifyOnChanged_m5D04897F373F1A358F94CD7995C17B21A6728DF2 (void);
-// 0x00000066 System.Void InteractionModeToggle::.ctor()
-extern void InteractionModeToggle__ctor_m07571A7F002A4A6F2488048097605B85BA6110BB (void);
-// 0x00000067 System.Void ObjectModeToggle::Start()
-extern void ObjectModeToggle_Start_m3F57E4E9C917857DE76252A49750A08954C620D8 (void);
-// 0x00000068 System.Void ObjectModeToggle::HandleToggleValueChanged(UnityEngine.UI.Toggle)
-extern void ObjectModeToggle_HandleToggleValueChanged_m038EDE12AA3A4FD7FAFB0FEC3D996949E52B6501 (void);
-// 0x00000069 System.Void ObjectModeToggle::.ctor()
-extern void ObjectModeToggle__ctor_m1D339761E050BFAB5928AE98CDFA7D5C26B0E577 (void);
-// 0x0000006A System.Void ScaleSliders::Start()
-extern void ScaleSliders_Start_m026DF6D64F75CDBB4ED348A23195375AA33D5D42 (void);
-// 0x0000006B System.Void ScaleSliders::HandleCurrentSelectedPlaceableChanged(UnityEngine.GameObject)
-extern void ScaleSliders_HandleCurrentSelectedPlaceableChanged_m10A72D961C057B37ECB7AA9A2B5180B6BAF06263 (void);
-// 0x0000006C System.Void ScaleSliders::.ctor()
-extern void ScaleSliders__ctor_mA9570C4C8B16AC941FDDEBAF076A90D101EB63DA (void);
-// 0x0000006D System.Void ScaleSliders/<>c__DisplayClass4_0::.ctor()
-extern void U3CU3Ec__DisplayClass4_0__ctor_m47CD399F94491CB9E9544029AD88C8F5B4610691 (void);
-// 0x0000006E System.Void ScaleSliders/<>c__DisplayClass4_0::<HandleCurrentSelectedPlaceableChanged>b__0(System.Single)
-extern void U3CU3Ec__DisplayClass4_0_U3CHandleCurrentSelectedPlaceableChangedU3Eb__0_mF4AFD76C30E634B5FB0FA8536A5E3A768CEAE509 (void);
-// 0x0000006F System.Void ScaleSliders/<>c__DisplayClass4_0::<HandleCurrentSelectedPlaceableChanged>b__1(System.Single)
-extern void U3CU3Ec__DisplayClass4_0_U3CHandleCurrentSelectedPlaceableChangedU3Eb__1_m4105D8346F7329AA09FE4B5E180B45B93DD965DF (void);
-// 0x00000070 System.Void ScaleSliders/<>c__DisplayClass4_0::<HandleCurrentSelectedPlaceableChanged>b__2(System.Single)
-extern void U3CU3Ec__DisplayClass4_0_U3CHandleCurrentSelectedPlaceableChangedU3Eb__2_mDAC68DF65FFAF4ACF14B3EA181E02E799A556894 (void);
-// 0x00000071 System.Void StatusLog::Awake()
+// 0x000000C8 System.Void PrefabSelection::Start()
+extern void PrefabSelection_Start_m13F492D0F1C65C23D764B000779803193627FEE7 (void);
+// 0x000000C9 System.Void PrefabSelection::SelectPrevious()
+extern void PrefabSelection_SelectPrevious_m14B5FCC3AF4DC608C30E70ED75ECD8BCD46DF6D6 (void);
+// 0x000000CA System.Void PrefabSelection::SelectNext()
+extern void PrefabSelection_SelectNext_m9E709FB45A39ED6080554428D4CF940A7CDD0493 (void);
+// 0x000000CB System.Void PrefabSelection::ChangeModels(UnityEngine.GameObject,UnityEngine.GameObject,UnityEngine.GameObject)
+extern void PrefabSelection_ChangeModels_m1E28419CA4196C6C05367EA8C8124FAB3F20EE17 (void);
+// 0x000000CC System.Void PrefabSelection::OnFinishedPlacingTank()
+extern void PrefabSelection_OnFinishedPlacingTank_m6BD988B425D678CD0B10D0FF829C79C73D6148E8 (void);
+// 0x000000CD System.Void PrefabSelection::.ctor()
+extern void PrefabSelection__ctor_m1C7C2A051554D65CEED7AFB298E75EE3BD635ACF (void);
+// 0x000000CE System.Void SettingsMenu::Start()
+extern void SettingsMenu_Start_mE2F6C7DC6F8D450A9CB8F4DB9E432132B7CD8E5A (void);
+// 0x000000CF System.Void SettingsMenu::ToggleSettingsMenuOpen(System.Boolean)
+extern void SettingsMenu_ToggleSettingsMenuOpen_mA13FAC84ADF2A6AA153FC3D04A29F8EB6E54C409 (void);
+// 0x000000D0 System.Void SettingsMenu::OnSettingsMenuFinishedHiding()
+extern void SettingsMenu_OnSettingsMenuFinishedHiding_mE9DDF7B879A11DBFE49D1E48E9052FEF926E3803 (void);
+// 0x000000D1 System.Void SettingsMenu::HandleStartPlacingTank()
+extern void SettingsMenu_HandleStartPlacingTank_m9881C15341289C422CF1F4AE0377CAB97FE3AEC8 (void);
+// 0x000000D2 System.Void SettingsMenu::OnFinishedPlacingTank()
+extern void SettingsMenu_OnFinishedPlacingTank_mFD77FCA20278B6ED9B1DA80648075E0712267AAE (void);
+// 0x000000D3 System.Void SettingsMenu::.ctor()
+extern void SettingsMenu__ctor_mAB642D09DCFB585F2998C81DE33DD08C5C420E1C (void);
+// 0x000000D4 System.Void StatusLog::Awake()
 extern void StatusLog_Awake_m9C6A7450978418ECED7015599B4467F48B79DFFC (void);
-// 0x00000072 System.Void StatusLog::DebugLog(System.String)
+// 0x000000D5 System.Void StatusLog::DebugLog(System.String)
 extern void StatusLog_DebugLog_mD7806B6B726CBD843DBB835C30C043974871CA2C (void);
-// 0x00000073 System.Void StatusLog::UpdateGeospatialStatus(Google.XR.ARCoreExtensions.GeospatialPose)
-extern void StatusLog_UpdateGeospatialStatus_mB65AC1E8815158F712D15ACD2EFFB9438C878193 (void);
-// 0x00000074 System.Void StatusLog::LogGeospatialError(System.String)
+// 0x000000D6 System.Void StatusLog::DebugLogAppend(System.String)
+extern void StatusLog_DebugLogAppend_m596320FA5DD3BF36CC35D595FE94EA09EFDD7274 (void);
+// 0x000000D7 System.Void StatusLog::UpdateGeospatialStatus(UnityEngine.XR.ARSubsystems.TrackingState)
+extern void StatusLog_UpdateGeospatialStatus_m87C548C418204260F9F00916FE9E47D979D6A529 (void);
+// 0x000000D8 System.Void StatusLog::LogGeospatialError(System.String)
 extern void StatusLog_LogGeospatialError_mBE1846F5F1B7787FB56D889051FDF2609299BB0D (void);
-// 0x00000075 System.Void StatusLog::.ctor()
+// 0x000000D9 System.Void StatusLog::.ctor()
 extern void StatusLog__ctor_mC471667B89C6353E0330AC88B9EBA79FC137B84B (void);
-// 0x00000076 System.Void StatusLog::<Awake>b__4_0(System.String,System.String,UnityEngine.LogType)
-extern void StatusLog_U3CAwakeU3Eb__4_0_mB5ADF1F2F513214FF8BAFBDEF9704414A1DC26E6 (void);
-// 0x00000077 UnityEngine.InputSystem.InputActionAsset TouchControls::get_asset()
-extern void TouchControls_get_asset_m0E3C6C46163EC640F6C7D6BCE4C9F113754632B8 (void);
-// 0x00000078 System.Void TouchControls::.ctor()
-extern void TouchControls__ctor_m22C3B30221CD426DF6C3396A0050B2DE326F61C6 (void);
-// 0x00000079 System.Void TouchControls::Dispose()
-extern void TouchControls_Dispose_mD5F924DC257FDB889C0EA5809786DBEFF5D9D2ED (void);
-// 0x0000007A System.Nullable`1<UnityEngine.InputSystem.InputBinding> TouchControls::get_bindingMask()
-extern void TouchControls_get_bindingMask_mDFEBEDC9D20A49883806026AE440FFD2D91745A5 (void);
-// 0x0000007B System.Void TouchControls::set_bindingMask(System.Nullable`1<UnityEngine.InputSystem.InputBinding>)
-extern void TouchControls_set_bindingMask_m532127739B6C58FBF82DE697B80F2A37D2023209 (void);
-// 0x0000007C System.Nullable`1<UnityEngine.InputSystem.Utilities.ReadOnlyArray`1<UnityEngine.InputSystem.InputDevice>> TouchControls::get_devices()
-extern void TouchControls_get_devices_m12E89FCC684F40EA443226C52ADC5ABEC12549B1 (void);
-// 0x0000007D System.Void TouchControls::set_devices(System.Nullable`1<UnityEngine.InputSystem.Utilities.ReadOnlyArray`1<UnityEngine.InputSystem.InputDevice>>)
-extern void TouchControls_set_devices_m3665B6ECDFB143F8B95B771898B66DBE0FB5B8AB (void);
-// 0x0000007E UnityEngine.InputSystem.Utilities.ReadOnlyArray`1<UnityEngine.InputSystem.InputControlScheme> TouchControls::get_controlSchemes()
-extern void TouchControls_get_controlSchemes_m4D6062F683FF562FD4464C0FB3EE681029ED120B (void);
-// 0x0000007F System.Boolean TouchControls::Contains(UnityEngine.InputSystem.InputAction)
-extern void TouchControls_Contains_m3D5FFE001245613E4CEF96AEFC9A9000807ADDA8 (void);
-// 0x00000080 System.Collections.Generic.IEnumerator`1<UnityEngine.InputSystem.InputAction> TouchControls::GetEnumerator()
-extern void TouchControls_GetEnumerator_m21353231847E5EB3CE699E72101C52F7220783C5 (void);
-// 0x00000081 System.Collections.IEnumerator TouchControls::System.Collections.IEnumerable.GetEnumerator()
-extern void TouchControls_System_Collections_IEnumerable_GetEnumerator_mFDCBACAE22242AA8AA18A87583AD5C1DDDE1D3CC (void);
-// 0x00000082 System.Void TouchControls::Enable()
-extern void TouchControls_Enable_m6F14E0C204FB26B59CC6A1A31051BCDD6FC53484 (void);
-// 0x00000083 System.Void TouchControls::Disable()
-extern void TouchControls_Disable_m8265F03AF84701CA1931BDEE1733DF3E6D396102 (void);
-// 0x00000084 System.Collections.Generic.IEnumerable`1<UnityEngine.InputSystem.InputBinding> TouchControls::get_bindings()
-extern void TouchControls_get_bindings_m66CA61D1F136F5DC01263BB9E3D09780A5AC99B5 (void);
-// 0x00000085 UnityEngine.InputSystem.InputAction TouchControls::FindAction(System.String,System.Boolean)
-extern void TouchControls_FindAction_m3FBDE54BC467AA12FA24BEAA2A4FABC28AE04D89 (void);
-// 0x00000086 System.Int32 TouchControls::FindBinding(UnityEngine.InputSystem.InputBinding,UnityEngine.InputSystem.InputAction&)
-extern void TouchControls_FindBinding_m70AB45576A49532ABD92085F5F1464FEB9A5824B (void);
-// 0x00000087 TouchControls/TouchActions TouchControls::get_Touch()
-extern void TouchControls_get_Touch_m1BA51F4BD4B4620409C6E88C3499E375B0652B6C (void);
-// 0x00000088 System.Void TouchControls/TouchActions::.ctor(TouchControls)
-extern void TouchActions__ctor_m6BCA669DBB828942C0824ACB71F38628A9433113 (void);
-// 0x00000089 UnityEngine.InputSystem.InputAction TouchControls/TouchActions::get_TouchPress()
-extern void TouchActions_get_TouchPress_m19742AF48CFD9E0BA3DCAB340254B911873BF5A1 (void);
-// 0x0000008A UnityEngine.InputSystem.InputAction TouchControls/TouchActions::get_TouchPosition()
-extern void TouchActions_get_TouchPosition_m7ABBA732E146B77A8D8F3AB77D20459ABEE4527A (void);
-// 0x0000008B UnityEngine.InputSystem.InputActionMap TouchControls/TouchActions::Get()
-extern void TouchActions_Get_m343CEC0BD97FDBFABE30177BF0526B2951B7C9CE (void);
-// 0x0000008C System.Void TouchControls/TouchActions::Enable()
-extern void TouchActions_Enable_mAB3ECA98FDA49C10415EBB13E4B309AEA8062AE1 (void);
-// 0x0000008D System.Void TouchControls/TouchActions::Disable()
-extern void TouchActions_Disable_m97D643D5BE25BC964121E026EE34CFD1FF6DA97F (void);
-// 0x0000008E System.Boolean TouchControls/TouchActions::get_enabled()
-extern void TouchActions_get_enabled_m3A124CAB089D8027BE57DD8FF156F839A17C41CD (void);
-// 0x0000008F UnityEngine.InputSystem.InputActionMap TouchControls/TouchActions::op_Implicit(TouchControls/TouchActions)
-extern void TouchActions_op_Implicit_m481C94A6295124468B87CF0659DF284D31740F8C (void);
-// 0x00000090 System.Void TouchControls/TouchActions::SetCallbacks(TouchControls/ITouchActions)
-extern void TouchActions_SetCallbacks_m23995617B15A1621B59ECF9C778736BE909AE119 (void);
-// 0x00000091 System.Void TouchControls/ITouchActions::OnTouchPress(UnityEngine.InputSystem.InputAction/CallbackContext)
-// 0x00000092 System.Void TouchControls/ITouchActions::OnTouchPosition(UnityEngine.InputSystem.InputAction/CallbackContext)
-// 0x00000093 System.Void DimBoxes.BoundBox::Reset()
+// 0x000000DA System.Void StatusLog::<Awake>b__3_0(System.String,System.String,UnityEngine.LogType)
+extern void StatusLog_U3CAwakeU3Eb__3_0_m663EC1A26977BE686A4A6F344B188FCE761B07F0 (void);
+// 0x000000DB System.Void TankPlacementFinishButtons::Start()
+extern void TankPlacementFinishButtons_Start_m850B0D2EE23279A2E3D84186298841DB553372D0 (void);
+// 0x000000DC System.Void TankPlacementFinishButtons::Update()
+extern void TankPlacementFinishButtons_Update_m592B9D3E9F4C8DAA80E1CC2CF1030F0DF5FA1F53 (void);
+// 0x000000DD System.Void TankPlacementFinishButtons::HandleConfirmTankPlacement()
+extern void TankPlacementFinishButtons_HandleConfirmTankPlacement_m7131429FBDB6A79FF11D72FA06E381202562C284 (void);
+// 0x000000DE System.Void TankPlacementFinishButtons::HandleCancelTankPlacement()
+extern void TankPlacementFinishButtons_HandleCancelTankPlacement_m71FEF9B169FC4EBBF66FCE5FBBFFB483E93A24C9 (void);
+// 0x000000DF System.Void TankPlacementFinishButtons::OnStartedPlacingTank()
+extern void TankPlacementFinishButtons_OnStartedPlacingTank_mB53DCE5B442B7FDDB82A84678E35DA2EF94E46E0 (void);
+// 0x000000E0 System.Void TankPlacementFinishButtons::.ctor()
+extern void TankPlacementFinishButtons__ctor_m489068A32C70B70093435917783CF244B42FE2E2 (void);
+// 0x000000E1 System.Void Toggles::Start()
+extern void Toggles_Start_m293B400DA03653C49550205C24A583F07DF37061 (void);
+// 0x000000E2 System.Void Toggles::HandleModifyingTankToggle(UnityEngine.UI.Toggle)
+extern void Toggles_HandleModifyingTankToggle_m2014562255F0641A45F0CA9E85A31F63626F3650 (void);
+// 0x000000E3 System.Void Toggles::HandleResidentTypeToggle()
+extern void Toggles_HandleResidentTypeToggle_m175E37412575FFC713D4272E77AD1FA823CFEC24 (void);
+// 0x000000E4 System.Void Toggles::OnStartedPlacingTank()
+extern void Toggles_OnStartedPlacingTank_m380EB27A9DB4A449DA3859126ECBA4B428A6A4C4 (void);
+// 0x000000E5 System.Void Toggles::OnFinishedPlacingTank()
+extern void Toggles_OnFinishedPlacingTank_mC6B11A713FBA744A17850E2C51B8BAF9A2C3DE3E (void);
+// 0x000000E6 System.Void Toggles::.ctor()
+extern void Toggles__ctor_mFF7E99C69FA68116D98EECDEFA879CE23BE649CD (void);
+// 0x000000E7 System.Void WorldSpaceCanvas::Start()
+extern void WorldSpaceCanvas_Start_m38140F908B75A27B9D9BA1FED6CFD00FB4435CBF (void);
+// 0x000000E8 System.Void WorldSpaceCanvas::LateUpdate()
+extern void WorldSpaceCanvas_LateUpdate_m1B409DE66ADEF15050A70A3CBA6285534EC6192D (void);
+// 0x000000E9 System.Void WorldSpaceCanvas::.ctor()
+extern void WorldSpaceCanvas__ctor_m98742CE15F7CF18BFBA74EE027CA78C0E8CA3E30 (void);
+// 0x000000EA System.Single Helpers::ConvertAngleToRealistic(System.Single)
+extern void Helpers_ConvertAngleToRealistic_m2A6A7C54839B8624E65786423E808B3A64362DC6 (void);
+// 0x000000EB System.Void MoveCam::Update()
+extern void MoveCam_Update_m8444DCC1A6A5C7FC2C10C2D39B60709BB0EF1034 (void);
+// 0x000000EC System.Void MoveCam::.ctor()
+extern void MoveCam__ctor_m18E21EA8FFD9EF4CDD29A4DC2FD21046AF62307F (void);
+// 0x000000ED UnityEngine.Transform UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::get_arrow()
+extern void HDRLightEstimation_get_arrow_m90E9E0DFFBEA889CD984909D947550649F5166F1 (void);
+// 0x000000EE System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::set_arrow(UnityEngine.Transform)
+extern void HDRLightEstimation_set_arrow_m77091E2AA619CC6BA23A7F28F26049D52EF98383 (void);
+// 0x000000EF UnityEngine.XR.ARFoundation.ARCameraManager UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::get_cameraManager()
+extern void HDRLightEstimation_get_cameraManager_m88BEAEBDFEE0A24B835CF65B95FF58517C7F72D8 (void);
+// 0x000000F0 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::set_cameraManager(UnityEngine.XR.ARFoundation.ARCameraManager)
+extern void HDRLightEstimation_set_cameraManager_m5C69E5809B84B95ABE58798124C64B89469561A7 (void);
+// 0x000000F1 System.Nullable`1<System.Single> UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::get_brightness()
+extern void HDRLightEstimation_get_brightness_mEC96C1476BBC492F06AF78AB1E766F250F2046E0 (void);
+// 0x000000F2 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::set_brightness(System.Nullable`1<System.Single>)
+extern void HDRLightEstimation_set_brightness_m803C5FBC0842C5FA5B301E17C74D3C86785A8D3B (void);
+// 0x000000F3 System.Nullable`1<System.Single> UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::get_colorTemperature()
+extern void HDRLightEstimation_get_colorTemperature_mBC118B99D2A35D0CB8D59EB1CE448EC5A024FF77 (void);
+// 0x000000F4 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::set_colorTemperature(System.Nullable`1<System.Single>)
+extern void HDRLightEstimation_set_colorTemperature_m8CF13F26254979A329BBB886DDF06A3A9F4F7E34 (void);
+// 0x000000F5 System.Nullable`1<UnityEngine.Color> UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::get_colorCorrection()
+extern void HDRLightEstimation_get_colorCorrection_mC947E3931B1D8714E60B220F042A2C39BF03CA25 (void);
+// 0x000000F6 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::set_colorCorrection(System.Nullable`1<UnityEngine.Color>)
+extern void HDRLightEstimation_set_colorCorrection_mC69A7B1766BA26A2E3C13489B7E3B61D2A40BCB1 (void);
+// 0x000000F7 System.Nullable`1<UnityEngine.Vector3> UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::get_mainLightDirection()
+extern void HDRLightEstimation_get_mainLightDirection_mEDBAF553C55B73EBFFDDD2C1C71CB8D2B3C8EA94 (void);
+// 0x000000F8 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::set_mainLightDirection(System.Nullable`1<UnityEngine.Vector3>)
+extern void HDRLightEstimation_set_mainLightDirection_mD624818B6E3EE9926B3E8A1F49B36B7566326FA3 (void);
+// 0x000000F9 System.Nullable`1<UnityEngine.Color> UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::get_mainLightColor()
+extern void HDRLightEstimation_get_mainLightColor_m09D1A545086368107945B0CDAEC4E985BD7694A8 (void);
+// 0x000000FA System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::set_mainLightColor(System.Nullable`1<UnityEngine.Color>)
+extern void HDRLightEstimation_set_mainLightColor_m47E6D07BD255A08F5F02CAAFA6FAC1921C305055 (void);
+// 0x000000FB System.Nullable`1<System.Single> UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::get_mainLightIntensityLumens()
+extern void HDRLightEstimation_get_mainLightIntensityLumens_m036AC98027ADF6487CA6B89090164E334B9AFFFF (void);
+// 0x000000FC System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::set_mainLightIntensityLumens(System.Nullable`1<System.Single>)
+extern void HDRLightEstimation_set_mainLightIntensityLumens_m2CBA189C18D6115C5A285670ECB64D2097CAC7D6 (void);
+// 0x000000FD System.Nullable`1<UnityEngine.Rendering.SphericalHarmonicsL2> UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::get_sphericalHarmonics()
+extern void HDRLightEstimation_get_sphericalHarmonics_mF0387194DDBD893EBC369DCDFD042A8AC6838743 (void);
+// 0x000000FE System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::set_sphericalHarmonics(System.Nullable`1<UnityEngine.Rendering.SphericalHarmonicsL2>)
+extern void HDRLightEstimation_set_sphericalHarmonics_mF3FD404F14E830A3659FE56447CF813F46BB0B60 (void);
+// 0x000000FF System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::Awake()
+extern void HDRLightEstimation_Awake_m5797D8698CE5523E6A7A4C9FA22BC81EE9F13A53 (void);
+// 0x00000100 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::OnEnable()
+extern void HDRLightEstimation_OnEnable_m06A4B03440377494DFC4A7040965D6114844772E (void);
+// 0x00000101 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::OnDisable()
+extern void HDRLightEstimation_OnDisable_m0929130909DB3F7C009226745211018EED0F75C5 (void);
+// 0x00000102 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::OnBeforeRender()
+extern void HDRLightEstimation_OnBeforeRender_mDE8D65343A1A24B37D593BD04C36BE49B1BF8C76 (void);
+// 0x00000103 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::FrameChanged(UnityEngine.XR.ARFoundation.ARCameraFrameEventArgs)
+extern void HDRLightEstimation_FrameChanged_mD24C845D4E9A9931DACC2DD04D9B4150ACA3C9C9 (void);
+// 0x00000104 System.Void UnityEngine.XR.ARFoundation.Samples.HDRLightEstimation::.ctor()
+extern void HDRLightEstimation__ctor_mE9008215121765BEE9C1247E23361E0CDBB2E957 (void);
+// 0x00000105 System.Void DimBoxes.BoundBox::Reset()
 extern void BoundBox_Reset_m7198EA109F62D1497C0C1B03B9B828F8B5D87EDA (void);
-// 0x00000094 System.Void DimBoxes.BoundBox::Start()
+// 0x00000106 System.Void DimBoxes.BoundBox::Start()
 extern void BoundBox_Start_m5072AE058C6E4DA79CEBFB9DF70BDB4A6EC24F18 (void);
-// 0x00000095 System.Void DimBoxes.BoundBox::Init()
+// 0x00000107 System.Void DimBoxes.BoundBox::Init()
 extern void BoundBox_Init_m2517A2E7A0E78561739064A97F40C1BFC516B899 (void);
-// 0x00000096 System.Void DimBoxes.BoundBox::LateUpdate()
+// 0x00000108 System.Void DimBoxes.BoundBox::LateUpdate()
 extern void BoundBox_LateUpdate_mF5D038E4612825EEAD50A2CAED936219EF95F39E (void);
-// 0x00000097 System.Void DimBoxes.BoundBox::CalculateBounds()
+// 0x00000109 System.Void DimBoxes.BoundBox::CalculateBounds()
 extern void BoundBox_CalculateBounds_mC783328D82CCA88ACB8095DA550D8EE6752EFD03 (void);
-// 0x00000098 System.Void DimBoxes.BoundBox::SetPoints()
+// 0x0000010A System.Void DimBoxes.BoundBox::SetPoints()
 extern void BoundBox_SetPoints_m583CBE5A5073711FF2FA24A131A348EE28D6AC03 (void);
-// 0x00000099 System.Void DimBoxes.BoundBox::SetLines()
+// 0x0000010B System.Void DimBoxes.BoundBox::SetLines()
 extern void BoundBox_SetLines_m0C6A0F830CF24D14D4ABE86053B064D91354D3CB (void);
-// 0x0000009A System.Void DimBoxes.BoundBox::SetLineRenderers()
+// 0x0000010C System.Void DimBoxes.BoundBox::SetLineRenderers()
 extern void BoundBox_SetLineRenderers_m34068460BB884D5E1B48F1E832071B2E4A9D0CE0 (void);
-// 0x0000009B System.Void DimBoxes.BoundBox::OnMouseDown()
+// 0x0000010D System.Void DimBoxes.BoundBox::OnMouseDown()
 extern void BoundBox_OnMouseDown_mA977021254AD4BFD76BAD9A22F692E92F8DDADA9 (void);
-// 0x0000009C System.Void DimBoxes.BoundBox::OnEnable()
+// 0x0000010E System.Void DimBoxes.BoundBox::OnEnable()
 extern void BoundBox_OnEnable_m9542541189FF3534C33F33691B463A8F1136EEF7 (void);
-// 0x0000009D System.Void DimBoxes.BoundBox::OnDestroy()
+// 0x0000010F System.Void DimBoxes.BoundBox::OnDestroy()
 extern void BoundBox_OnDestroy_m5D9E65E478ACD8A828F5DD1FE876F052BBD588E5 (void);
-// 0x0000009E System.Void DimBoxes.BoundBox::OnDisable()
+// 0x00000110 System.Void DimBoxes.BoundBox::OnDisable()
 extern void BoundBox_OnDisable_mB4D7F021CDD64EE127844C4059903DCE1A59386A (void);
-// 0x0000009F System.Void DimBoxes.BoundBox::OnDrawGizmos()
+// 0x00000111 System.Void DimBoxes.BoundBox::OnDrawGizmos()
 extern void BoundBox_OnDrawGizmos_m1AD79AF42EFED8356D852608EC83631526733C67 (void);
-// 0x000000A0 System.Void DimBoxes.BoundBox::OnRenderObject()
+// 0x00000112 System.Void DimBoxes.BoundBox::OnRenderObject()
 extern void BoundBox_OnRenderObject_m86FE942C8451340576C01FA142BF7A1772B16E35 (void);
-// 0x000000A1 System.Void DimBoxes.BoundBox::AccurateBounds()
+// 0x00000113 System.Void DimBoxes.BoundBox::AccurateBounds()
 extern void BoundBox_AccurateBounds_m1E98BFD369BEE0EF8E2DF9BB484F74013FDF1BA8 (void);
-// 0x000000A2 System.Void DimBoxes.BoundBox::.ctor()
+// 0x00000114 System.Void DimBoxes.BoundBox::.ctor()
 extern void BoundBox__ctor_m9A375C897AE3C73FCFCFBD6E61AC072C2FB29C0B (void);
-// 0x000000A3 System.Void DimBoxes.BoundBoxExample::Start()
+// 0x00000115 System.Void DimBoxes.BoundBoxExample::Start()
 extern void BoundBoxExample_Start_mCAF6093A8C98425413C473EB2047A9C15C263C3C (void);
-// 0x000000A4 System.Void DimBoxes.BoundBoxExample::EnableLines(System.Boolean)
+// 0x00000116 System.Void DimBoxes.BoundBoxExample::EnableLines(System.Boolean)
 extern void BoundBoxExample_EnableLines_mCF37906DABBCE37F1A489B93E4994852D5DBA13C (void);
-// 0x000000A5 System.Void DimBoxes.BoundBoxExample::EnableWires(System.Boolean)
+// 0x00000117 System.Void DimBoxes.BoundBoxExample::EnableWires(System.Boolean)
 extern void BoundBoxExample_EnableWires_mFE0A69298F162BC2F9CA8DA71BDBD34507616706 (void);
-// 0x000000A6 System.Void DimBoxes.BoundBoxExample::SetLineWidth(UnityEngine.UI.Slider)
+// 0x00000118 System.Void DimBoxes.BoundBoxExample::SetLineWidth(UnityEngine.UI.Slider)
 extern void BoundBoxExample_SetLineWidth_m4ABCE1937908BDB3F27A72214D8688912C435019 (void);
-// 0x000000A7 System.Void DimBoxes.BoundBoxExample::SetNumCapVertices(UnityEngine.UI.Slider)
+// 0x00000119 System.Void DimBoxes.BoundBoxExample::SetNumCapVertices(UnityEngine.UI.Slider)
 extern void BoundBoxExample_SetNumCapVertices_mD4FE97CA182CD0AFD1BB960BBD6D90DA3DE66F01 (void);
-// 0x000000A8 System.Void DimBoxes.BoundBoxExample::.ctor()
+// 0x0000011A System.Void DimBoxes.BoundBoxExample::.ctor()
 extern void BoundBoxExample__ctor_m69928A925355974A68B1B34A7A77E32E00E18D2E (void);
-// 0x000000A9 System.Void DimBoxes.DrawLines::OnEnable()
+// 0x0000011B System.Void DimBoxes.DrawLines::OnEnable()
 extern void DrawLines_OnEnable_m3570B798A83F8D55CB0AC769C1863D514B6C3A2C (void);
-// 0x000000AA System.Void DimBoxes.DrawLines::Start()
+// 0x0000011C System.Void DimBoxes.DrawLines::Start()
 extern void DrawLines_Start_m9B783D3B5EDDD7A71EF28EE080559D974E470F69 (void);
-// 0x000000AB System.Void DimBoxes.DrawLines::OnRenderObject()
+// 0x0000011D System.Void DimBoxes.DrawLines::OnRenderObject()
 extern void DrawLines_OnRenderObject_m025116006FBFB95F096102142CCEA730FBC7F4B7 (void);
-// 0x000000AC System.Void DimBoxes.DrawLines::setOutlines(UnityEngine.Vector3[,],UnityEngine.Color)
+// 0x0000011E System.Void DimBoxes.DrawLines::setOutlines(UnityEngine.Vector3[,],UnityEngine.Color)
 extern void DrawLines_setOutlines_m095CB18AAE8C8F4CE1A881A1A48E600317BF4719 (void);
-// 0x000000AD System.Void DimBoxes.DrawLines::setScreenOutlines(UnityEngine.Vector3[,],UnityEngine.Color)
+// 0x0000011F System.Void DimBoxes.DrawLines::setScreenOutlines(UnityEngine.Vector3[,],UnityEngine.Color)
 extern void DrawLines_setScreenOutlines_m56BDD89AEE4C005BBEAFA1C8693959DC6A804815 (void);
-// 0x000000AE System.Void DimBoxes.DrawLines::setOutlines(UnityEngine.Vector3[,],UnityEngine.Color,UnityEngine.Vector3[][])
+// 0x00000120 System.Void DimBoxes.DrawLines::setOutlines(UnityEngine.Vector3[,],UnityEngine.Color,UnityEngine.Vector3[][])
 extern void DrawLines_setOutlines_m5ACAABFF02B92E937FCD4AE95020022CF7D37E1B (void);
-// 0x000000AF System.Void DimBoxes.DrawLines::Update()
+// 0x00000121 System.Void DimBoxes.DrawLines::Update()
 extern void DrawLines_Update_mD0FA214A871594B049EF8933C1F26B44F4B78F02 (void);
-// 0x000000B0 System.Void DimBoxes.DrawLines::.ctor()
+// 0x00000122 System.Void DimBoxes.DrawLines::.ctor()
 extern void DrawLines__ctor_m33C72349A2655B2E2843D596A6184A8F9A6CDB09 (void);
-// 0x000000B1 System.Void DimBoxes.VertexData::.ctor(UnityEngine.Vector3[],UnityEngine.Matrix4x4)
+// 0x00000123 System.Void DimBoxes.VertexData::.ctor(UnityEngine.Vector3[],UnityEngine.Matrix4x4)
 extern void VertexData__ctor_m514B3BBA1DC635BE4F31D72AD346500BE07741E6 (void);
-// 0x000000B2 System.Void DimBoxes.OrientedBounds::.ctor()
+// 0x00000124 System.Void DimBoxes.OrientedBounds::.ctor()
 extern void OrientedBounds__ctor_mBFDCDB67E6837AFF8A108D816165845C0687D0B8 (void);
-// 0x000000B3 System.Void DimBoxes.OrientedBounds::.ctor(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)
+// 0x00000125 System.Void DimBoxes.OrientedBounds::.ctor(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)
 extern void OrientedBounds__ctor_m5A7DB5B056B09C2F895082A07BAC4DEE06C32CAE (void);
-// 0x000000B4 System.Void DimBoxes.OrientedBounds::Enclose(UnityEngine.Vector3)
+// 0x00000126 System.Void DimBoxes.OrientedBounds::Enclose(UnityEngine.Vector3)
 extern void OrientedBounds_Enclose_m032CFDDE25F85DFDEA542A924A4979C9D5639333 (void);
-// 0x000000B5 UnityEngine.Bounds DimBoxes.OrientedBounds::OBB(DimBoxes.VertexData[],UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)
+// 0x00000127 UnityEngine.Bounds DimBoxes.OrientedBounds::OBB(DimBoxes.VertexData[],UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)
 extern void OrientedBounds_OBB_mA32D08829C07D0AE42A60EFD38174E9C4BBCC121 (void);
-// 0x000000B6 System.Void DimBoxes.maxCamera::Start()
+// 0x00000128 System.Void DimBoxes.maxCamera::Start()
 extern void maxCamera_Start_mA03FB7782AF8D6F0D784A82C0D21546C23214959 (void);
-// 0x000000B7 System.Void DimBoxes.maxCamera::OnEnable()
+// 0x00000129 System.Void DimBoxes.maxCamera::OnEnable()
 extern void maxCamera_OnEnable_mFE82FFAAD1D696871C536D86ACC182C51CD75B63 (void);
-// 0x000000B8 System.Void DimBoxes.maxCamera::Init()
+// 0x0000012A System.Void DimBoxes.maxCamera::Init()
 extern void maxCamera_Init_m3CCF265A57B1CD8C9D2A9CD56D67DC4CCFA2B0AC (void);
-// 0x000000B9 System.Void DimBoxes.maxCamera::LateUpdate()
+// 0x0000012B System.Void DimBoxes.maxCamera::LateUpdate()
 extern void maxCamera_LateUpdate_m018B1DA4CC5B98F5D8BECCF2E573C6FD040F0EC4 (void);
-// 0x000000BA System.Single DimBoxes.maxCamera::ClampAngle(System.Single,System.Single,System.Single)
+// 0x0000012C System.Single DimBoxes.maxCamera::ClampAngle(System.Single,System.Single,System.Single)
 extern void maxCamera_ClampAngle_m7CDB43C5B4589E55EBBA7BA9ACE3A8B45BB2F492 (void);
-// 0x000000BB System.Void DimBoxes.maxCamera::Update()
+// 0x0000012D System.Void DimBoxes.maxCamera::Update()
 extern void maxCamera_Update_m1F4D867B0FC11CCA20503BE8A5D514F4BA31F30B (void);
-// 0x000000BC System.Collections.IEnumerator DimBoxes.maxCamera::DragObject(UnityEngine.Vector3)
+// 0x0000012E System.Collections.IEnumerator DimBoxes.maxCamera::DragObject(UnityEngine.Vector3)
 extern void maxCamera_DragObject_m2F4DD0B16593B827ECDCC88CC7CE5976BD6D5839 (void);
-// 0x000000BD System.Void DimBoxes.maxCamera::SetRadius(System.Single)
+// 0x0000012F System.Void DimBoxes.maxCamera::SetRadius(System.Single)
 extern void maxCamera_SetRadius_m26DC479F73D8E39EC7D8FFED0A55120CA83F47F4 (void);
-// 0x000000BE System.Void DimBoxes.maxCamera::.ctor()
+// 0x00000130 System.Void DimBoxes.maxCamera::.ctor()
 extern void maxCamera__ctor_m0EE5E691252312410CAB918B67F8EF3ED2E45456 (void);
-// 0x000000BF System.Void DimBoxes.maxCamera/<DragObject>d__34::.ctor(System.Int32)
+// 0x00000131 System.Void DimBoxes.maxCamera/<DragObject>d__34::.ctor(System.Int32)
 extern void U3CDragObjectU3Ed__34__ctor_m169C271163079CDAEEC3CBD9B2882659B1BC2458 (void);
-// 0x000000C0 System.Void DimBoxes.maxCamera/<DragObject>d__34::System.IDisposable.Dispose()
+// 0x00000132 System.Void DimBoxes.maxCamera/<DragObject>d__34::System.IDisposable.Dispose()
 extern void U3CDragObjectU3Ed__34_System_IDisposable_Dispose_mEBDA6EAA07DC0AD5315BD7D17EE9644F052CA31E (void);
-// 0x000000C1 System.Boolean DimBoxes.maxCamera/<DragObject>d__34::MoveNext()
+// 0x00000133 System.Boolean DimBoxes.maxCamera/<DragObject>d__34::MoveNext()
 extern void U3CDragObjectU3Ed__34_MoveNext_m86347A0F2D019B79852A5BB47B3B850277BAE7A0 (void);
-// 0x000000C2 System.Object DimBoxes.maxCamera/<DragObject>d__34::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
+// 0x00000134 System.Object DimBoxes.maxCamera/<DragObject>d__34::System.Collections.Generic.IEnumerator<System.Object>.get_Current()
 extern void U3CDragObjectU3Ed__34_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m078DEB4415A5186442E124E22537E3ADE4F45FC4 (void);
-// 0x000000C3 System.Void DimBoxes.maxCamera/<DragObject>d__34::System.Collections.IEnumerator.Reset()
+// 0x00000135 System.Void DimBoxes.maxCamera/<DragObject>d__34::System.Collections.IEnumerator.Reset()
 extern void U3CDragObjectU3Ed__34_System_Collections_IEnumerator_Reset_m926CD4E49B2FCCA624BB0BE4372A18C7D11F1C86 (void);
-// 0x000000C4 System.Object DimBoxes.maxCamera/<DragObject>d__34::System.Collections.IEnumerator.get_Current()
+// 0x00000136 System.Object DimBoxes.maxCamera/<DragObject>d__34::System.Collections.IEnumerator.get_Current()
 extern void U3CDragObjectU3Ed__34_System_Collections_IEnumerator_get_Current_m2DA1F71DC28128869B85427CA2819DCD71AD5E89 (void);
-static Il2CppMethodPointer s_methodPointers[196] = 
+static Il2CppMethodPointer s_methodPointers[310] = 
 {
 	AnchorCreator_get_AnchorPrefab_mBBAF7805E9D9F8D79408EE642D153BC76306B25A,
 	AnchorCreator_set_AnchorPrefab_m53CC9CC3022C713826B44536B48B462C8A1FACFF,
@@ -414,136 +642,250 @@ static Il2CppMethodPointer s_methodPointers[196] =
 	ARFeatheredPlaneMeshVisualizer_GenerateBoundaryUVs_mF756D3C1F7925A69CD8C7C8CCE56209AB321FEF5,
 	ARFeatheredPlaneMeshVisualizer__ctor_m9A77651BCAE58AA0B994FFF6C6B63B1CFF2729F6,
 	ARFeatheredPlaneMeshVisualizer__cctor_m56285A000EE27A1631BE9C5BCDA5C376E5D133C3,
-	AppData__ctor_mABBBEF2FBC8C3290F6CFC86CEF8117F24B88AC09,
-	GeospatialObjectData__ctor_m126B5A00D33469B145A9DCFD3167E629A0763977,
-	LocalObjectData__ctor_m12289E40DF180652B7E571CF8F36B252448AA3B2,
-	Vector3Data__ctor_mBE0E873C06D44714247D2741F9F71CD057FEF89C,
-	GeospatialManager_get_CameraGeospatialPose_m3DC9FE70B8D0F85675ACDB87F7C4C6150FD66BED,
-	GeospatialManager_get_GeospatialAvailable_mBB031BE81E7690CB9812E677B037655F8C0B023A,
-	GeospatialManager_Update_mE09C4AB4647885F230633DFE3F3EF601923678FE,
-	GeospatialManager_RequestGeospatialAnchor_mDD3E7A78A0CF1BD3F26DE0111E93EFB7F5B680DD,
-	GeospatialManager_RequestGeospatialAnchor_mDBB33D0A10365474457808BB431BBD273252FA96,
-	GeospatialManager__ctor_m5FB83520BB4D7FB366C8B1F130C3D4CE1626C41B,
-	GeospatialObject_get_SaveData_mB6899BCC0ADE08EE6509DD7388C84AC35FAF233F,
-	GeospatialObject_get_LocalObjectsCount_mDF89E8594792134026E4ADE6B830E104C1C244FF,
-	GeospatialObject_Awake_m0E7774ACDB135915A8A12043DD3FE8E8C44BF603,
-	GeospatialObject_Innit_mFE595554280A21EC12DDEF35BCDE8B57A25A4265,
-	GeospatialObject_Save_mA7B6E9022DD0E35C20204D160311BB44FC375FFA,
-	GeospatialObject_Restore_m3B0E89631DC44D1066B30DAAF134A5608D3B47A5,
-	GeospatialObject_RegisterLocalObject_mF2FAB3DA7F304ADF348E6332BC4CC6C171E95688,
-	GeospatialObject_RemoveLocalObject_mEB6D7A5B6FF12092BFA3D5CFE3C47CB98D462997,
-	GeospatialObject_AttachToGeoAnchor_m597F3904CF2E72AC13BA65467005811C7BC2B4D6,
-	GeospatialObject__ctor_m880E7B3D41A95BEA775C37F1A48279DA7DC0E063,
-	U3CU3Ec__cctor_m416B3C635C4FC5C72E866BCD4EBBE16915B37ADB,
-	U3CU3Ec__ctor_m593300DB66C57C4FF7EDF3368616F86660996E15,
-	U3CU3Ec_U3CSaveU3Eb__9_0_m8DD8807BEB87C5F9B782C5F4EE22458DBD79B2F8,
-	InteractionManager_get_ModifyOn_mC40737EE8074AB1939AE11554CA347572C1DE045,
-	InteractionManager_set_ModifyOn_m9F973D43D7A95159CE9126ED380E65640E438B56,
-	InteractionManager_get_ObjectMode_mBEC2921441EE291DAE24717398DA0C9357F8851F,
-	InteractionManager_set_ObjectMode_mE83182A5C0D46463912C66B446B780819AAA7BFE,
-	InteractionManager_SetModify_m3BF96FD3AB3104B5CB442E4F2A34710DFB8A6577,
-	InteractionManager_SetModifyInvoke_mD4400D4D9799B4C2D692C7672C6BED9DD4C248C8,
+	Accelerometer_Start_mCBCE6B3810A0C5B1F5709329E557065E0C554572,
+	Accelerometer_Update_mDEF53B10200B361B19DE9B46956C6036E8BAA7AB,
+	Accelerometer__ctor_mFE5148B833011563708A11F8E013C6E0B81BC71D,
+	ARManager_Start_m076359B9D8D438AB7042625E623EBE616B7FB6E3,
+	ARManager_OnStartedPlacingTank_mBF48524E72CE476F58D43811CCB7C6CADA8CB117,
+	ARManager_OnFinishedPlacingTank_m7C8D2C83BF6067DCF71D4C7384EF04AE77AEF514,
+	ARManager__ctor_m53D041B8379A885E4596A2980F29676BC9BC5931,
+	InteractionManager_get_ModifyingTank_mFFC383E1C2918DB684365444A3BA69E6F47E8216,
+	InteractionManager_set_ModifyingTank_m9B7A7697921B1DFED370CF0B14606D5C22C6B749,
+	InteractionManager_get_CurrentSelectedPlaceable_m34715B69FB0AF5DFFCB97741A1DFECCC18555B6F,
+	InteractionManager_Start_m5603F2AA1E5ACACA592559A27459071582375D33,
+	InteractionManager_NotifySettingsHidden_m43E40ED4986AC836F0DC091A94E5EB91A8C21B0D,
+	InteractionManager_SetModifyingTank_m48C3757C40B450E423DBFB5D8A980BFC49C81F37,
+	InteractionManager_SetModifyingTankInvoke_mAB8DF84B6767615A92ECD9D1814F75E328628E18,
 	InteractionManager_SelectPlaceableGameObject_m39CBF1E296C49B61B0F190E01F985F3B21D08F2A,
 	InteractionManager_HandleScreenTouch_m75F2ECC7EB55A8E1A926F41A0D941CA6CB0DC8BE,
+	InteractionManager_HandleScreenShake_mFFFF9AAAC6F1143462183652633CD8BC1F80AA80,
+	InteractionManager_RaycastForFishTankFromScreenPos_m7D3022E6571C2C6078086BBFD1594AB1C023C35A,
+	InteractionManager_RaycastForFishTank_m2DFBFE5EF723C5564C2A0FB5596ED75034BD604D,
+	InteractionManager_TryTogglePlaceableObjectBounds_mFD7FFA1E8F499224FB256746BA2CC5EF6BA6AC2E,
 	InteractionManager__ctor_m82FEC99B565D720A3A64B245741DF3856A0CA19C,
-	LocalObject_get_SaveData_m0C0CF345144316D46163AE39C39A92998526D78C,
-	LocalObject_Innit_m764D9CA82B8E8BCB8572DC7EF0FACADB3C45E0A7,
-	LocalObject_Save_m622CBC0AA2E1FA5B63FE45E3C143F01342412F31,
-	LocalObject_Restore_m4BD4843C429983DC2FF08C73C509F87540052109,
-	LocalObject_AnchorToGeospatialObject_mD75B0B9BEB298C0D473575472E2ACF64EC04657D,
-	LocalObject__ctor_mCE8FA9C228447DCE9164258E5ED8472CE4802BDC,
-	NULL,
-	PlaceableObject__ctor_m948F372AFDF13DDA41099EE3158A62108AD44D52,
 	PlaceablesManager_GetFishPrefabAtIndex_m098075BD4B81E69F08D1C32D07DEB71AAE6D98FF,
 	PlaceablesManager_GetOrnamentPrefabAtIndex_mD88CDDF40CDB508086C3858922EB8C4AC23A61CC,
+	PlaceablesManager_GetFishFoodPrefabAtIndex_mB8DE21F496AD92567892D9AB022380BB93ADF385,
 	PlaceablesManager_get_OtherPrefab_m2949ACF66E41718E3DD328DE7F8CA7BE777F9EAE,
-	PlaceablesManager_get_FishTanksCount_m187DDE59F4C3BFD8EB3FC254DF3CD67EF4F3652C,
+	PlaceablesManager_get_ResidentType_m6884A17A1B958A851EE9DEE9C8C600E2DB7A9355,
+	PlaceablesManager_set_ResidentType_mB3BC1C895A514F9375D5B47062EBFC0A132AC151,
 	PlaceablesManager_get_SelectedFishPrefabIndex_mB0A5B6B88C69A640837567B1FB23178D186A90D9,
 	PlaceablesManager_set_SelectedFishPrefabIndex_mE53C3586B5C3242C1F2AFD67A99B5453321C6E80,
+	PlaceablesManager_get_SelectedFoodPrefabIndex_mC06F6E5B67F7FB71558C27882F0C158AAF055FFA,
+	PlaceablesManager_set_SelectedFoodPrefabIndex_mC0778EE157C706924F39C0664305A18638AC4860,
+	PlaceablesManager_get_TankPlaceable_mFF39199822B0C315362D565BB77728E7F4E1AC9F,
+	PlaceablesManager_set_TankPlaceable_m988A16D904B0D7229B78762A20542EA30620B73D,
+	PlaceablesManager_get_TankPlaced_m41646BE2FF70E9488940640632E0BEFF7C382710,
+	PlaceablesManager_get_PlacingTank_m60B0821F68C52ED98731DB90AA73C2048DE4F36C,
 	PlaceablesManager_Start_mFA7B78078AB598D0564BCE8250EE0BD7BCED4E40,
+	PlaceablesManager_Update_m1F6F5ECB2251CBAE74AE0A0D9A38FDB79487C19D,
 	PlaceablesManager_SavePlaceables_m9A5372E21847578BF9BA70D09140C6137BFF0285,
 	PlaceablesManager_LoadSavedPlaceables_mD1365B88A04DE17CCA726E397D5AB707E8E27A32,
-	PlaceablesManager_HandleSaveModifiedChanges_m7AE15DA690416E84C000B4A22E358A5437216777,
-	PlaceablesManager_HandleGeospatialTrackingStateChanged_m1ACA1FCB12970686C43897C2FB39DF7EC9BBBAAA,
-	PlaceablesManager_PlaceNewGeospatialObject_m0DC5FC0792B936EDBF579D8E381BB75E08936679,
-	PlaceablesManager_PlaceNewLocalObject_m45D25628ACA710BC858016572CFF1918EB0C3378,
+	PlaceablesManager_SaveModifiedChanges_mDD66145C9B7DB9F9CEEB043F0068F5B43EDF85F7,
+	PlaceablesManager_DropNewFishIntoTank_m1E7780A72E75F7A3659FF589FF9BB2D947600406,
+	PlaceablesManager_DropNewFoodPieceIntoTank_m845F42D0F9842A85D2881D09CD8E3A407C83857D,
+	PlaceablesManager_NextSeveralFishIndex_mE5078FA017DA5C20C870319927DEC0B941829B9A,
+	PlaceablesManager_PreviousSeveralFishIndex_mBB80969B2315858FA1ACFA20BB23E4370672014C,
+	PlaceablesManager_NextSeveralFoodIndex_m4BB0CB0BC07D5288C88A4EA40963281F63CE6A25,
+	PlaceablesManager_PreviousSeveralFoodIndex_m5F5878ECA7A99C2C84BE3CBC8DEF4340E3DF5AD9,
+	PlaceablesManager_TryPlaceTankOnDetectedPlane_m03923B496E95FE085AAA27E819EB44CB888CF03F,
+	PlaceablesManager_StartTankPlacement_m40902B1B92C7A7137003B0898A3642DF7682CBC2,
+	PlaceablesManager_ConfirmTankPlacement_mAE8967BE2E4A029672B7B56AAA4AC48C0A274EF8,
+	PlaceablesManager_CancelTankPlacement_mB0C968F0F8A7137E748F6D7A04C226A157C4E096,
+	PlaceablesManager_FinishTankPlacement_mFB7F7201C2DB856582D7F0099B6BBE5DEF74D16E,
 	PlaceablesManager__ctor_mB28988506B8E2EEE232B6D0EB56CEEBB8C715140,
-	U3CU3Ec__cctor_mADB5C6A435F9334CB64E9E81D14A2FEE7F69C241,
-	U3CU3Ec__ctor_m96E47A06A2192FF8F96674AE2DA2E55C9C23BBCC,
-	U3CU3Ec_U3Cget_FishTanksCountU3Eb__9_0_m1FAEDF512248382DCAB31FC16F83B5F383BA730A,
-	U3CU3Ec_U3CSavePlaceablesU3Eb__18_0_m08AC2ECE0070590663DDBE75143547584B7DF511,
-	U3CU3Ec_U3CHandleGeospatialTrackingStateChangedU3Eb__21_0_m2CCB572BCBAAC398873150980D6F867F6E5EE050,
 	NULL,
 	NULL,
 	NULL,
 	NULL,
 	NULL,
-	Fish_Innit_m27CEDF0F65E9153BBA1FB66190EF977F1048C5BD,
-	Fish_Save_m39EBC69C05C5FF972E6B911B681FAC60D29F1403,
-	Fish_Restore_mD8D4FAB668F6E8918BB56716BB31E91CADA8D985,
+	ClipBox_Update_m76FD36BC40591DF2F8AB41AE78E52CCEFECD396C,
+	ClipBox__ctor_m30DAA0703907C9D58AF175F95BA946183E3FC84D,
+	Fish_get_MaxSatiety_mB493020E2F67441ECAC1293E30EDAF64A547A871,
+	Fish_get_CurrentSatiety_m1A228A0AE1156FA9EF9B81CCF7160F4B7E4929FE,
+	Fish_get_IsFull_m61D4D4866AD5BDB3DDD6A35E52714E2297C47B79,
+	Fish_get_SwimSpeed_m9471F7807C64DFDCDB3923BFCFF83A7D1B42D278,
+	Fish_get_State_m17A00FD8264FFD8DCB1BF1C36D7651AC4B60F85F,
+	Fish_set_State_m6B05127C5682A7CE5966E59DF41B32BF0BF3EA8E,
+	Fish_Awake_mDA338421CD41A40A02283CBD6BCC04DBC9281497,
 	Fish_FixedUpdate_mAC77F6C435FBEF0FCB4C4D632617B34E070A14DF,
+	Fish_Update_m5B8C4D99CBD9C06C1BB6D9AAB3AE30A0997DD3B4,
+	Fish_Init_m7A6D4AFDCB7A5462F4D463770B49398053D95221,
+	Fish_Save_m39EBC69C05C5FF972E6B911B681FAC60D29F1403,
+	Fish_Restore_m12D1A5847A2FE37FFB2FF64CC06767163B0A8D9A,
+	Fish_TogglePhysics_mC7521E507CA7AFE2B70C9474574C66D9E1C0489A,
+	Fish_DetectNextFood_mA14BCCBB0643946FC556548B48FBCA519456F967,
+	Fish_SwimToFood_mB6BB7A61F1784EA1409BF5E5CAF97B2601CD2294,
+	Fish_CheckIsAlive_mFB13F0F8619F1204540C871B94C2D7C31FC5AE1C,
+	Fish_GetLookAt_mD66C5C90FDE417C55A13687F4AFB9FB8A818A3C0,
+	Fish_ToggleVisibility_m7D2391B04C4ECB9404473B41EB79070F01243B48,
+	Fish_OnCollisionEnter_m8C61DA512AA7145CBC53FB0A145C4A9CD005FE97,
+	Fish_OnTriggerStay_m468407982C8BCBE73DE1E629BFB1B16D1C0B80FA,
+	Fish_ConsumeFood_m7739E78FD96F1EE1198A5AF426D3ACC879FBA2EC,
+	Fish_GrowAccordingToRemainingSatiety_m71E0C71F9F3BB61B9E481F0B04DBDE9CF95914B5,
+	Fish_GrowUsingGrowthPoints_m422947EF1E592702CD12E7D4D9CF7A3E125064E4,
+	Fish_ResetToNormalState_mF0D1EFEB2709F3C9354E9C50386D71808C77432C,
+	Fish_HandleFoodPieceConsumed_m8B8C849111C2CCF5F7BF28A39030BC0C524B7585,
+	Fish_SetUpWithTank_m17291FE06ECA7316A75678AFAD0A59F2D0AB3201,
+	Fish_CalculateCurrentLevelAttributes_m88A72086168DBBA52DAAE6ED4AB9CBC8FF61F83E,
 	Fish__ctor_m1A91A8F05751724CF7D8F1481E40A129FF5F8C76,
 	FishData__ctor_mB74F047DFEA039BAE5C8FF9017A31022E76A438E,
-	FishTank_SetTankWidth_m98B1B14345F355F8451D928D46A0BEBDBF4208C4,
-	FishTank_SetTankLength_m043D6ED56CD1B925A142CD029263BFDDDE17B95D,
-	FishTank_SetTankHeight_m6EEA318F14E1881C02D2A345970D7FA94186A4B0,
-	FishTank_Innit_m38F919A304CF478158354F19223B58466FEFD9E1,
+	FishFood_get_GrowthPoints_m954629FAD6026D88BF9E2CD5747F784D11B079DA,
+	FishFood_get_InTank_mA105E665A9CEFEA81B8BAD233E5D83A5DC774A7C,
+	FishFood_set_InTank_m77542E79D9E35890E5F38DC56D101C89C3F63819,
+	FishFood_Awake_m1B2198E8EF09F23BC238BD508DFBE8CC201165CC,
+	FishFood_Save_m9C4EF6B7DA2E836DF9B7B2709C6EAD43E181B597,
+	FishFood_ToggleVisibility_m17F04904A9FC0141E4DD893D1C8B178496A8A110,
+	FishFood_OnConsumed_m5428063E3F148E2F47657741EA76F665CC8E4B6B,
+	FishFood_OnCollisionEnter_mAB180A933C67727E0AEC1C683BF78F07E0605F34,
+	FishFood_OnTriggerStay_mB5B0A774136060FD022C348837424521B3C38F95,
+	FishFood__ctor_m4FD0D6E2C01F517B02C20AE66FA2388ED524C041,
+	FishState__ctor_mD877C15465ACAFFE2C746CBA31DC54DF40D1433D,
+	FishState_Update_mCA1F583557B755E2D53673A2121F5F582521A2CD,
+	FishState_FixedUpdate_m51EE0AC33BCC37C90A05EBB3D9A88BC8B55CD225,
+	FishState_HandleCollideWithFood_mC6D1E9C6D835BBA9D2B7A0CC395C8B04223D2515,
+	FishState_OnCollidedWithWater_m09F422CFB05A446D1456C84ECB1A4308DE826C5D,
+	FishState_OnCollidedWithTank_m377F4BD69030D92BD87585F345ECF80AB22AC475,
+	FishState_OnCollidedWithTankDecor_mA64900DC237B8FC88315F42126D8A900A403956B,
+	FishState_OnFoodConsumed_m6FE05B63E550817413A4FC3F0AD538BFF466D3A5,
+	TransitionalState__ctor_m1464DB4047FE84356ADF701A5BBC1CDECBFE4D56,
+	DroppingIntoTankState__ctor_m4F50DBE80A91ED3E4A123F109FD514C94BC8AAC5,
+	DroppingIntoTankState_OnCollidedWithWater_m7236D4890A6C1C8903ACFCB58643A86AF34279A1,
+	RotatingState__ctor_mF9197C2762808002E419F7B9240420517E165002,
+	RotatingState_FixedUpdate_mB076CD065A96BB2DBC1096F181C1331B8235675E,
+	RotateTransitionalState__ctor_m6F33B03B37F0F3185127AFE16B6D450054B2497A,
+	RotateTransitionalState_FixedUpdate_mAD93DE1232CFE22B40F3F75FCD83C56AFCEA49B0,
+	WanderingState__ctor_mC435A08E356E3DF12144054DAA9E9E3825E9A1FB,
+	WanderingState_FixedUpdate_mC792F54F9804749216A47A6DA2875925C0946614,
+	WanderingState_OnCollidedWithTank_m2B7A6886EAB83D28907A840FE9C195B03BD8F010,
+	WanderingState_OnCollidedWithTankDecor_m5AF9AC0A400237A91E9326E7ECE5D2D2FEDD0A30,
+	WanderingState_BackUpAndTurnAway_m9C64CE75C76092804F19D1A1422A7B3F7493D4A8,
+	WanderingState_SetUpAndRotate_m2B756078685AAA5B7FAFBCC12758E8CB41DB2766,
+	WanderingState_SwimForward_m986B3F45313183386625C11FE435EC2A477776D9,
+	WanderingState_CheckLeavingWater_mE2592281B7AB1810BA4E519A5EDA4F3445C3A436,
+	NULL,
+	WanderingAndHungryState__ctor_mF7429433DB2BB498B0334778143938D433FBCB22,
+	WanderingAndHungryState_Update_m8EBCD6E2D45E072692F48B5C47C20189B43AB8E1,
+	WanderingAndHungryState_GetCurrentStateWithSatiety_m770CF44A4F909C3CD4C1BBC5F00C72E948556628,
+	WanderingAndFullState__ctor_m68E66E2FF4E2F8CD52C6FF53C05D09F2346EF6E9,
+	WanderingAndFullState_Update_m870DFFA90D503920A85F28C6BDA2AB7FD676800D,
+	WanderingAndFullState_GetCurrentStateWithSatiety_mBBD98BC26A0D44A67281910692C0C42F74E1B3EA,
+	HeadingForFoodState__ctor_m8CB22930D1764C97594E367841C73EB5AA4D0152,
+	HeadingForFoodState_FixedUpdate_m86AE5F3877574FBD181EE84265B12C596BF1BE37,
+	HeadingForFoodState_HandleCollideWithFood_mFE737AAF90FC242C8FCD8C222186A11EDBC2FE68,
+	HeadingForFoodState_OnFoodConsumed_m8B190E1C58599A44C69BEE59EFBEDEE3C970E7BE,
+	DeadState__ctor_m372ABEEEC7F20A3B9E3D5B78BD2FF20AF3E943F3,
+	FishTank_get_SaveData_mE47634E1B2AC8CBC5547DFF33CEEFF894E64A948,
+	FishTank_get_Visible_m6A1C7870ADF58B949190B176E6BD2ADA2816C526,
+	FishTank_Awake_m9AA6AF61FEF3F7167098479F9F6A1DB94DDD6973,
 	FishTank_Save_mCD0CD5DE68320A71C7A0E1E5ECF5CBF7CCD6EE02,
-	FishTank_Restore_mD8002ED8BB47B981120FEC6A7178C91B9DCDD7B8,
+	FishTank_SaveAndReturnData_mA73F3E05BD1AA62415FB837B9A3776D43250C111,
+	FishTank_Restore_m84ECE37D0268C92D1A655AE8C8DD41790FE252A9,
+	FishTank_ToggleBounds_m3A020D8EFBC0BDC90EF3CD1AD2D7DFD5BF8EC92F,
+	FishTank_GetNextFishFoodInTank_m52F0BAD3B04CB3126CA71DB4F746C9271FC8FCE4,
+	FishTank_OnFoodPieceConsumed_m67702F7FFE73AB6D0323646FFE1408BC82901013,
+	FishTank_AddTankResident_m4C6DCA2B4D53569388B8F5CBF648DF1DF6B65B5E,
+	FishTank_DestroyTankResident_mB8C6429FF882F9077783EE21D29FCEDF72814625,
+	FishTank_ToggleVisibility_m4FC61A5C65D9F330F07E93E93FF1D7241FA9DEDC,
 	FishTank__ctor_m4943C29CC33F4FD82FB0AF97C87CD796197121D4,
-	FishTankData__ctor_mF21ED7856EB181BB41D461D94FC36662745DBF35,
-	InteractableScreen_Start_m979C20FE1DF74E920F6E4A9C9B9318E4CDD6C700,
+	U3CU3Ec__cctor_m6C3A3AB94C1F9C7C77715ACC0D4333C90B020232,
+	U3CU3Ec__ctor_mBECCED4032CBF578864F1EB85EB453EE7E59F217,
+	U3CU3Ec_U3CSaveU3Eb__19_0_mD30CC3105D21DE86010000A5DB07DE8D2C79F616,
+	U3CU3Ec_U3CSaveU3Eb__19_1_m6B30C96A0918A86B1A816D5118262896F2F2E5EB,
+	U3CU3Ec_U3CSaveU3Eb__19_2_m88C704D8A55E55764C2334E0424345E966C70C7D,
+	NULL,
+	Ornament_ToggleVisibility_mBB132B0D246399D15B848684353A286F748FA1F2,
+	Ornament__ctor_mED1B6400BC8ABB6960CBD528A98A4059B4D83BA8,
+	TankResident_get_Tank_m7873BCFDCF2C0AA77B5874AA0C7BCDDC7E1D269D,
+	TankResident_get_SaveData_m9F9322E02A207408CE8BE7168CC60B05FB3BFCB5,
+	TankResident_Init_m8E700E63C02B6D93FDF4DECA8E2E0D33E78D9DED,
+	TankResident_Save_mEA463BA373A332F606DBADEDF81F7B1DFC8B9F46,
+	TankResident_SaveAndReturnData_m8639DB01B887E350A3F129C0C21607E6BF44A814,
+	TankResident_Restore_m13015EB96B2A1813A93C2DBAED4B6842DE2194E8,
+	TankResident_RegisterWithTank_m9DE7CBEF7A35D656F472FAF5BB88E35F411D6BDC,
+	NULL,
+	TankResident__ctor_m916DA0D50D41C85E100925B8BF42623C2A3EACF4,
+	AppData__ctor_mE12FE60D7CEFD32CFFE1AB6F19ECC7ABBD701E37,
+	FishTankData__ctor_mBFB72A5517813DD46D600C491A17370970AF6C42,
+	TankResidentData__ctor_m748E581760A562D718D8578AC591836329E073DC,
+	InteractionForTest_Start_mABD1BDFAE5733F198DA7F88CB7F1D34B0E8A1EDB,
+	InteractionForTest_Update_m413283D5DD07BE7A4790CD7E60A03FDFC939228E,
+	InteractionForTest_DropFood_m2A8A08745A05FF30285232E3ED387C05AF4039B4,
+	InteractionForTest_DropFish_m57362B35BAF14CAB5EBA7B3914AED4C185949F87,
+	InteractionForTest__ctor_mD6A23453D9245FDCEC5309F2943EB9607CB0DA7D,
+	TestFishTankCollision_FixedUpdate_m0132CE973DB4177D9FC3DFAFB4206903F43BED64,
+	TestFishTankCollision__ctor_m93EC03692B5B9CDCB3B59AF4702735E682530F44,
+	SettingsMenuBackdrop_OnPointerDown_m909F2A35A3DA23431722312D8C172B03095B9A15,
+	SettingsMenuBackdrop__ctor_mBC102349B4C67515A583C1667459D0C2371B3675,
+	SettingsPanelHide_OnStateExit_m54A027641C2287A4994D9B6EC28BBC1D63A2B1B3,
+	SettingsPanelHide__ctor_mDF094B79FD8B6E714E418AA4D23C73898976E9AD,
+	AppetiteBar_Start_mB57B542B9E1588D4BDA98521F0EB7A493D5E088E,
+	AppetiteBar_Update_mAEA88C4CD98635A57379CDD4C1A5A4C10AAF0A55,
+	AppetiteBar_HandleFishDataReady_mC161DA42A3CEC72458914E6C6D5EC6F5A7FF0CA1,
+	AppetiteBar__ctor_m2C2619E56A6D1ADD58CC030D763046A8DA46B171,
 	InteractableScreen_OnPointerDown_mA688B1C27122FB6C2A493E7C7F26EFD81F036F84,
-	InteractableScreen_HandleGeospatialTrackingStateChanged_mBC7C742D76FEC0AF05E5E484BB7FBEEB93DF9F86,
 	InteractableScreen__ctor_m74F68E2375DD2B75575B408A1555CC1BC33269D8,
-	InteractionModeToggle_HandleToggleValueChanged_mC7F35DA6E4EBA462A61D92A9A6B295912816779B,
-	InteractionModeToggle_Start_mFCD33E8976D8913190D9DF381ACA1FA720E1773E,
-	InteractionModeToggle_HandleModifyOnChanged_m5D04897F373F1A358F94CD7995C17B21A6728DF2,
-	InteractionModeToggle__ctor_m07571A7F002A4A6F2488048097605B85BA6110BB,
-	ObjectModeToggle_Start_m3F57E4E9C917857DE76252A49750A08954C620D8,
-	ObjectModeToggle_HandleToggleValueChanged_m038EDE12AA3A4FD7FAFB0FEC3D996949E52B6501,
-	ObjectModeToggle__ctor_m1D339761E050BFAB5928AE98CDFA7D5C26B0E577,
-	ScaleSliders_Start_m026DF6D64F75CDBB4ED348A23195375AA33D5D42,
-	ScaleSliders_HandleCurrentSelectedPlaceableChanged_m10A72D961C057B37ECB7AA9A2B5180B6BAF06263,
-	ScaleSliders__ctor_mA9570C4C8B16AC941FDDEBAF076A90D101EB63DA,
-	U3CU3Ec__DisplayClass4_0__ctor_m47CD399F94491CB9E9544029AD88C8F5B4610691,
-	U3CU3Ec__DisplayClass4_0_U3CHandleCurrentSelectedPlaceableChangedU3Eb__0_mF4AFD76C30E634B5FB0FA8536A5E3A768CEAE509,
-	U3CU3Ec__DisplayClass4_0_U3CHandleCurrentSelectedPlaceableChangedU3Eb__1_m4105D8346F7329AA09FE4B5E180B45B93DD965DF,
-	U3CU3Ec__DisplayClass4_0_U3CHandleCurrentSelectedPlaceableChangedU3Eb__2_mDAC68DF65FFAF4ACF14B3EA181E02E799A556894,
+	PrefabSelection_Start_m13F492D0F1C65C23D764B000779803193627FEE7,
+	PrefabSelection_SelectPrevious_m14B5FCC3AF4DC608C30E70ED75ECD8BCD46DF6D6,
+	PrefabSelection_SelectNext_m9E709FB45A39ED6080554428D4CF940A7CDD0493,
+	PrefabSelection_ChangeModels_m1E28419CA4196C6C05367EA8C8124FAB3F20EE17,
+	PrefabSelection_OnFinishedPlacingTank_m6BD988B425D678CD0B10D0FF829C79C73D6148E8,
+	PrefabSelection__ctor_m1C7C2A051554D65CEED7AFB298E75EE3BD635ACF,
+	SettingsMenu_Start_mE2F6C7DC6F8D450A9CB8F4DB9E432132B7CD8E5A,
+	SettingsMenu_ToggleSettingsMenuOpen_mA13FAC84ADF2A6AA153FC3D04A29F8EB6E54C409,
+	SettingsMenu_OnSettingsMenuFinishedHiding_mE9DDF7B879A11DBFE49D1E48E9052FEF926E3803,
+	SettingsMenu_HandleStartPlacingTank_m9881C15341289C422CF1F4AE0377CAB97FE3AEC8,
+	SettingsMenu_OnFinishedPlacingTank_mFD77FCA20278B6ED9B1DA80648075E0712267AAE,
+	SettingsMenu__ctor_mAB642D09DCFB585F2998C81DE33DD08C5C420E1C,
 	StatusLog_Awake_m9C6A7450978418ECED7015599B4467F48B79DFFC,
 	StatusLog_DebugLog_mD7806B6B726CBD843DBB835C30C043974871CA2C,
-	StatusLog_UpdateGeospatialStatus_mB65AC1E8815158F712D15ACD2EFFB9438C878193,
+	StatusLog_DebugLogAppend_m596320FA5DD3BF36CC35D595FE94EA09EFDD7274,
+	StatusLog_UpdateGeospatialStatus_m87C548C418204260F9F00916FE9E47D979D6A529,
 	StatusLog_LogGeospatialError_mBE1846F5F1B7787FB56D889051FDF2609299BB0D,
 	StatusLog__ctor_mC471667B89C6353E0330AC88B9EBA79FC137B84B,
-	StatusLog_U3CAwakeU3Eb__4_0_mB5ADF1F2F513214FF8BAFBDEF9704414A1DC26E6,
-	TouchControls_get_asset_m0E3C6C46163EC640F6C7D6BCE4C9F113754632B8,
-	TouchControls__ctor_m22C3B30221CD426DF6C3396A0050B2DE326F61C6,
-	TouchControls_Dispose_mD5F924DC257FDB889C0EA5809786DBEFF5D9D2ED,
-	TouchControls_get_bindingMask_mDFEBEDC9D20A49883806026AE440FFD2D91745A5,
-	TouchControls_set_bindingMask_m532127739B6C58FBF82DE697B80F2A37D2023209,
-	TouchControls_get_devices_m12E89FCC684F40EA443226C52ADC5ABEC12549B1,
-	TouchControls_set_devices_m3665B6ECDFB143F8B95B771898B66DBE0FB5B8AB,
-	TouchControls_get_controlSchemes_m4D6062F683FF562FD4464C0FB3EE681029ED120B,
-	TouchControls_Contains_m3D5FFE001245613E4CEF96AEFC9A9000807ADDA8,
-	TouchControls_GetEnumerator_m21353231847E5EB3CE699E72101C52F7220783C5,
-	TouchControls_System_Collections_IEnumerable_GetEnumerator_mFDCBACAE22242AA8AA18A87583AD5C1DDDE1D3CC,
-	TouchControls_Enable_m6F14E0C204FB26B59CC6A1A31051BCDD6FC53484,
-	TouchControls_Disable_m8265F03AF84701CA1931BDEE1733DF3E6D396102,
-	TouchControls_get_bindings_m66CA61D1F136F5DC01263BB9E3D09780A5AC99B5,
-	TouchControls_FindAction_m3FBDE54BC467AA12FA24BEAA2A4FABC28AE04D89,
-	TouchControls_FindBinding_m70AB45576A49532ABD92085F5F1464FEB9A5824B,
-	TouchControls_get_Touch_m1BA51F4BD4B4620409C6E88C3499E375B0652B6C,
-	TouchActions__ctor_m6BCA669DBB828942C0824ACB71F38628A9433113,
-	TouchActions_get_TouchPress_m19742AF48CFD9E0BA3DCAB340254B911873BF5A1,
-	TouchActions_get_TouchPosition_m7ABBA732E146B77A8D8F3AB77D20459ABEE4527A,
-	TouchActions_Get_m343CEC0BD97FDBFABE30177BF0526B2951B7C9CE,
-	TouchActions_Enable_mAB3ECA98FDA49C10415EBB13E4B309AEA8062AE1,
-	TouchActions_Disable_m97D643D5BE25BC964121E026EE34CFD1FF6DA97F,
-	TouchActions_get_enabled_m3A124CAB089D8027BE57DD8FF156F839A17C41CD,
-	TouchActions_op_Implicit_m481C94A6295124468B87CF0659DF284D31740F8C,
-	TouchActions_SetCallbacks_m23995617B15A1621B59ECF9C778736BE909AE119,
-	NULL,
-	NULL,
+	StatusLog_U3CAwakeU3Eb__3_0_m663EC1A26977BE686A4A6F344B188FCE761B07F0,
+	TankPlacementFinishButtons_Start_m850B0D2EE23279A2E3D84186298841DB553372D0,
+	TankPlacementFinishButtons_Update_m592B9D3E9F4C8DAA80E1CC2CF1030F0DF5FA1F53,
+	TankPlacementFinishButtons_HandleConfirmTankPlacement_m7131429FBDB6A79FF11D72FA06E381202562C284,
+	TankPlacementFinishButtons_HandleCancelTankPlacement_m71FEF9B169FC4EBBF66FCE5FBBFFB483E93A24C9,
+	TankPlacementFinishButtons_OnStartedPlacingTank_mB53DCE5B442B7FDDB82A84678E35DA2EF94E46E0,
+	TankPlacementFinishButtons__ctor_m489068A32C70B70093435917783CF244B42FE2E2,
+	Toggles_Start_m293B400DA03653C49550205C24A583F07DF37061,
+	Toggles_HandleModifyingTankToggle_m2014562255F0641A45F0CA9E85A31F63626F3650,
+	Toggles_HandleResidentTypeToggle_m175E37412575FFC713D4272E77AD1FA823CFEC24,
+	Toggles_OnStartedPlacingTank_m380EB27A9DB4A449DA3859126ECBA4B428A6A4C4,
+	Toggles_OnFinishedPlacingTank_mC6B11A713FBA744A17850E2C51B8BAF9A2C3DE3E,
+	Toggles__ctor_mFF7E99C69FA68116D98EECDEFA879CE23BE649CD,
+	WorldSpaceCanvas_Start_m38140F908B75A27B9D9BA1FED6CFD00FB4435CBF,
+	WorldSpaceCanvas_LateUpdate_m1B409DE66ADEF15050A70A3CBA6285534EC6192D,
+	WorldSpaceCanvas__ctor_m98742CE15F7CF18BFBA74EE027CA78C0E8CA3E30,
+	Helpers_ConvertAngleToRealistic_m2A6A7C54839B8624E65786423E808B3A64362DC6,
+	MoveCam_Update_m8444DCC1A6A5C7FC2C10C2D39B60709BB0EF1034,
+	MoveCam__ctor_m18E21EA8FFD9EF4CDD29A4DC2FD21046AF62307F,
+	HDRLightEstimation_get_arrow_m90E9E0DFFBEA889CD984909D947550649F5166F1,
+	HDRLightEstimation_set_arrow_m77091E2AA619CC6BA23A7F28F26049D52EF98383,
+	HDRLightEstimation_get_cameraManager_m88BEAEBDFEE0A24B835CF65B95FF58517C7F72D8,
+	HDRLightEstimation_set_cameraManager_m5C69E5809B84B95ABE58798124C64B89469561A7,
+	HDRLightEstimation_get_brightness_mEC96C1476BBC492F06AF78AB1E766F250F2046E0,
+	HDRLightEstimation_set_brightness_m803C5FBC0842C5FA5B301E17C74D3C86785A8D3B,
+	HDRLightEstimation_get_colorTemperature_mBC118B99D2A35D0CB8D59EB1CE448EC5A024FF77,
+	HDRLightEstimation_set_colorTemperature_m8CF13F26254979A329BBB886DDF06A3A9F4F7E34,
+	HDRLightEstimation_get_colorCorrection_mC947E3931B1D8714E60B220F042A2C39BF03CA25,
+	HDRLightEstimation_set_colorCorrection_mC69A7B1766BA26A2E3C13489B7E3B61D2A40BCB1,
+	HDRLightEstimation_get_mainLightDirection_mEDBAF553C55B73EBFFDDD2C1C71CB8D2B3C8EA94,
+	HDRLightEstimation_set_mainLightDirection_mD624818B6E3EE9926B3E8A1F49B36B7566326FA3,
+	HDRLightEstimation_get_mainLightColor_m09D1A545086368107945B0CDAEC4E985BD7694A8,
+	HDRLightEstimation_set_mainLightColor_m47E6D07BD255A08F5F02CAAFA6FAC1921C305055,
+	HDRLightEstimation_get_mainLightIntensityLumens_m036AC98027ADF6487CA6B89090164E334B9AFFFF,
+	HDRLightEstimation_set_mainLightIntensityLumens_m2CBA189C18D6115C5A285670ECB64D2097CAC7D6,
+	HDRLightEstimation_get_sphericalHarmonics_mF0387194DDBD893EBC369DCDFD042A8AC6838743,
+	HDRLightEstimation_set_sphericalHarmonics_mF3FD404F14E830A3659FE56447CF813F46BB0B60,
+	HDRLightEstimation_Awake_m5797D8698CE5523E6A7A4C9FA22BC81EE9F13A53,
+	HDRLightEstimation_OnEnable_m06A4B03440377494DFC4A7040965D6114844772E,
+	HDRLightEstimation_OnDisable_m0929130909DB3F7C009226745211018EED0F75C5,
+	HDRLightEstimation_OnBeforeRender_mDE8D65343A1A24B37D593BD04C36BE49B1BF8C76,
+	HDRLightEstimation_FrameChanged_mD24C845D4E9A9931DACC2DD04D9B4150ACA3C9C9,
+	HDRLightEstimation__ctor_mE9008215121765BEE9C1247E23361E0CDBB2E957,
 	BoundBox_Reset_m7198EA109F62D1497C0C1B03B9B828F8B5D87EDA,
 	BoundBox_Start_m5072AE058C6E4DA79CEBFB9DF70BDB4A6EC24F18,
 	BoundBox_Init_m2517A2E7A0E78561739064A97F40C1BFC516B899,
@@ -595,229 +937,327 @@ static Il2CppMethodPointer s_methodPointers[196] =
 	U3CDragObjectU3Ed__34_System_Collections_IEnumerator_Reset_m926CD4E49B2FCCA624BB0BE4372A18C7D11F1C86,
 	U3CDragObjectU3Ed__34_System_Collections_IEnumerator_get_Current_m2DA1F71DC28128869B85427CA2819DCD71AD5E89,
 };
-extern void TouchActions__ctor_m6BCA669DBB828942C0824ACB71F38628A9433113_AdjustorThunk (void);
-extern void TouchActions_get_TouchPress_m19742AF48CFD9E0BA3DCAB340254B911873BF5A1_AdjustorThunk (void);
-extern void TouchActions_get_TouchPosition_m7ABBA732E146B77A8D8F3AB77D20459ABEE4527A_AdjustorThunk (void);
-extern void TouchActions_Get_m343CEC0BD97FDBFABE30177BF0526B2951B7C9CE_AdjustorThunk (void);
-extern void TouchActions_Enable_mAB3ECA98FDA49C10415EBB13E4B309AEA8062AE1_AdjustorThunk (void);
-extern void TouchActions_Disable_m97D643D5BE25BC964121E026EE34CFD1FF6DA97F_AdjustorThunk (void);
-extern void TouchActions_get_enabled_m3A124CAB089D8027BE57DD8FF156F839A17C41CD_AdjustorThunk (void);
-extern void TouchActions_SetCallbacks_m23995617B15A1621B59ECF9C778736BE909AE119_AdjustorThunk (void);
 extern void VertexData__ctor_m514B3BBA1DC635BE4F31D72AD346500BE07741E6_AdjustorThunk (void);
-static Il2CppTokenAdjustorThunkPair s_adjustorThunks[9] = 
+static Il2CppTokenAdjustorThunkPair s_adjustorThunks[1] = 
 {
-	{ 0x06000088, TouchActions__ctor_m6BCA669DBB828942C0824ACB71F38628A9433113_AdjustorThunk },
-	{ 0x06000089, TouchActions_get_TouchPress_m19742AF48CFD9E0BA3DCAB340254B911873BF5A1_AdjustorThunk },
-	{ 0x0600008A, TouchActions_get_TouchPosition_m7ABBA732E146B77A8D8F3AB77D20459ABEE4527A_AdjustorThunk },
-	{ 0x0600008B, TouchActions_Get_m343CEC0BD97FDBFABE30177BF0526B2951B7C9CE_AdjustorThunk },
-	{ 0x0600008C, TouchActions_Enable_mAB3ECA98FDA49C10415EBB13E4B309AEA8062AE1_AdjustorThunk },
-	{ 0x0600008D, TouchActions_Disable_m97D643D5BE25BC964121E026EE34CFD1FF6DA97F_AdjustorThunk },
-	{ 0x0600008E, TouchActions_get_enabled_m3A124CAB089D8027BE57DD8FF156F839A17C41CD_AdjustorThunk },
-	{ 0x06000090, TouchActions_SetCallbacks_m23995617B15A1621B59ECF9C778736BE909AE119_AdjustorThunk },
-	{ 0x060000B1, VertexData__ctor_m514B3BBA1DC635BE4F31D72AD346500BE07741E6_AdjustorThunk },
+	{ 0x06000123, VertexData__ctor_m514B3BBA1DC635BE4F31D72AD346500BE07741E6_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[196] = 
+static const int32_t s_InvokerIndices[310] = 
 {
-	6668,
-	5411,
-	6795,
-	6795,
-	6795,
-	6795,
-	10545,
-	6712,
-	5448,
-	6795,
-	6795,
-	6795,
-	5284,
-	5411,
-	6795,
-	10545,
-	5411,
-	159,
-	1054,
-	6795,
-	6602,
-	6566,
-	6795,
-	6668,
-	4755,
-	6795,
-	6668,
-	6636,
-	6795,
-	6795,
-	6795,
-	5411,
-	5411,
-	5411,
-	5411,
-	6795,
-	10545,
-	6795,
-	4766,
-	6566,
-	5309,
-	6636,
-	5382,
-	5309,
-	5309,
-	5411,
-	5511,
-	6795,
-	6668,
-	2702,
-	6795,
-	2965,
-	5411,
-	6795,
+	8577,
+	6930,
+	8728,
+	8728,
+	8728,
+	8728,
+	15374,
+	8638,
+	6988,
+	8728,
+	8728,
+	8728,
+	6783,
+	6930,
+	8728,
+	15374,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8460,
+	6811,
+	8577,
+	8728,
+	8728,
+	6811,
+	6811,
+	6930,
+	7058,
+	8728,
+	6154,
+	6140,
+	3801,
+	8728,
+	6129,
+	6129,
+	6129,
+	8577,
+	8541,
+	6894,
+	8541,
+	6894,
+	8541,
+	6894,
+	8460,
+	6811,
+	8460,
+	8460,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	5718,
+	5718,
+	5718,
+	5718,
+	8460,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
 	0,
-	6795,
-	4760,
-	4760,
-	6668,
-	6636,
-	6636,
-	5382,
-	6795,
-	6795,
-	6795,
-	6795,
-	5382,
-	6795,
-	5411,
-	6795,
-	10545,
-	6795,
+	0,
+	0,
+	0,
+	0,
+	8728,
+	8728,
+	8638,
+	8638,
+	8460,
+	8638,
+	8577,
+	6930,
+	8728,
+	8728,
+	8728,
+	3483,
+	8728,
+	3820,
+	6811,
+	8577,
+	8728,
+	8460,
+	2982,
+	6811,
+	6930,
+	6930,
+	6930,
+	8728,
+	8728,
+	8728,
+	6930,
+	8728,
+	8728,
+	8728,
+	8728,
+	8541,
+	8460,
+	6811,
+	8728,
+	8728,
+	6811,
+	8728,
+	6930,
+	6930,
+	8728,
+	6930,
+	8728,
+	8728,
+	6930,
+	8728,
+	8728,
+	8728,
+	8728,
+	3820,
+	6930,
+	8728,
+	1983,
+	8728,
+	1419,
+	8728,
+	6930,
+	8728,
+	8728,
+	8728,
+	6988,
+	8728,
+	8728,
+	8460,
+	0,
+	6930,
+	8728,
+	8577,
+	6930,
+	8728,
+	8577,
+	3820,
+	8728,
+	6930,
+	8728,
+	6930,
+	8577,
+	8460,
+	8728,
+	8728,
+	8577,
+	6930,
+	6811,
+	8577,
+	6930,
+	6930,
+	6930,
+	6811,
+	8728,
+	15374,
+	8728,
+	6136,
+	6136,
+	6136,
+	0,
+	6811,
+	8728,
+	8577,
+	8577,
+	3483,
+	8728,
+	8577,
+	3820,
+	6930,
+	0,
+	8728,
+	6930,
+	3820,
+	1318,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	6930,
+	8728,
+	1931,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	6930,
+	8728,
+	8728,
+	8728,
+	8728,
+	1978,
+	8728,
+	8728,
+	8728,
+	6811,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	6930,
+	6930,
+	6894,
+	6930,
+	8728,
+	1974,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	6930,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	14184,
+	8728,
+	8728,
+	8577,
+	6930,
+	8577,
+	6930,
+	8322,
+	6673,
+	8322,
+	6673,
+	8303,
+	6653,
+	8326,
+	6681,
+	8303,
+	6653,
+	8322,
+	6673,
+	8323,
+	6674,
+	8728,
+	8728,
+	8728,
+	8728,
+	6771,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	8728,
+	6811,
+	6811,
+	6930,
+	6930,
+	8728,
+	8728,
+	8728,
+	8728,
 	3804,
-	4766,
-	4453,
-	0,
-	0,
-	0,
-	0,
-	0,
-	2702,
-	6795,
-	2965,
-	6795,
-	6795,
-	6795,
-	5448,
-	5448,
-	5448,
-	6795,
-	6795,
-	5411,
-	6795,
-	6795,
-	6795,
-	5411,
-	5382,
-	6795,
-	5411,
-	6795,
-	6795,
-	6795,
-	6795,
-	5411,
-	6795,
-	6795,
-	5411,
-	6795,
-	6795,
-	5448,
-	5448,
-	5448,
-	6795,
-	5411,
-	5351,
-	5411,
-	6795,
-	1584,
-	6668,
-	6795,
-	6795,
-	6425,
-	5169,
-	6416,
-	5157,
-	6447,
 	3804,
-	6668,
-	6668,
-	6795,
-	6795,
-	6668,
-	2286,
-	2019,
-	6925,
-	5411,
-	6668,
-	6668,
-	6668,
-	6795,
-	6795,
-	6566,
-	10095,
-	5411,
-	0,
-	0,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	6795,
-	5309,
-	5309,
-	5411,
-	5411,
-	6795,
-	6795,
-	6795,
-	6795,
-	2951,
-	2951,
-	1551,
-	6795,
-	6795,
-	2964,
-	6795,
-	599,
-	5513,
-	7637,
-	6795,
-	6795,
-	6795,
-	6795,
-	8456,
-	6795,
-	4781,
-	5448,
-	6795,
-	5382,
-	6795,
-	6566,
-	6668,
-	6795,
-	6668,
+	1938,
+	8728,
+	8728,
+	3819,
+	8728,
+	761,
+	7060,
+	10020,
+	8728,
+	8728,
+	8728,
+	8728,
+	11113,
+	8728,
+	6155,
+	6988,
+	8728,
+	6894,
+	8728,
+	8460,
+	8577,
+	8728,
+	8577,
 };
 static const Il2CppTokenRangePair s_rgctxIndices[1] = 
 {
-	{ 0x02000012, { 0, 3 } },
+	{ 0x02000009, { 0, 3 } },
 };
 extern const uint32_t g_rgctx_Singleton_1_tEB10BC7581192E8DC4004CC6A80E88A3E42C3444;
 extern const uint32_t g_rgctx_T_t2337B8A22C295A41D129CA0B4B104663AAC37B94;
@@ -832,9 +1272,9 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	196,
+	310,
 	s_methodPointers,
-	9,
+	1,
 	s_adjustorThunks,
 	s_InvokerIndices,
 	0,
