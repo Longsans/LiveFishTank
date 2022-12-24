@@ -51,12 +51,9 @@ public class DroppingIntoTankState : FishState
             _context.TogglePhysics(false);
             var angle = Random.Range(0f, 180f);
 
-            FishState nextState = _context.IsFull ?
-                new WanderingAndFullState(_context) :
-                    new WanderingAndHungryState(_context);
-            _context.State = new RotateTransitionalState(
-                _context, Quaternion.AngleAxis(angle, Vector3.up), _rotateDuration, nextState);
             PlaceablesManager.Instance.SavePlaceables();
+            _context.State = new RotateTransitionalState(
+                _context, Quaternion.AngleAxis(angle, Vector3.up), _rotateDuration, new WanderingAndFullState(_context));
             return;
         }
         // should stop after 0.4s
@@ -311,8 +308,8 @@ public class DeadState : FishState
     public DeadState(Fish context) : base(context)
     {
         var rb = _context.GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
         rb.MoveRotation(Quaternion.AngleAxis(180f, Vector3.left));
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
         rb.mass = 0.1f;
     }
 }
