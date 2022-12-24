@@ -522,8 +522,6 @@ struct Func_2_t28249B4F229A9F7163C77E8DD37B083C3EB73C1D;
 struct Func_2_tBDD0643F2F46CB2D7142E940BC1A0D7F62462BB2;
 // System.Func`2<UnityEngine.XR.OpenXR.Features.OpenXRInteractionFeature,System.Boolean>
 struct Func_2_tA29E07D0434FCDD2FFDF064F6EED60BC62C2A91E;
-// System.Func`2<Ornament,TankResidentData>
-struct Func_2_t3B722799A9E112D17D9FC73E87A4304227D78331;
 // System.Func`2<UnityEngine.TextCore.Text.SpriteCharacter,System.UInt32>
 struct Func_2_tF0A06FF312E9CFC173E3513FCD90DA99BA52B5B1;
 // System.Func`2<UnityEngine.TextCore.Text.SpriteGlyph,System.UInt32>
@@ -764,8 +762,6 @@ struct List_1_tF38D1A45CF65189578ADAC12AED34802EB2B8930;
 struct List_1_tEE09D0BD215A518344AF2985829C519B609B7B17;
 // System.Collections.Generic.List`1<System.Object>
 struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D;
-// System.Collections.Generic.List`1<Ornament>
-struct List_1_tAC60E3F933221EF9135E6A8A3D02997613F50C8F;
 // System.Collections.Generic.List`1<UnityEngine.Events.PersistentCall>
 struct List_1_t1EC718175613632CD4775345600304230E9A83DF;
 // System.Collections.Generic.List`1<UnityEngine.EventSystems.RaycastResult>
@@ -9862,12 +9858,10 @@ struct U3CU3Ec_t6DFE53C3AB3F6C5B91E8F428AAA9AB09E7AFEFF1_StaticFields
 {
 	// FishTank/<>c FishTank/<>c::<>9
 	U3CU3Ec_t6DFE53C3AB3F6C5B91E8F428AAA9AB09E7AFEFF1* ___U3CU3E9_0;
-	// System.Func`2<Fish,TankResidentData> FishTank/<>c::<>9__19_0
-	Func_2_t6D8B846802909046003BE5A7B57664ADEEF60FD6* ___U3CU3E9__19_0_1;
-	// System.Func`2<Ornament,TankResidentData> FishTank/<>c::<>9__19_1
-	Func_2_t3B722799A9E112D17D9FC73E87A4304227D78331* ___U3CU3E9__19_1_2;
-	// System.Func`2<FishFood,TankResidentData> FishTank/<>c::<>9__19_2
-	Func_2_t271E4AAEE876E94D23A6301A5AF02587244ADCE0* ___U3CU3E9__19_2_3;
+	// System.Func`2<Fish,TankResidentData> FishTank/<>c::<>9__18_0
+	Func_2_t6D8B846802909046003BE5A7B57664ADEEF60FD6* ___U3CU3E9__18_0_1;
+	// System.Func`2<FishFood,TankResidentData> FishTank/<>c::<>9__18_1
+	Func_2_t271E4AAEE876E94D23A6301A5AF02587244ADCE0* ___U3CU3E9__18_1_2;
 };
 
 // UnityEngine.TextCore.Text.FontAsset/<>c
@@ -48845,16 +48839,14 @@ struct FishTank_t86E700F86C92FD3E1D92A4D993C848E6753C2F13  : public MonoBehaviou
 	List_1_t84BBC8AD5941D9792B0407454C77882394D4051D* ____fishes_11;
 	// System.Collections.Generic.List`1<FishFood> FishTank::_foodPieces
 	List_1_t6D656B329625ECFE6E44CC70464170E8BC017E86* ____foodPieces_12;
-	// System.Collections.Generic.List`1<Ornament> FishTank::_ornaments
-	List_1_tAC60E3F933221EF9135E6A8A3D02997613F50C8F* ____ornaments_13;
 	// FishTankData FishTank::_saveData
-	FishTankData_t531DD38FD98910B084A9165968AEC50FCBAF0487* ____saveData_14;
+	FishTankData_t531DD38FD98910B084A9165968AEC50FCBAF0487* ____saveData_13;
 	// DimBoxes.BoundBox FishTank::_edgeHighlight
-	BoundBox_t0B778E30AEAF5C7830FD718A70DDB2CC9656420E* ____edgeHighlight_15;
+	BoundBox_t0B778E30AEAF5C7830FD718A70DDB2CC9656420E* ____edgeHighlight_14;
 	// System.Int32 FishTank::_nextFoodPiece
-	int32_t ____nextFoodPiece_16;
+	int32_t ____nextFoodPiece_15;
 	// System.Boolean FishTank::_isVisible
-	bool ____isVisible_17;
+	bool ____isVisible_16;
 };
 
 // UnityEngine.Rendering.FreeCamera

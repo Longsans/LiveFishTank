@@ -57,7 +57,6 @@ public class Fish : TankResident
 
     void FixedUpdate()
     {
-        Debug.Log($"current state: {State}");
         State.FixedUpdate();
     }
 
@@ -92,24 +91,24 @@ public class Fish : TankResident
             DieAfterDaysUnfed = _dieAfterDaysUnfed,
         };
         _saveData.OtherData = JsonUtility.ToJson(fishData);
+        StatusLog.Instance.DebugLog($"{fishData.LastSatietyChange}");
     }
 
-    public override void Restore(TankResidentData localData, FishTank geoObject)
+    public override void Restore(TankResidentData residentData, FishTank tank)
     {
-        base.Restore(localData, geoObject);
+        base.Restore(residentData, tank);
         SetUpWithTank();
         TogglePhysics(false);
-        var fishData = JsonUtility.FromJson<FishData>(localData.OtherData);
+        var fishData = JsonUtility.FromJson<FishData>(residentData.OtherData);
         _growthLevel = fishData.GrowthLevel;
         _currentGrowthPoints = fishData.CurrentGrowthPoints;
         _currentSatiety = fishData.CurrentSatiety;
         _lastSatietyChange = fishData.LastSatietyChange;
         _size = fishData.Size;
         _dieAfterDaysUnfed = fishData.DieAfterDaysUnfed;
-        State = IsFull ? new WanderingAndFullState(this) : new WanderingAndHungryState(this);
-
         CalculateCurrentLevelAttributes();
         GrowAccordingToRemainingSatiety();
+        State = IsFull ? new WanderingAndFullState(this) : new WanderingAndHungryState(this);
         transform.localScale *= _size;
         AllDataInitialized.Invoke();
     }
@@ -135,7 +134,8 @@ public class Fish : TankResident
 
     public bool CheckIsAlive()
     {
-        return (DateTime.Now - _lastSatietyChange).TotalHours < _dieAfterDaysUnfed;
+        var timeElapsed = DateTime.Now - _lastSatietyChange;
+        return (float)timeElapsed.TotalDays < _dieAfterDaysUnfed;
     }
 
     public Quaternion GetLookAt(Vector3 lookAt, Vector3 up)
@@ -185,6 +185,7 @@ public class Fish : TankResident
         var consumedFood = _foodHeadedFor;
         ResetToNormalState();
         consumedFood.OnConsumed();
+        PlaceablesManager.Instance.SavePlaceables();
     }
 
     /// <summary>

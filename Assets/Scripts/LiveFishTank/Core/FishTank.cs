@@ -21,7 +21,6 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
 
     private List<Fish> _fishes;
     private List<FishFood> _foodPieces;
-    private List<Ornament> _ornaments;
     private FishTankData _saveData;
 
     private DimBoxes.BoundBox _edgeHighlight;
@@ -32,7 +31,6 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
     {
         _fishes = new();
         _foodPieces = new();
-        _ornaments = new();
         _edgeHighlight = GetComponent<DimBoxes.BoundBox>();
     }
 
@@ -42,7 +40,6 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
     public virtual void Save()
     {
         var residentsDataList = _fishes.Select(f => f.SaveAndReturnData()).ToList();
-        residentsDataList.AddRange(_ornaments.Select(o => o.SaveAndReturnData()).ToList());
         residentsDataList.AddRange(_foodPieces.Select(fg => fg.SaveAndReturnData()).ToList());
         _saveData = new(residentsDataList);
     }
@@ -118,10 +115,6 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
                 if (!_foodPieces.Contains(ff))
                     _foodPieces.Add(ff);
                 break;
-            case Ornament o:
-                if (!_ornaments.Contains(o))
-                    _ornaments.Add(o);
-                break;
         }
         if (!_isVisible)
             resident.ToggleVisibility(_isVisible);
@@ -138,10 +131,6 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
             case FishFood ff:
                 if (_foodPieces.Contains(ff))
                     _foodPieces.Remove(ff);
-                break;
-            case Ornament o:
-                if (_ornaments.Contains(o))
-                    _ornaments.Remove(o);
                 break;
         }
         Destroy(resident.gameObject);
@@ -160,8 +149,5 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
 
         foreach (var food in _foodPieces)
             food.ToggleVisibility(visible);
-
-        foreach (var o in _ornaments)
-            o.ToggleVisibility(visible);
     }
 }
