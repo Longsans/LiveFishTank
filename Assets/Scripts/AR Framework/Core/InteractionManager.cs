@@ -11,7 +11,6 @@ public class InteractionManager : Singleton<InteractionManager>
     public GameObject CurrentSelectedPlaceable => _currentSelectedPlaceable;
 
     private GameObject _currentSelectedPlaceable;
-    private const int _fishTankLayer = 7;
 
     void Start()
     {
@@ -83,7 +82,7 @@ public class InteractionManager : Singleton<InteractionManager>
     {
         FishTank tank;
         // if camera is looking at fish tank
-        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, 1 << _fishTankLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, 1 << FishTank.TankLayer))
         {
             if (hit.collider.CompareTag(FishTank.WaterTag))
             {

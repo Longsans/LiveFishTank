@@ -2,9 +2,10 @@ using UnityEngine;
 
 public abstract class TankResident : MonoBehaviour, IVisibilityToggleable
 {
+    public FishTank Tank => _tank;
+    public TankResidentData SaveData => _saveData;
     protected FishTank _tank;
     protected TankResidentData _saveData;
-    public TankResidentData SaveData => _saveData;
 
     public virtual void Init(int prefabIndex, FishTank tank)
     {

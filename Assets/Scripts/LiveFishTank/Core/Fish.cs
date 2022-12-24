@@ -57,6 +57,7 @@ public class Fish : TankResident
 
     void FixedUpdate()
     {
+        Debug.Log($"current state: {State}");
         State.FixedUpdate();
     }
 
@@ -115,12 +116,12 @@ public class Fish : TankResident
 
     public void TogglePhysics(bool physicsOn)
     {
-        var rb = GetComponentInChildren<Rigidbody>();
+        var rb = GetComponent<Rigidbody>();
         _fishUI.enabled = !physicsOn;
         rb.useGravity = physicsOn;
     }
 
-    public FishFood DetectFood()
+    public FishFood DetectNextFood()
     {
         _foodHeadedFor = _tank.GetNextFishFoodInTank();
         return _foodHeadedFor;
@@ -137,6 +138,13 @@ public class Fish : TankResident
         return (DateTime.Now - _lastSatietyChange).TotalHours < _dieAfterDaysUnfed;
     }
 
+    public Quaternion GetLookAt(Vector3 lookAt, Vector3 up)
+    {
+        var angleToForwardDirection = 90f;
+        return Quaternion.LookRotation(lookAt - transform.position)
+                    * Quaternion.AngleAxis(angleToForwardDirection, Vector3.up);
+    }
+
     public override void ToggleVisibility(bool visible)
     {
         var renderer = GetComponentInChildren<Renderer>();
@@ -149,6 +157,12 @@ public class Fish : TankResident
         {
             State.HandleCollideWithFood(food);
         }
+        else if (collision.gameObject.CompareTag(FishTank.GlassTag))
+        {
+            State.OnCollidedWithTank();
+        }
+        else if (collision.gameObject.CompareTag(FishTank.DecorTag))
+            State.OnCollidedWithTankDecor();
     }
 
     void OnTriggerStay(Collider other)
@@ -156,7 +170,7 @@ public class Fish : TankResident
 
         if (other.CompareTag(FishTank.WaterTag))
         {
-            State.HandleCollidedWithWater();
+            State.OnCollidedWithWater();
         }
     }
 

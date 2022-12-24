@@ -15,8 +15,9 @@ public abstract class FishState
         _rb.rotation = Quaternion.AngleAxis(_rb.rotation.eulerAngles.y, Vector3.up);
     }
     public virtual void HandleCollideWithFood(FishFood food) { }
-    public virtual void HandleCollideWithOtherObjects(Collision collision) { }
-    public virtual void HandleCollidedWithWater() { }
+    public virtual void OnCollidedWithWater() { }
+    public virtual void OnCollidedWithTank() { }
+    public virtual void OnCollidedWithTankDecor() { }
     public virtual void OnFoodConsumed() { }
 }
 
@@ -42,7 +43,7 @@ public class DroppingIntoTankState : FishState
         _rotateDuration = Random.Range(0.5f, 0.75f);
     }
 
-    public override void HandleCollidedWithWater()
+    public override void OnCollidedWithWater()
     {
         if (_rb.drag >= _maxDrag)
         {
@@ -74,30 +75,20 @@ public class RotatingState : FishState
 
     public RotatingState(Fish context, Quaternion rotation, float duration = -1f) : base(context)
     {
-        _endRotation = rotation;
         _startRotation = _rb.rotation;
+        _endRotation = _startRotation * rotation;
         _duration = duration;
         _rotating = true;
     }
 
     public override void FixedUpdate()
     {
-        if (_damping && _rb.angularVelocity.sqrMagnitude > 0.0001f)
-        {
-            _rb.angularDrag += 50f;
+        if (_timeProgress > _duration)
             return;
-        }
-        else if (_damping)
-        {
-            _rb.angularDrag = 0f;
-            _damping = false;
-        }
-
         if (_duration > 0f)
         {
-            var clampedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0f, _duration - _timeProgress);
             _rb.rotation = Quaternion.Slerp(_startRotation, _endRotation, _timeProgress / _duration);
-            _timeProgress += clampedDeltaTime;
+            _timeProgress += Time.fixedDeltaTime;
         }
         else _rb.rotation = Quaternion.RotateTowards(_rb.rotation, _endRotation, Time.fixedDeltaTime);
     }
@@ -118,22 +109,23 @@ public class RotateTransitionalState : TransitionalState
 
     public override void FixedUpdate()
     {
-        if (_timeProgress == _duration)
+        if (_timeProgress > _duration)
         {
             _context.State = _nextState;
             return;
         }
         base.FixedUpdate();
-        var clampedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0f, _duration - _timeProgress);
-        _timeProgress += clampedDeltaTime;
+        _timeProgress += Time.fixedDeltaTime;
     }
 }
 
 public abstract class WanderingState : RotatingState
 {
     private float _movementPhase = 0f;
-    private float _movementProgress = 0f;
     private float _movementModifier;
+    private float _timeBetweenRotations;
+    private float _timeBeforeNextRotation;
+    private bool _returningToCenter = false;
 
     public WanderingState(Fish context) : base(context, context.transform.rotation)
     {
@@ -142,55 +134,106 @@ public abstract class WanderingState : RotatingState
 
     public override void FixedUpdate()
     {
+        bool leavingWater = CheckLeavingWater();
+        if (_returningToCenter)
+        {
+            if (leavingWater)
+            {
+                SwimForward();
+                return;
+            }
+            else _returningToCenter = false;
+        }
+        else if (leavingWater)
+        {
+            _rb.rotation = _context.GetLookAt(_context.transform.parent.position, Vector3.up);
+            return;
+        }
+        SetUpAndRotate();
+        SwimForward();
+    }
+
+    public override void OnCollidedWithTank()
+    {
+        float angle;
+        var waterExtent = _context.Tank.WaterCollider.bounds.extents.sqrMagnitude;
+        var distanceFromTankCenter = _context.transform.localPosition.sqrMagnitude;
+        if (distanceFromTankCenter / waterExtent > 0.75f)
+        {
+            var towardsTankCenter = Vector3.ProjectOnPlane(-_context.transform.localPosition, Vector3.up);
+            angle = Vector3.SignedAngle(-_context.transform.right, towardsTankCenter, Vector3.up);
+        }
+        else angle = Random.value <= 0.5f ? Random.Range(-180f, -150f) : Random.Range(150f, 180f);
+        BackUpAndTurnAway(angle);
+    }
+
+    public override void OnCollidedWithTankDecor()
+    {
+        var angle = Random.value <= 0.5f ? Random.Range(-120f, -60f) : Random.Range(60f, 120f);
+        BackUpAndTurnAway(angle);
+    }
+
+    private void BackUpAndTurnAway(float turnAngle)
+    {
+        var backwardModifier = 0.3f;
+        _rb.velocity = _context.transform.right * backwardModifier * _context.SwimSpeed;
+        _context.State = new RotateTransitionalState(
+            _context, Quaternion.AngleAxis(turnAngle, Vector3.up), 1f, GetCurrentStateWithSatiety());
+    }
+
+    private void SetUpAndRotate()
+    {
         if (_rotating && _timeProgress < _duration)
             base.FixedUpdate();
-        else if (_timeProgress == _duration)
+        else if (_rotating && _timeProgress == _duration)
+        {
             _rotating = false;
+            _timeBeforeNextRotation = Random.Range(2f, 3f);
+        }
         else
         {
-            var rotate = Random.Range(0f, 10f);
-            if (rotate > 7f)
-            {
-                var angle = Random.Range(30f, 120f);
-                _startRotation = _context.transform.rotation;
-                _endRotation = _startRotation * Quaternion.AngleAxis(angle, Vector3.up);
-                _duration = Random.Range(1f, 2.5f);
-                _timeProgress = 0f;
-                _rotating = true;
-            }
-        }
-
-        if (_movementProgress == _movementPhase)
-        {
-            if (_rb.velocity.sqrMagnitude < 1f)
-            {
-                _movementPhase = Random.Range(1f, 3f);
-                _movementModifier = Random.Range(0.8f, 1.2f);
-            }
+            if (_timeBeforeNextRotation > 0f)
+                _timeBeforeNextRotation -= Time.fixedDeltaTime;
             else
             {
-                _movementPhase = Random.Range(5f, 7.5f);
-                _movementModifier = 0f;
+                var rotate = Random.Range(0f, 10f);
+                if (rotate > 7f)
+                {
+                    var angle = Random.Range(-120f, 120f);
+                    _startRotation = _context.transform.rotation;
+                    _endRotation = _startRotation * Quaternion.AngleAxis(angle, Vector3.up);
+                    _duration = Random.Range(1f, 2.5f);
+                    _timeProgress = 0f;
+                    _rotating = true;
+                }
             }
-            _movementProgress = 0f;
         }
-        if (_movementModifier == 0f && _rb.velocity.sqrMagnitude > 0.04f)
-        {
-            _rb.drag += 20f;
-        }
-        else _rb.velocity = -_context.transform.right * _movementModifier * _context.SwimSpeed;
-        _movementProgress += Time.fixedDeltaTime;
     }
 
-    public override void HandleCollideWithOtherObjects(Collision collision)
+    private void SwimForward()
     {
-        if (collision.collider.CompareTag(FishTank.GlassTag))
+        if (_movementPhase <= 0f)
         {
-            var angle = Random.Range(90f, 180f);
-            _context.State = new RotateTransitionalState(
-                _context, Quaternion.AngleAxis(angle, Vector3.up), 0.5f, this);
+            var dice = Random.value;
+            if (dice < 0.4f)
+                _movementModifier = 0.2f;
+            else
+                _movementModifier = Random.Range(0.8f, 1f);
+
+            _movementPhase = Random.Range(3f, 4f);
         }
+        else _rb.velocity = -_context.transform.right * _movementModifier * _context.SwimSpeed;
+        _movementPhase -= Time.fixedDeltaTime;
     }
+
+    private bool CheckLeavingWater()
+    {
+        var waterHeightFromTankCenter = _context.Tank.WaterCollider.bounds.extents.y;
+        var heightFromTankCenter = _context.transform.localPosition.y;
+        return heightFromTankCenter / waterHeightFromTankCenter > 0.8f;
+    }
+
+    protected abstract WanderingState GetCurrentStateWithSatiety();
 }
 
 public class WanderingAndHungryState : WanderingState
@@ -198,11 +241,25 @@ public class WanderingAndHungryState : WanderingState
     public WanderingAndHungryState(Fish context) : base(context) { }
     public override void Update()
     {
-        var food = _context.DetectFood();
+        var food = _context.DetectNextFood();
         if (food)
+        {
+            var directionToFood = food.transform.position - _context.transform.position;
+            // food's behind decor, can't see can't reach so give up
+            if (Physics.Raycast(_context.transform.position, directionToFood, 1000f, 1 << FishTank.DecorLayer))
+            {
+                _context.State = new WanderingAndHungryState(_context);
+                return;
+            }
             _context.State = new HeadingForFoodState(_context, food);
+        }
         else if (!_context.CheckIsAlive())
             _context.State = new DeadState(_context);
+    }
+
+    protected override WanderingState GetCurrentStateWithSatiety()
+    {
+        return new WanderingAndHungryState(_context);
     }
 }
 
@@ -213,6 +270,11 @@ public class WanderingAndFullState : WanderingState
     {
         if (!_context.IsFull)
             _context.State = new WanderingAndHungryState(_context);
+    }
+
+    protected override WanderingState GetCurrentStateWithSatiety()
+    {
+        return new WanderingAndFullState(_context);
     }
 }
 
@@ -227,11 +289,7 @@ public class HeadingForFoodState : RotatingState
 
     public override void FixedUpdate()
     {
-        var angleToForwardDirection = 90f;
-        var rotationToFood =
-                Quaternion.LookRotation(_food.transform.position - _context.transform.position)
-                    * Quaternion.AngleAxis(angleToForwardDirection, Vector3.up);
-        _endRotation = rotationToFood;
+        _endRotation = _context.GetLookAt(_food.transform.position, Vector3.up);
         base.FixedUpdate();
         _context.SwimToFood();
     }

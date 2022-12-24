@@ -128,12 +128,6 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
         fishFoodGroup.Init(SelectedFoodPrefabIndex, _tank);
     }
 
-    public void PlaceNewOrnamentInTank()
-    {
-        // TODO: FIGURE OUT ORNAMENT PLACEMENT INTERACTION
-        //
-    }
-
     public int NextSeveralFishIndex(int number)
     {
         return (SelectedFishPrefabIndex + number) % _fishPrefabs.Count;
@@ -194,7 +188,6 @@ public class PlaceablesManager : Singleton<PlaceablesManager>
         }
         else
         {
-            Debug.Log("tank transform prior to placing assigned");
             _tankTransformPriorToEnterPlacing =
                 Instantiate(
                     _tankInPlacingPrefab,

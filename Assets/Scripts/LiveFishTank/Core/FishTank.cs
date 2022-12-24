@@ -9,11 +9,14 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
     #region Consts
     public const string GlassTag = "TankGlass";
     public const string WaterTag = "TankWater";
+    public const string DecorTag = "TankDecor";
+    public const int TankLayer = 7;
+    public const int DecorLayer = 9;
     #endregion
 
     public FishTankData SaveData => _saveData;
     public bool Visible => _isVisible;
-    [SerializeField] private GameObject _warningTint;
+    [SerializeField] public BoxCollider WaterCollider;
     [HideInInspector] public UnityEvent<FishFood> FoodPieceConsumed;
 
     private List<Fish> _fishes;
@@ -21,7 +24,6 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
     private List<Ornament> _ornaments;
     private FishTankData _saveData;
 
-    private List<TankWall> _tankWalls;
     private DimBoxes.BoundBox _edgeHighlight;
     private int _nextFoodPiece = 0;
     private bool _isVisible = false;
@@ -32,7 +34,6 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
         _foodPieces = new();
         _ornaments = new();
         _edgeHighlight = GetComponent<DimBoxes.BoundBox>();
-        _tankWalls = GetComponentsInChildren<TankWall>().ToList();
     }
 
     /// <summary>
@@ -148,7 +149,7 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
 
     public void ToggleVisibility(bool visible)
     {
-        InteractionManager.Instance.SelectPlaceableGameObject(null);
+        // InteractionManager.Instance.SelectPlaceableGameObject(null);
         _isVisible = visible;
         var renderers = GetComponentsInChildren<Renderer>();
         foreach (var r in renderers)
@@ -162,18 +163,5 @@ public class FishTank : MonoBehaviour, IVisibilityToggleable
 
         foreach (var o in _ornaments)
             o.ToggleVisibility(visible);
-    }
-
-    public void CheckToggleWarningColor()
-    {
-        foreach (var wall in _tankWalls)
-        {
-            if (wall.IsCollidingWithVerticalPlane)
-            {
-                _warningTint.SetActive(true);
-                return;
-            }
-        }
-        _warningTint.SetActive(false);
     }
 }

@@ -38,6 +38,7 @@ public class InteractionForTest : MonoBehaviour
 
     private void DropFish()
     {
+        Debug.Log("fish drop");
         var angle = Random.Range(30f, 180f);
         var fish = Instantiate(
             _fish,
@@ -45,5 +46,6 @@ public class InteractionForTest : MonoBehaviour
             Quaternion.AngleAxis(angle, Vector3.up))
             .GetComponent<TankResident>();
         fish.Init(0, _tank);
+        Debug.Log("fish done init");
     }
 }
